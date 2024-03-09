@@ -76,4 +76,11 @@ export class AuthServiceService {
     }
     return false
   }
+
+  getUserId(){
+    const user = localStorage.getItem('user')
+    const userParsed = JSON.parse(user as string)
+    const userId = userParsed.id
+    return userId
+  }
 }

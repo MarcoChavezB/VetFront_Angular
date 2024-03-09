@@ -7,5 +7,6 @@ export const environment ={
   update: 'http://127.0.0.1:8000/api/update',
   delete: 'http://127.0.0.1:8000/api/delete/',
   show: 'http://127.0.0.1:8000/api/show/',
-  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken'
+  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken',
+  codeVerify: 'http://127.0.0.1:8000/api/verifyCode'
 }

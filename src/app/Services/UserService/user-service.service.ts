@@ -12,6 +12,7 @@ import {UserRegistrationInterface,
         UserResults,
       } 
 from '../../Models/user';
+import { CodeInterface } from '../../Models/Code';
 
 
 @Injectable({
@@ -69,6 +70,10 @@ export class UserServiceService {
 
   authenticate(): Observable<statusInterface> {
     return this.http.get<statusInterface>(this.urlAuthenticate)
+  }
+
+  verifyCode(userId: string, codigo: string): Observable<CodeInterface> {
+    return this.http.post<CodeInterface>(environment.codeVerify, {userId, codigo})
   }
 
 }
