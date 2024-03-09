@@ -18,7 +18,7 @@ export const routes: Routes = [
         component: CodeVerifyComponent
       },
       {
-        path: 'registers',
+        path: 'register',
         component: RegisterComponent
       }
     ]

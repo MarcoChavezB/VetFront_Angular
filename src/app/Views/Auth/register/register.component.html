@@ -1,4 +1,4 @@
-<div class="mx-auto max-w-sm space-y-6">
+<form class="mx-auto max-w-sm space-y-6" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="space-y-2 text-center">
     <h1 class="text-3xl font-bold">Create an account</h1>
     <p class="text-gray-500 dark:text-gray-400">
@@ -9,27 +9,63 @@
     class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
     for="username">Username</label>
     <input
+    type="text" name="name" id="name"
+    formControlName="name"
+    placeholder="Name"
     class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-    id="username" placeholder="jane" required="">
+    >
+
+    <div *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)"
+    class="alert">
+    <div *ngIf="registerForm.controls['name'].errors?.['required']" [@shake]="registerForm.controls['name'].errors?.['required']">
+      El nombre es requerido.
+    </div>
+    <div *ngIf="registerForm.controls['name'].errors?.['minlength']" [@shake]="registerForm.controls['name'].errors?.['minlength']">
+      El nombre debe tener al menos 4 caracteres.
+    </div>
+    </div>
   </div>
   <div class="space-y-2"><label
       class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-      for="email">Email</label><input
+      for="email">Email</label>
+      <input
+      type="email" name="email" id="email"
+      formControlName="email"
+      placeholder="name@company.com"
       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-      id="email" placeholder="m@example.com" required="" type="email"></div>
+      >
+
+      <div *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
+         class="alert">
+      <div *ngIf="registerForm.controls['email'].errors?.['required']" [@shake]="registerForm.controls['email'].errors?.['required']">
+        El email es requerido.
+      </div>
+      <div *ngIf="registerForm.controls['email'].errors?.['email']" [@shake]="registerForm.controls['email'].errors?.['email']">
+        El email es invalido.
+      </div>
+    </div>
+  </div>
   <div class="space-y-2"><label
       class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
       for="password">Password</label>
       <input
+      type="password" name="password" id="password" placeholder="********"
+      autocomplete="on"
+      formControlName="password"
       class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-      id="password" required="" type="password" placeholder="********"></div>
+      >
 
-      <div class="space-y-2"><label
-        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        for="password">Confirm password</label>
-        <input
-        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-        id="password" required="" type="password" placeholder="********"></div>
+    <div *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+        class="alert">
+    <div *ngIf="registerForm.controls['password'].errors?.['required']" [@shake]="registerForm.controls['password'].errors?.['required']" >
+      La contraseña es requerida.
+    </div>
+    <div *ngIf="registerForm.controls['password'].errors?.['minlength']" [@shake]="registerForm.controls['password'].errors?.['minlength']">
+      La contraseña debe tener al menos 8 caracteres.
+    </div>
+ </div>
+    
+    </div>
 
   <div class="flex items-center space-x-2 text-sm"><button type="button" role="checkbox" aria-checked="false"
       data-state="unchecked" value="on"
@@ -39,8 +75,23 @@
       Accept terms and conditions
     </label></div>
     <button
+    type="submit"
+    [disabled]="!registerForm.valid || isSubmitting"
+    [ngClass]="{'bg-gray-500': !registerForm.valid || isSubmitting, 'bg-[#1da1f2] hover:bg-[#1da1f2]/90': registerForm.valid || isSubmitting}"
     class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-    type="submit">
+    >
     Sign Up
   </button>
-</div>
+
+  <div *ngIf="errors" class="alert">
+    <div *ngIf="errors.name" [@shake]="errors.name">
+      Error en el nombre: {{ errors.name[0] }}
+    </div>
+    <div *ngIf="errors.email" [@shake]="errors.email">
+      Error en el correo electrónico: {{ errors.email[0] }}
+    </div>
+    <div *ngIf="errors.password" [@shake]="errors.password">
+      Error en la contraseña: {{ errors.password[0] }}
+    </div>
+  </div>
+</form>
