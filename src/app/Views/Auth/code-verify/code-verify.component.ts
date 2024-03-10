@@ -103,6 +103,7 @@ export class CodeVerifyComponent {
         this.hasError = false;
       },
       (error) => {
+        this.resetInputs()
         this.hasError = true;
         if (error.error && error.error.mensaje) {
           this.showAlert(error.error.mensaje);
