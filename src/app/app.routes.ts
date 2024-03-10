@@ -1,11 +1,14 @@
 import { Routes } from '@angular/router';
-import { AuthComponent } from './Layouts/auth/auth.component';
 import { LoginComponent } from './Views/Auth/login/login.component';
 import { CodeVerifyComponent } from './Views/Auth/code-verify/code-verify.component';
 import { RegisterComponent } from './Views/Auth/register/register.component';
-import { AuthGuard } from './Guards/Auth/auth.guard';
+import { MainComponent } from './Views/Dashboard/main/main.component';
 
 export const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: MainComponent
+  },
   {
     path: '',
     component: LoginComponent
@@ -17,5 +20,5 @@ export const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
-  }
+  },
 ];
