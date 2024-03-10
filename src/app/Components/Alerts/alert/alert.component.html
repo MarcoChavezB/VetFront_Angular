@@ -1,4 +1,7 @@
-<article class="flex gap-10" [@slideInOut]="state">
+
+  <div
+    class="relative flex items-center gap-4 rounded-lg text-black px-4 py-5 shadow-lg"
+  >
   <section class="ico">
     <div class="rounder">
       <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
@@ -7,7 +10,7 @@
       </svg>
     </div>
   </section>
-  <section class="text w-full">
-    {{message}}
-  </section>
-</article>
+    <p class="text-sm font-medium">
+      {{message}}
+    </p>
+  </div>

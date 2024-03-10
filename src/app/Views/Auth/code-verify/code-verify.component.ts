@@ -2,15 +2,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ElementRef, ViewChild,  } from '@angular/core';
 import { UserServiceService } from '../../../Services/UserService/user-service.service';
-import { userInfo } from 'os';
 import { AuthServiceService } from '../../../Services/AuthService/auth-service.service';
+import { AlertComponent } from '../../../Components/Alerts/alert/alert.component';
 
 @Component({
   selector: 'app-code-verify',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    AlertComponent
   ],
   templateUrl: './code-verify.component.html',
   styleUrl: './code-verify.component.css'
@@ -40,6 +41,9 @@ export class CodeVerifyComponent {
   codigo: string = "";
   userId: string = "";
 
+  message: string = 'Usuario no existe';
+  mostrarAlerta: boolean = false;
+
   cambiarFoco(inputNumber: number) {
     if (inputNumber >= 1 && inputNumber <= 6) {
       const currentInputKey = `code${inputNumber}` as keyof CodeVerifyComponent;
@@ -62,18 +66,48 @@ export class CodeVerifyComponent {
     }
   }
 
-  verifyCode(){
-    this.codigo = Object.values(this.code).join("")
-    this.userId = this.AuthService.getUserId()
-
+  verifyCode() {
+    this.codigo = Object.values(this.code).join("");
+    this.userId = this.AuthService.getUserId();
+    console.log(this.codigo, this.userId)
     this.DataSVuser.verifyCode(this.userId, this.codigo).subscribe(
       (res) => {
-        
-        
+        this.showAlert(res.mensaje);
       },
       (error) => {
-        
+        if (error.error && error.error.mensaje) {
+          this.showAlert(error.error.mensaje);
+        } 
+        if (error.error && error.error.error) {
+            const validatorErrors = error.error.error;
+            if (validatorErrors.codigo) {
+              this.showAlert(validatorErrors.codigo[0]); 
+            } else if (validatorErrors.userId) {
+              this.showAlert(validatorErrors.userId[0]); 
+            } 
+        } 
       }
-    )
+    );
+  }
+  
+
+  showAlert(message: string ){
+    this.message = message;
+    this.mostrarAlerta = true;
+    setTimeout(() => {
+      this.mostrarAlerta = false;
+    }
+    , 3000);
+  }
+
+  resetInputs(){
+    this.code = {
+      code1: "",
+      code2: "",
+      code3: "",
+      code4: "",
+      code5: "",
+      code6: ""
+    }
   }
 }
