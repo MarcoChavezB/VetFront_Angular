@@ -1,3 +1,9 @@
+<div 
+*ngIf="mostrarAlerta"
+class="alert">
+  <app-alert [message]="message"></app-alert>
+</div>
+
 <div class="rounded-lg border bg-card">
   <div class="flex flex-col space-y-1.5 p-6">
     <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -24,7 +30,7 @@
 
       <input type="text"
       #code3
-        class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        class="text-center w-14 h-14 roundedg-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code3" (ngModelChange)="cambiarFoco(3)"/>
 
       <input type="text"
