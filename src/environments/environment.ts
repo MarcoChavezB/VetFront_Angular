@@ -9,5 +9,7 @@ export const environment ={
   show: 'http://127.0.0.1:8000/api/show/',
   authenticate: 'http://127.0.0.1:8000/api/authenticatetoken',
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
-  sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/'
+  sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/',
+  speciesIndex: 'http://127.0.0.1:8000/api/specie/index',
+  petStore: 'http://127.0.0.1:8000/api/pet/store'
 }

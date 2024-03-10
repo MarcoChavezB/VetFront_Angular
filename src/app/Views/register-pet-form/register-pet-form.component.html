@@ -1,0 +1,70 @@
+<form class="flex items-center min-h-screen px-4" [formGroup]="registerPetForm" (ngSubmit)="onSubmit()">
+  <div class="mx-auto w-full max-w-sm space-y-6">
+    <div class="space-y-2 text-center">
+      <h1 class="text-3xl font-bold">Agrega tu mascota.</h1>
+      <div class="space-y-4">
+        <div class="space-y-2">
+          <label for="name"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Nombre:</label>
+          <input name="name" type="text" id="name"
+                 formControlName="name"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                 placeholder="Nombre aquí">
+          <div class="alert"
+            *ngIf="registerPetForm.controls['name'].invalid && (registerPetForm.controls['name'].dirty || registerPetForm.controls['name'].touched)">
+            <div
+              [@shake]="registerPetForm.controls['name'].errors?.['required']"
+              *ngIf="registerPetForm.controls['name'].errors?.['required']">El nombre es requerido.
+            </div>
+            <div
+              [@shake]="registerPetForm.controls['name'].errors?.['minlength']"
+              *ngIf="registerPetForm.controls['name'].errors?.['minlength']">
+              El nombre debe tener al menos 4 caracteres.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <select formControlName="gender"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <option value="">Selecciona Genero</option>
+            <option value="Hembra">Hembra</option>
+            <option value="Macho">Macho</option>
+          </select>
+          <div class="alert"
+               *ngIf="registerPetForm.get('gender')?.invalid && (registerPetForm.get('gender')?.touched)">
+            <div
+              [@shake]="registerPetForm.get('gender')?.errors?.['required']"
+              *ngIf="registerPetForm.get('gender')?.errors?.['required']">El genero es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <select formControlName="specie"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <option value="">Selecciona Especie</option>
+            <option *ngFor="let specie of speciesR?.species" [value]="specie.id">
+              {{ specie.specie_name }}
+            </option>
+          </select>
+          <div class="alert"
+               *ngIf="registerPetForm.get('specie')?.invalid && (registerPetForm.get('specie')?.touched)">
+            <div
+              [@shake]="registerPetForm.get('specie')?.errors?.['required']"
+              *ngIf="registerPetForm.get('specie')?.errors?.['required']">La especie es requerida.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button type="submit"
+            class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+            Registrar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
