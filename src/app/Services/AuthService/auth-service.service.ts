@@ -77,9 +77,14 @@ export class AuthServiceService {
   }
 
   getUserId(){
-    const user = localStorage.getItem('user')
-    const userParsed = JSON.parse(user as string)
-    const userId = userParsed.id
-    return userId
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('user')
+      if(user){
+        const userParsed = JSON.parse(user as string)
+        const userId = userParsed.id
+        return userId
+      }
+      return null
+    }
   }
 }
