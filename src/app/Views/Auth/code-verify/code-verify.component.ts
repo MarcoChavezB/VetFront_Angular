@@ -54,6 +54,7 @@ export class CodeVerifyComponent {
     code6: ""
   };
   hasError: boolean = false;
+  success: boolean = false;
   codigo: string = "";
   userId: string = "";
 
@@ -97,8 +98,8 @@ export class CodeVerifyComponent {
 
     this.DataSVuser.verifyCode(this.userId, this.codigo).subscribe(
       (res) => {
+        this.success = true;
         this.showAlert(res.mensaje);
-        this.resetInputs();
         this.hasError = false;
       },
       (error) => {

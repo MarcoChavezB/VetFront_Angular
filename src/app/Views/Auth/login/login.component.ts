@@ -42,6 +42,8 @@ export class LoginComponent {
   public notfound = false;
   public error = false;
   public passwordVerify = false;
+  loading: boolean = false;
+
   constructor( 
     private userService: UserServiceService,
     private authService: AuthServiceService,
@@ -54,7 +56,7 @@ export class LoginComponent {
   ngOnInit() {
     this.authService.isAuthenticated().subscribe(isAuthenticated => {
       if (isAuthenticated) {
-        this.router.navigate(['']);
+        this.router.navigate(['code']);
       }
     });
   }
@@ -84,11 +86,18 @@ export class LoginComponent {
     );  
   }
 
-  sendEmail(){
+  sendEmail() {
+    this.loading = true;
+  
     this.userService.sendEmailCode(this.authService.getUserId()).subscribe(
       res => {
+        this.loading = false;
         this.router.navigate(['code']);
       },
+      error => {
+        this.loading = false;
+      }
     );
   }
+  
 }

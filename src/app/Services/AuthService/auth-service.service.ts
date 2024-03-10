@@ -19,7 +19,6 @@ export class AuthServiceService {
     const userString = JSON.stringify(user);
     localStorage.setItem('user', userString);
     localStorage.setItem('access_token', jwt);
-    this.router.navigate(['']);
   }
 }
 
