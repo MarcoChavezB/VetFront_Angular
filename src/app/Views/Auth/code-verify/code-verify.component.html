@@ -18,33 +18,39 @@ class="alert">
   </div>
   <div class="p-6 flex justify-center gap-4">
     <div class="flex justify-center items-center gap-x-6 ">
-      <input type="text"
-      #code1
-        class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
-        placeholder="-" maxlength="1" [(ngModel)]="code.code1" (ngModelChange)="cambiarFoco(1)"/>
+      <input type="text" 
+      #code1 
+      [@shake]="hasError"
+      class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50" placeholder="-" maxlength="1"
+      [(ngModel)]="code.code1" (ngModelChange)="cambiarFoco(1)" />
 
       <input type="text"
       #code2
+      [@shake]="hasError"
         class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code2" (ngModelChange)="cambiarFoco(2)"/>
 
       <input type="text"
       #code3
-        class="text-center w-14 h-14 roundedg-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+      [@shake]="hasError"
+      class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code3" (ngModelChange)="cambiarFoco(3)"/>
 
       <input type="text"
       #code4
+      [@shake]="hasError"
         class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code4" (ngModelChange)="cambiarFoco(4)"/>
 
       <input type="text"
       #code5
+      [@shake]="hasError"
         class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code5" (ngModelChange)="cambiarFoco(5)"/>
 
       <input type="text"
       #code6
+      [@shake]="hasError"
         class="text-center w-14 h-14 rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
         placeholder="-" maxlength="1" [(ngModel)]="code.code6" (ngModelChange)="cambiarFoco(6)"/>
     </div>

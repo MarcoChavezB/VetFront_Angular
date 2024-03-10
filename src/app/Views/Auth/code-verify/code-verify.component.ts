@@ -45,13 +45,6 @@ export class CodeVerifyComponent {
     private readonly AuthService: AuthServiceService
   ) { }
 
-  @ViewChild('code1') code1: ElementRef | undefined;
-  @ViewChild('code2') code2: ElementRef | undefined;
-  @ViewChild('code3') code3: ElementRef | undefined;
-  @ViewChild('code4') code4: ElementRef | undefined;
-  @ViewChild('code5') code5: ElementRef | undefined;
-  @ViewChild('code6') code6: ElementRef | undefined;
-
   code = {
     code1: "",
     code2: "",
@@ -60,9 +53,18 @@ export class CodeVerifyComponent {
     code5: "",
     code6: ""
   };
-  
+  hasError: boolean = false;
   codigo: string = "";
   userId: string = "";
+
+  @ViewChild('code1') code1: ElementRef | undefined;
+  @ViewChild('code2') code2: ElementRef | undefined;
+  @ViewChild('code3') code3: ElementRef | undefined;
+  @ViewChild('code4') code4: ElementRef | undefined;
+  @ViewChild('code5') code5: ElementRef | undefined;
+  @ViewChild('code6') code6: ElementRef | undefined;
+
+
 
   message: string = 'Usuario no existe';
   mostrarAlerta: boolean = false;
@@ -88,16 +90,19 @@ export class CodeVerifyComponent {
       }
     }
   }
-
   verifyCode() {
+    this.hasError = false;
     this.codigo = Object.values(this.code).join("");
     this.userId = this.AuthService.getUserId();
-    console.log(this.codigo, this.userId)
+
     this.DataSVuser.verifyCode(this.userId, this.codigo).subscribe(
       (res) => {
         this.showAlert(res.mensaje);
+        this.resetInputs();
+        this.hasError = false;
       },
       (error) => {
+        this.hasError = true;
         if (error.error && error.error.mensaje) {
           this.showAlert(error.error.mensaje);
         } 

@@ -16,6 +16,22 @@ input{
   animation: slideIn 0.5s forwards;
 }
 
+/* Agrega estilos para resaltar campos de entrada en rojo cuando hay errores */
+.error-input {
+  border-color: red;
+}
+
+/* Desactiva el botón cuando hay errores */
+.error-button {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Estilos de éxito para campos de entrada */
+.success-input {
+  border-color: green;
+}
+
 @keyframes slideOut {
   from {
       right: 0;
