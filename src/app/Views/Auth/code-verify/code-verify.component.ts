@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component, ElementRef, ViewChild,  } from '@angular/core';
+import { UserServiceService } from '../../../Services/UserService/user-service.service';
+import { userInfo } from 'os';
+import { AuthServiceService } from '../../../Services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-code-verify',
@@ -13,6 +16,10 @@ import { Component, ElementRef, ViewChild,  } from '@angular/core';
   styleUrl: './code-verify.component.css'
 })
 export class CodeVerifyComponent {
+  constructor(
+    private readonly DataSVuser: UserServiceService,
+    private readonly AuthService: AuthServiceService
+  ) { }
 
   @ViewChild('code1') code1: ElementRef | undefined;
   @ViewChild('code2') code2: ElementRef | undefined;
@@ -29,8 +36,9 @@ export class CodeVerifyComponent {
     code5: "",
     code6: ""
   };
-
-  concatenatedCode: string = "";
+  
+  codigo: string = "";
+  userId: string = "";
 
   cambiarFoco(inputNumber: number) {
     if (inputNumber >= 1 && inputNumber <= 6) {
@@ -54,11 +62,18 @@ export class CodeVerifyComponent {
     }
   }
 
-  
-  
-  getCode() {
-    this.concatenatedCode = Object.values(this.code).join("");
-    console.log(this.concatenatedCode);
-    return this.concatenatedCode;
+  verifyCode(){
+    this.codigo = Object.values(this.code).join("")
+    this.userId = this.AuthService.getUserId()
+
+    this.DataSVuser.verifyCode(this.userId, this.codigo).subscribe(
+      (res) => {
+        
+        
+      },
+      (error) => {
+        
+      }
+    )
   }
 }
