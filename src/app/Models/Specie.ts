@@ -8,3 +8,7 @@ export interface SpecieInterface {
 export interface SpecieResults{
    species: SpecieInterface[]
 }
+
+export interface SpecieStoreInterface {
+  specie_name: string;
+}
