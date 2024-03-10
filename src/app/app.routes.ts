@@ -6,7 +6,6 @@ import { AuthGuard } from './Guards/Auth/auth.guard';
 import { NotfoundComponent } from './Views/notfound/notfound.component';
 import { MainComponent } from './Views/Dashboard/main/main.component';
 import { AuthComponent } from './Layouts/auth/auth.component';
-import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -29,10 +28,6 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent
-      },
-      {
-        path: 'register-pet',
-        component: RegisterPetFormComponent
       }
     ]
   }
