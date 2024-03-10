@@ -8,5 +8,6 @@ export const environment ={
   delete: 'http://127.0.0.1:8000/api/delete/',
   show: 'http://127.0.0.1:8000/api/show/',
   authenticate: 'http://127.0.0.1:8000/api/authenticatetoken',
-  codeVerify: 'http://127.0.0.1:8000/api/verifyCode'
+  codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
+  sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/'
 }

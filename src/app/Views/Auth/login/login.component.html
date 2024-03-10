@@ -10,64 +10,63 @@
       <div class="space-y-2"><label
           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           for="email">Email</label>
-          <input
-          type="email" name="email" id="email" [(ngModel)]="email" autocomplete="on"
-          placeholder="name@example.com" #emailField="ngModel" required email
-          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-         >
+        <input type="email" name="email" id="email" [(ngModel)]="email" autocomplete="on" placeholder="name@example.com"
+          #emailField="ngModel" required email
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
 
-         <div *ngIf="emailField.errors?.['required'] && emailField.touched" class="text-red-500" [@shake]="emailField.errors?.['required'] && emailField.touched">
+        <div *ngIf="emailField.errors?.['required'] && emailField.touched" class="text-red-500"
+          [@shake]="emailField.errors?.['required'] && emailField.touched">
           Email is required.
         </div>
-        <div *ngIf="emailField.errors?.['email'] && emailField.touched" class="text-red-500" [@shake]="emailField.errors?.['email'] && emailField.touched">
+        <div *ngIf="emailField.errors?.['email'] && emailField.touched" class="text-red-500"
+          [@shake]="emailField.errors?.['email'] && emailField.touched">
           Please enter a valid email address.
         </div>
-        
-        </div>
+
+      </div>
       <div class="space-y-2">
         <div class="flex items-center"><label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             for="password">Password</label><a class="ml-auto inline-block text-sm underline" href="#">
           </a></div>
-          <input
-          type="password" name="password" id="password" placeholder="********" autocomplete="on"
+        <input type="password" name="password" id="password" placeholder="********" autocomplete="on"
           [(ngModel)]="password" #passwordField="ngModel" required minlength="8"
-          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-          >
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
 
-          <div *ngIf="passwordField.errors?.['required'] && passwordField.touched" class="text-red-500" [@shake]="passwordField.errors?.['required'] && passwordField.touched">
-            Password is required.
-            </div>
+        <div *ngIf="passwordField.errors?.['required'] && passwordField.touched" class="text-red-500"
+          [@shake]="passwordField.errors?.['required'] && passwordField.touched">
+          Password is required.
+        </div>
 
-            <div *ngIf="passwordField.errors?.['minlength'] && passwordField.touched" class="text-red-500" [@shake]="passwordField.errors?.['minlength'] && passwordField.touched">
-            Password must be at least 8 characters long.
-            </div>
+        <div *ngIf="passwordField.errors?.['minlength'] && passwordField.touched" class="text-red-500"
+          [@shake]="passwordField.errors?.['minlength'] && passwordField.touched">
+          Password must be at least 8 characters long.
+        </div>
 
 
       </div>
 
       <div class="text-red-500" *ngIf="notfound" [@shake]="notfound">
         User Not Found.
-    </div>
+      </div>
 
-    <div class="text-red-500" *ngIf="passwordVerify" [@shake]="passwordVerify">
+      <div class="text-red-500" *ngIf="passwordVerify" [@shake]="passwordVerify">
         Incorrect password.
-    </div>
+      </div>
 
-    <div class="text-red-500" *ngIf="error" [@shake]="error">
+      <div class="text-red-500" *ngIf="error" [@shake]="error">
         Server error.
-    </div>
+      </div>
 
-      <button
-                type="submit" [disabled]="loginForm.invalid"
-                [ngClass]="{'bg-gray-500': !loginForm.valid, 'bg-[#1da1f2] hover:bg-[#1da1f2]/90': loginForm.valid}"
-        class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
-     >
+      <button type="submit" [disabled]="loginForm.invalid"
+        [ngClass]="{'bg-gray-500': !loginForm.valid, 'bg-[#1da1f2] hover:bg-[#1da1f2]/90': loginForm.valid}"
+        class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
         Login
       </button>
     </div>
     <div class="mt-4 text-center text-sm">
-      <p class="text-gray-500 dark:text-gray-400">Don't have an account? <a class="text-accent" routerLink="/register" >Sign up</a></p>
+      <p class="text-gray-500 dark:text-gray-400">Don't have an account? <a class="text-accent"
+          routerLink="/register">Sign up</a></p>
     </div>
   </div>
 </form>

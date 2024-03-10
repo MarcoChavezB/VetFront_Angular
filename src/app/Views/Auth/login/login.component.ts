@@ -43,7 +43,7 @@ export class LoginComponent {
   public error = false;
   public passwordVerify = false;
   constructor( 
-    private loginService: UserServiceService,
+    private userService: UserServiceService,
     private authService: AuthServiceService,
     private router: Router
     ) {
@@ -67,9 +67,10 @@ export class LoginComponent {
       email: this.email || '',
       password: this.password || '',
     };
-    this.loginService.loginUser(user).subscribe(
+    this.userService.loginUser(user).subscribe(
       res => {
         this.authService.saveTokenResponse(res.jwt, res.data)
+        this.sendEmail()
       },
       error => {
         if (error.status == 404){
@@ -81,5 +82,13 @@ export class LoginComponent {
         }
       }
     );  
+  }
+
+  sendEmail(){
+    this.userService.sendEmailCode(this.authService.getUserId()).subscribe(
+      res => {
+        this.router.navigate(['code']);
+      },
+    );
   }
 }

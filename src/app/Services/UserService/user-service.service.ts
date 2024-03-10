@@ -76,4 +76,8 @@ export class UserServiceService {
     return this.http.post<CodeInterface>(environment.codeVerify, {userId, codigo})
   }
 
+  sendEmailCode(userId: string): Observable<any> {
+    return this.http.post<any>(environment.sendEmailCode + userId, {})
+  }
+
 }

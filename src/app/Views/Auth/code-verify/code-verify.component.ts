@@ -4,6 +4,14 @@ import { Component, ElementRef, ViewChild,  } from '@angular/core';
 import { UserServiceService } from '../../../Services/UserService/user-service.service';
 import { AuthServiceService } from '../../../Services/AuthService/auth-service.service';
 import { AlertComponent } from '../../../Components/Alerts/alert/alert.component';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  keyframes
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-code-verify',
@@ -12,6 +20,21 @@ import { AlertComponent } from '../../../Components/Alerts/alert/alert.component
     CommonModule,
     FormsModule,
     AlertComponent
+  ],
+  animations:[
+    trigger('shake', [
+      transition('* => *', [ 
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-5px)' }), 
+          style({ transform: 'translateX(5px)' }), 
+          style({ transform: 'translateX(-7px)' }),
+          style({ transform: 'translateX(7px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
   ],
   templateUrl: './code-verify.component.html',
   styleUrl: './code-verify.component.css'
