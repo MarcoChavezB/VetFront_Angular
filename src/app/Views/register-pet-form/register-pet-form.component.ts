@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {AuthServiceService} from "../../Services/AuthService/auth-service.service";
 import {SpecieResults, SpecieStoreInterface} from "../../Models/Specie";
-import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {PetRegisterInterface} from "../../Models/Pet";
@@ -17,7 +17,8 @@ import {SpecieServiceService} from "../../Services/SpecieService/specie-service.
     NgIf,
     ReactiveFormsModule,
     RouterLink,
-    NgClass
+    NgClass,
+    KeyValuePipe
   ],
   templateUrl: './register-pet-form.component.html',
   styleUrl: './register-pet-form.component.css',
@@ -37,9 +38,16 @@ import {SpecieServiceService} from "../../Services/SpecieService/specie-service.
     ])
   ]
 })
+
 export class RegisterPetFormComponent {
   speciesR: SpecieResults | undefined;
   showForm: boolean = false;
+  storePetBackendErrors: any;
+  storeSpecieBackendErrors: any;
+
+  storePetLoading = false;
+  storeSpecieLoading = false;
+
 
   registerPetForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -57,31 +65,10 @@ export class RegisterPetFormComponent {
     private specieService: SpecieServiceService
   ) { }
 
-
-
   ngOnInit() {
     this.fetchSpecies();
   }
 
-
-  onSubmit() {
-    let formValue = this.registerPetForm.value;
-    let pet: PetRegisterInterface = {
-      name: formValue.name || '',
-      gender: formValue.gender || '',
-      specie_id: Number(formValue.specie),
-      user_id: Number(this.authService.getUserId())
-    }
-
-    this.petService.storePet(pet).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
-  }
   showFormSpecies() {
     this.showForm = true;
   }
@@ -97,20 +84,49 @@ export class RegisterPetFormComponent {
     })
   }
 
+  storePet() {
+    this.storePetLoading = true;
+    let formValue = this.registerPetForm.value;
+    let pet: PetRegisterInterface = {
+      name: formValue.name || '',
+      gender: formValue.gender || '',
+      specie_id: Number(formValue.specie),
+      user_id: Number(this.authService.getUserId())
+    }
+
+    this.petService.storePet(pet).subscribe(
+      res => {
+        this.registerPetForm.reset();
+        this.storePetLoading = false;
+        console.log(res);
+      },
+      err => {
+        this.storePetLoading = false;
+        if(err.error.errors){
+          this.storePetBackendErrors = err.error.errors;
+        }
+      }
+    );
+  }
+
   storeSpecie() {
+    this.storeSpecieLoading = true;
     let formValue = this.registerSpecies.value;
     let specie: SpecieStoreInterface = {
       specie_name: formValue.specie_name || '',
     }
     this.specieService.storeSpecie(specie).subscribe(
       res => {
+        this.storeSpecieLoading = false;
         this.registerSpecies.reset();
-        console.log(res);
         this.fetchSpecies();
         this.showForm = false;
       },
       err => {
-        console.log(err);
+        this.storeSpecieLoading = false;
+        if(err.error.errors){
+          this.storeSpecieBackendErrors = err.error.errors;
+        }
       }
     );
   }

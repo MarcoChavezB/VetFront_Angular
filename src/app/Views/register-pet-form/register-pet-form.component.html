@@ -1,9 +1,16 @@
-<form class="flex items-center min-h-screen px-4" [formGroup]="registerPetForm" (ngSubmit)="onSubmit()">
+<form class="flex items-center min-h-screen px-4" [formGroup]="registerPetForm" (ngSubmit)="storePet()">
   <div class="mx-auto w-full max-w-sm space-y-6">
     <div class="space-y-2 text-center">
       <div class="space-y-4" *ngIf="!showForm">
         <h1 class="text-3xl font-bold">Agrega tu mascota.</h1>
         <div class="space-y-2">
+
+          <div class="alert" *ngIf="storePetBackendErrors">
+            <div class="text-red-500" *ngFor="let error of storePetBackendErrors | keyvalue" [@shake]="error">
+              {{ error.value }}
+            </div>
+          </div>
+
           <label for="name"
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
             Nombre:</label>
@@ -59,8 +66,8 @@
         </div>
 
         <div class="space-y-2">
-          <button [disabled]="!registerPetForm.valid"
-                  [ngClass]="{'bg-gray-500': !registerPetForm.valid, 'bg-[#1da1f2] hover:bg-gray-500': registerPetForm.valid}"
+          <button [disabled]="!registerPetForm.valid || storePetLoading"
+                  [ngClass]="{'bg-gray-500': !registerPetForm.valid || storePetLoading, 'bg-[#1da1f2] hover:bg-gray-500': registerPetForm.valid || !storePetLoading}"
                   type="submit"
             class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
             Registrar
@@ -76,6 +83,13 @@
     <div class="space-y-4" >
       <h1 class="text-3xl font-bold">Registrar nueva especie.</h1>
       <div class="space-y-2">
+
+        <div class="alert" *ngIf="storeSpecieBackendErrors">
+          <div class="text-red-500" *ngFor="let error of storeSpecieBackendErrors | keyvalue" [@shake]="error">
+            {{ error.value }}
+          </div>
+        </div>
+
         <label for="specie_name"
                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           Especie:</label>
@@ -99,8 +113,8 @@
 
       <div class="space-y-2">
         <button type="submit"
-                [disabled]="!registerSpecies.valid"
-                [ngClass]="{'bg-gray-500': !registerSpecies.valid, 'bg-[#1da1f2] hover:bg-gray-500': registerSpecies.valid}"
+                [disabled]="!registerSpecies.valid || storeSpecieLoading"
+                [ngClass]="{'bg-gray-500': !registerSpecies.valid || storeSpecieLoading, 'bg-[#1da1f2] hover:bg-gray-500': registerSpecies.valid || !storeSpecieLoading}"
                 class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
           Agregar
         </button>
