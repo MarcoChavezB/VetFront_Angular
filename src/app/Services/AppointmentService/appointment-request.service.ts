@@ -13,6 +13,9 @@ export class AppointmentRequestService {
   private urlStoreAppointment = environment.storeAppointment
   private urlGetAppointments = environment.indexAppointments
   private urlMarkAppointmentAsCompleted = environment.markAppointmentAsCompleted
+  private urlGetCancelledAppointments = environment.cancelledAppointments
+  private urlReOpenAppointment = environment.reOpenAppointment
+  private urlMarkAppointmentAsCancelled = environment.markAppointmentAsCancelled
 
   constructor(
     private readonly http: HttpClient,
@@ -28,6 +31,18 @@ export class AppointmentRequestService {
   }
 
   markAppointmentAsCompleted(id: number): Observable<any> {
-    return this.http.put<any>(this.urlMarkAppointmentAsCompleted + id, {})
+    return this.http.put<any>(this.urlMarkAppointmentAsCompleted+ id, {})
+  }
+
+  getCancelledAppointments(): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlGetCancelledAppointments)
+  }
+
+  reOpenAppointment(id: number): Observable<any> {
+    return this.http.put<any>(this.urlReOpenAppointment + id, {})
+  }
+
+  markppointmentAsCancelled(id: number): Observable<any>{
+    return this.http.put<any>(this.urlMarkAppointmentAsCancelled + id, {})
   }
 }

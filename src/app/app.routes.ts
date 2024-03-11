@@ -11,7 +11,16 @@ import {AppointmentIndexComponent} from "./Views/appointment-index/appointment-i
 import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
 import {
   ConfirmCompletedAppointmentComponent
-} from "./Views/confirm-completed-appointment/confirm-completed-appointment.component";
+} from "./Views/ConfirmNotifications/confirm-completed-appointment/confirm-completed-appointment.component";
+import {
+  AppointmentCancelledIndexComponent
+} from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
+import {
+  ConfirmReopenAppointmentComponent
+} from "./Views/ConfirmNotifications/confirm-reopen-appointment/confirm-reopen-appointment.component";
+import {
+  ConfirmCancelAppointmentComponent
+} from "./Views/ConfirmNotifications/confirm-cancel-appointment/confirm-cancel-appointment.component";
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -51,6 +60,18 @@ export const routes: Routes = [
       {
         path: 'confirm-completed-appointment/:id',
         component: ConfirmCompletedAppointmentComponent
+      },
+      {
+        path: 'appointment-cancelled-index',
+        component: AppointmentCancelledIndexComponent
+      },
+      {
+        path: 'confirm-reopen-appointment/:id',
+        component: ConfirmReopenAppointmentComponent
+      },
+      {
+        path: 'confirm-cancel-appointment/:id',
+        component: ConfirmCancelAppointmentComponent
       }
     ]
   }

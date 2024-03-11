@@ -5,6 +5,12 @@ export interface AppointmentStoreInterface {
   reason: string;
 }
 
+
+export interface AppointmentRsponse {
+  succes: boolean;
+  message: string;
+}
+
 export interface AppointmentInterface{
   id: number;
   pet_id: number;
