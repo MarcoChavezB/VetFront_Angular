@@ -42,8 +42,7 @@ export class AuthServiceService {
     const token = this.getToken();
     if (!token) {
       return of(false); 
-    }
-  
+    }  
     return this.usersservice.authenticate().pipe(
       map(() => true),
       catchError(() => {
@@ -51,6 +50,7 @@ export class AuthServiceService {
       })
     );
   }
+
   
   resetAll(){
     if (typeof window !== 'undefined') {
