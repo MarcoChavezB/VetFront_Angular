@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { routes, routesAuth } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import { authInterceptorProvider } from './Interceptors/Auth/auth.interceptor';
 
 const combinedRoutes = [...routes, ...routesAuth];
 
@@ -14,6 +14,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     importProvidersFrom(HttpClientModule),
     provideAnimations(),
+    authInterceptorProvider
   ]
 };
 
