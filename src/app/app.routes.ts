@@ -9,6 +9,9 @@ import { AuthComponent } from './Layouts/auth/auth.component';
 import {AppointmentRequestComponent} from "./Views/appointment-request/appointment-request.component";
 import {AppointmentIndexComponent} from "./Views/appointment-index/appointment-index.component";
 import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
+import {
+  ConfirmCompletedAppointmentComponent
+} from "./Views/confirm-completed-appointment/confirm-completed-appointment.component";
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -43,6 +46,10 @@ export const routes: Routes = [
       {
         path: 'appointment-index',
         component: AppointmentIndexComponent
+      },
+      {
+        path: 'confirm-completed-appointment/:id',
+        component: ConfirmCompletedAppointmentComponent
       }
     ]
   }

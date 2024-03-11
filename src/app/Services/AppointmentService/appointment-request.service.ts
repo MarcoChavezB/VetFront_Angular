@@ -12,6 +12,7 @@ export class AppointmentRequestService {
 
   private urlStoreAppointment = environment.storeAppointment
   private urlGetAppointments = environment.indexAppointments
+  private urlMarkAppointmentAsCompleted = environment.markAppointmentAsCompleted
 
   constructor(
     private readonly http: HttpClient,
@@ -24,5 +25,9 @@ export class AppointmentRequestService {
 
   getAppointments(): Observable<AppointmentResults> {
     return this.http.get<AppointmentResults>(this.urlGetAppointments)
+  }
+
+  markAppointmentAsCompleted(id: number): Observable<any> {
+    return this.http.put<any>(this.urlMarkAppointmentAsCompleted + id, {})
   }
 }
