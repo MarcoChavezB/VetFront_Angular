@@ -25,10 +25,16 @@ export class AppointmentIndexComponent {
   }
 
   ngOnInit() {
-    this.appointmentService.getAppointments().subscribe(appointments => {
+    this.appointmentService.getAppointments().subscribe(
+      appointments => {
       this.appointmentsR = appointments;
       console.log(this.appointmentsR)
-    });
+    },err =>{
+        if (err.status === 404){
+          console.log('No appointments found')
+          this.appointmentsR = {vet_appointments: []}
+        }
+      });
   }
 
 }
