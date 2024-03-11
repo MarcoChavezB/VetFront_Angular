@@ -13,5 +13,6 @@ export const environment ={
   speciesIndex: 'http://127.0.0.1:8000/api/specie/index',
   petStore: 'http://127.0.0.1:8000/api/pet/store',
   specieStore: 'http://127.0.0.1:8000/api/specie/store',
-  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/'
+  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/',
+  productIndex: 'http://127.0.0.1:8000/api/product/index'
 }
