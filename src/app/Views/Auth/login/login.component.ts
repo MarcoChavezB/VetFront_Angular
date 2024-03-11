@@ -53,13 +53,13 @@ export class LoginComponent {
     this.password = '';
   }
 
-  ngOnInit() {
-    this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        this.router.navigate(['code']);
-      }
-    });
-  }
+  // ngOnInit() {
+  //   this.authService.isAuthenticated().subscribe(isAuthenticated => {
+  //     if (isAuthenticated) {
+  //       this.router.navigate(['code']);
+  //     }
+  //   });
+  // }
 
   onSubmit() {
     this.notfound = false;
