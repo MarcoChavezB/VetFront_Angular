@@ -10,7 +10,8 @@ import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-f
 export const routes: Routes = [
   {
     path: 'dashboard',
-    component: MainComponent
+    component: MainComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: '',
@@ -40,9 +41,7 @@ export const routes: Routes = [
 
 export const routesAuth: Routes= [
   {
-    path: 'dashboard',
-
-
+    path: 'home',
   },
   {
     path: '**',

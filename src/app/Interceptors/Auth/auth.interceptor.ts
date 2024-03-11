@@ -25,6 +25,7 @@ export class AuthInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${authToken}`
         }
       });
+      console.log(req)
     }
 
     return next.handle(req).pipe(
