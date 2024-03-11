@@ -1,0 +1,73 @@
+<form class="flex items-center min-h-screen px-4" [formGroup]="appointmentRequestForm" (ngSubmit)="storeAppointmentRequest()">
+  <div class="mx-auto w-full max-w-sm space-y-6">
+    <div class="space-y-2 text-center">
+      <h1 class="text-3xl font-bold">Agenda tu cita.</h1>
+      <div class="space-y-4">
+
+        <div class="alert" *ngIf="backendErrors">
+          <div class="text-red-500" *ngFor="let error of backendErrors | keyvalue" [@shake]="error">
+            {{ error.value }}
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <input type="date" formControlName="appointment_date"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+          <div class="alert"
+               *ngIf="appointmentRequestForm.controls['appointment_date'].invalid && (appointmentRequestForm.controls['appointment_date'].dirty || appointmentRequestForm.controls['appointment_date'].touched)">
+            <div
+              [@shake]="appointmentRequestForm.controls['appointment_date'].errors?.['required']"
+              *ngIf="appointmentRequestForm.controls['appointment_date'].errors?.['required']">La fecha es requerida.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <select formControlName="pet_id"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+            <option value="">Selecciona Mascota</option>
+            <option *ngFor="let pet of petsR?.pets" [value]="pet.id">
+              {{ pet.name }}
+            </option>
+          </select>
+          <div class="alert"
+               *ngIf="appointmentRequestForm.get('pet_id')?.invalid && (appointmentRequestForm.get('pet_id')?.touched)">
+            <div
+              [@shake]="appointmentRequestForm.get('pet_id')?.errors?.['required']"
+              *ngIf="appointmentRequestForm.get('pet_id')?.errors?.['required']">El genero es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label for="reason"
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Motivo:
+          </label>
+          <input name="reason" type="text" id="reason"
+                 formControlName="reason"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                 placeholder="Motivo aquí">
+          <div class="alert"
+               *ngIf="appointmentRequestForm.controls['reason'].invalid && (appointmentRequestForm.controls['reason'].dirty || appointmentRequestForm.controls['reason'].touched)">
+            <div
+              [@shake]="appointmentRequestForm.controls['reason'].errors?.['required']"
+              *ngIf="appointmentRequestForm.controls['reason'].errors?.['required']">El motivo es requerido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button type="submit"
+                  [disabled]="!appointmentRequestForm.valid || isSubmitting"
+                  [ngClass]="{'bg-gray-500': !appointmentRequestForm.valid || isSubmitting, 'bg-[#1da1f2] hover:bg-gray-500': appointmentRequestForm.valid || !isSubmitting}"
+                  class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+            Agendar
+          </button>
+        </div>
+
+    </div>
+    </div>
+  </div>
+</form>

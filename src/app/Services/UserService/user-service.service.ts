@@ -2,32 +2,34 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {UserRegistrationInterface, 
+import {UserRegistrationInterface,
         UserInterface ,
-        UserLogin, 
-        statusInterface, 
-        LoginResponseInterface, 
-        UserUpdateInterface, 
-        UserDeleteInterface, 
+        UserLogin,
+        statusInterface,
+        LoginResponseInterface,
+        UserUpdateInterface,
+        UserDeleteInterface,
         UserResults,
-      } 
+      }
 from '../../Models/user';
 import { CodeInterface } from '../../Models/Code';
+import {PetResults} from "../../Models/Pet";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserServiceService {
-  
+
   private urlIndex = environment.index
   private urlStore = environment.store
   private urlLogin = environment.login
-  private urlShow = environment.show 
+  private urlShow = environment.show
   private urlUpdate = environment.update
   private urlLogout = environment.logout
-  private urlDelete = environment.delete 
+  private urlDelete = environment.delete
   private urlAuthenticate = environment.authenticate
+  private urlPetsByUser = environment.getPetsByUser
 
   constructor(
     private readonly http: HttpClient,
@@ -49,7 +51,7 @@ export class UserServiceService {
   loginUser(user: UserLogin): Observable<LoginResponseInterface>{
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
   }
-  
+
 
   logoutuser(): Observable<statusInterface>{
     return this.http.get<statusInterface>(this.urlLogout)
@@ -80,10 +82,12 @@ export class UserServiceService {
     return this.http.post<any>(environment.sendEmailCode + userId, {})
   }
 
+  getPetsByUser(userId: number): Observable<PetResults> {
+    return this.http.get<PetResults>(this.urlPetsByUser + userId)
+  }
+
   checkCodeAuth(userId: string): Observable<any> {
     return this.http.get<any>(environment.checkCodeAuth + userId)
   }
-
-  
 
 }
