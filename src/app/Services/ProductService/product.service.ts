@@ -11,11 +11,16 @@ import { productResult } from "../../Models/Product";
 export class ProductService {
 
   index = environment.productIndex
+  store = environment.productStore
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getProducts():Observable<productResult>{
     return this.http.get<productResult>(this.index)
+  }
+
+  storeProduct(product: {}):Observable<productResult>{
+    return this.http.post<productResult>(this.store, {product})
   }
 }
