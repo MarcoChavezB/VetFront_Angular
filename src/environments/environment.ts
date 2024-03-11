@@ -12,5 +12,6 @@ export const environment ={
   sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/',
   speciesIndex: 'http://127.0.0.1:8000/api/specie/index',
   petStore: 'http://127.0.0.1:8000/api/pet/store',
-  specieStore: 'http://127.0.0.1:8000/api/specie/store'
+  specieStore: 'http://127.0.0.1:8000/api/specie/store',
+  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/'
 }

@@ -11,6 +11,7 @@ import {
   transition,
   keyframes
 } from '@angular/animations';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -42,7 +43,8 @@ import {
 export class CodeVerifyComponent {
   constructor(
     private readonly DataSVuser: UserServiceService,
-    private readonly AuthService: AuthServiceService
+    private readonly AuthService: AuthServiceService,
+    private readonly router: Router
   ) { }
 
   code = {
@@ -54,10 +56,12 @@ export class CodeVerifyComponent {
     code6: ""
   };
   hasError: boolean = false;
+  diableButtonEmail: boolean = false;
   success: boolean = false;
+  disabledSumbitButton: boolean = false;
   codigo: string = "";
   userId: string = "";
-
+  
   @ViewChild('code1') code1: ElementRef | undefined;
   @ViewChild('code2') code2: ElementRef | undefined;
   @ViewChild('code3') code3: ElementRef | undefined;
@@ -100,7 +104,12 @@ export class CodeVerifyComponent {
       (res) => {
         this.success = true;
         this.showAlert(res.mensaje);
+        this.diableButtonEmail = false;
+        this.disabledSumbitButton = true;
         this.hasError = false;
+        setTimeout(() => {
+          this.router.navigate(['dashboard']);
+        }, 1000);
       },
       (error) => {
         this.resetInputs()
@@ -118,6 +127,28 @@ export class CodeVerifyComponent {
         } 
       }
     );
+  }
+  
+  resendEmail() {
+    const lastSentTime = localStorage.getItem('lastSentTime');
+    const currentTime = new Date().getTime();
+  
+    if (!lastSentTime || (currentTime - parseInt(lastSentTime, 10) >= 50000)) {
+      this.DataSVuser.sendEmailCode(this.AuthService.getUserId()).subscribe(
+        res => {
+          localStorage.setItem('resendCode', 'true');
+          localStorage.setItem('lastSentTime', currentTime.toString());
+          this.diableButtonEmail = true;
+          this.showAlert("Codigo enviado");
+        },
+        error => {
+          this.showAlert(error.error.mensaje);
+        }
+      );
+    } else {
+      const timeLeft = 50 - Math.floor((currentTime - parseInt(lastSentTime, 10)) / 1000);
+      this.showAlert(`Espera ${timeLeft} segundos antes de volver a enviar el código.`);
+    }
   }
   
 
