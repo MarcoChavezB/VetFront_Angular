@@ -8,11 +8,9 @@ import { AuthComponent } from './Layouts/auth/auth.component';
 import {AppointmentRequestComponent} from "./Views/appointment-request/appointment-request.component";
 import {AppointmentIndexComponent} from "./Views/appointment-index/appointment-index.component";
 import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
-<<<<<<< HEAD
 import { ProductsComponent } from './Views/Dashboard/products/products.component';
 import { AgregarProdComponent } from './Views/Dashboard/agregar-prod/agregar-prod.component';
 
-=======
 import {
   ConfirmCompletedAppointmentComponent
 } from "./Views/ConfirmNotifications/confirm-completed-appointment/confirm-completed-appointment.component";
@@ -25,12 +23,11 @@ import {
 import {
   ConfirmCancelAppointmentComponent
 } from "./Views/ConfirmNotifications/confirm-cancel-appointment/confirm-cancel-appointment.component";
->>>>>>> 526edf7e9d835c979c798508cc6dea90ad118c2d
+import { AuthGuard } from './Guards/Auth/auth.guard';
 export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-<<<<<<< HEAD
     children: [
       {
         path: 'products',
@@ -40,10 +37,8 @@ export const routes: Routes = [
         path: 'addprod',
         component: AgregarProdComponent
       }
-    ]
-=======
+    ],
     canActivate: [AuthGuard]
->>>>>>> 526edf7e9d835c979c798508cc6dea90ad118c2d
   },
   {
     path: '',
@@ -97,11 +92,10 @@ export const routes: Routes = [
 
 export const routesAuth: Routes= [
   {
-<<<<<<< HEAD
     path: 'dashboard',
-=======
+  },
+  {
     path: 'home',
->>>>>>> 526edf7e9d835c979c798508cc6dea90ad118c2d
   },
   {
     path: '**',
