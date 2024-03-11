@@ -13,12 +13,14 @@ export const environment ={
   speciesIndex: 'http://127.0.0.1:8000/api/specie/index',
   petStore: 'http://127.0.0.1:8000/api/pet/store',
   specieStore: 'http://127.0.0.1:8000/api/specie/store',
+  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/',
+  productIndex: 'http://127.0.0.1:8000/api/product/index',
   getPetsByUser: 'http://127.0.0.1:8000/api/pet/index/',
   storeAppointment: 'http://127.0.0.1:8000/api/vetappointment/store',
   indexAppointments: 'http://127.0.0.1:8000/api/vetappointment/index',
-  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/',
   markAppointmentAsCompleted: 'http://127.0.0.1:8000/api/vetappointment/complete/',
   cancelledAppointments: 'http://127.0.0.1:8000/api/vetappointment/canceled/index',
   reOpenAppointment: 'http://127.0.0.1:8000/api/vetappointment/reopen/',
-  markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/'
+  markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
+  categoriesIndex: 'http://127.0.0.1:8000/api/category/index'
 }

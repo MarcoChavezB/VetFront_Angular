@@ -1,0 +1,51 @@
+<main class="h-full w-full flex justify-center items-center ml-5">
+  <div class="rounded-lg border bg-card text-card-foreground shadow-sm w-full max-w-lg" data-v0-t="card">
+    <div class="flex flex-col space-y-1.5 p-6">
+      <div>Agregar un producto</div>
+      <p class="mt-1 text-sm text-gray-500 dark:text-gray-400">Enter product information.</p>
+    </div>
+    <div class="p-6 grid gap-4">
+      <div class="grid w-full items-center gap-1.5"><label
+        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        for="name">Product Name</label><input
+        class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        id="name" placeholder="Product Name">
+      </div>
+      <div class="grid w-full items-center gap-1.5"><label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="description">Description</label><textarea
+          class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="description" placeholder="Description" spellcheck="false" data-ms-editor="true">
+        </textarea>
+        </div>
+          <div class="grid w-full items-center gap-1.5">
+            <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="category_id">Categorias</label>
+            <select name="" id="" 
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
+              <option value="" disabled="true">Selecciona una categoria</option>
+              <option 
+              *ngFor="let category of categories"
+              >
+              {{category.category}}
+            </option>
+            </select>
+          </div>
+      <div class="grid w-full items-center gap-1.5"><label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="stock">Inventory</label><input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="stock" placeholder="Inventory" spellcheck="false" data-ms-editor="true"></div>
+      <div class="grid w-full items-center gap-1.5"><label
+          class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          for="price">Price</label><input
+          class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          id="price" placeholder="Price" spellcheck="false" data-ms-editor="true"></div>
+    </div>
+    <div class="flex items-center p-6"><button
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">Cancel</button><button
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">Save</button>
+    </div>
+  </div>
+</main>
