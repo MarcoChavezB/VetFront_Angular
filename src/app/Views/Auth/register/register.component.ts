@@ -44,13 +44,13 @@ export class RegisterComponent {
   })
   errors: any;
 
-  ngOnInit() {
-    this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        this.router.navigate(['']);
-      }
-    });
-  }
+  // ngOnInit() {
+  //   this.authService.isAuthenticated().subscribe(isAuthenticated => {
+  //     if (isAuthenticated) {
+  //       this.router.navigate(['']);
+  //     }
+  //   });
+  // }
 
   constructor(
     private authService: AuthServiceService,

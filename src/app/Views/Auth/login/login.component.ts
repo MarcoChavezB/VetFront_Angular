@@ -53,13 +53,13 @@ export class LoginComponent {
     this.password = '';
   }
 
-  ngOnInit() {
-    this.authService.isAuthenticated().subscribe(isAuthenticated => {
-      if (isAuthenticated) {
-        this.router.navigate(['code']);
-      }
-    });
-  }
+  // ngOnInit() {
+  //   this.authService.isAuthenticated().subscribe(isAuthenticated => {
+  //     if (isAuthenticated) {
+  //       this.router.navigate(['code']);
+  //     }
+  //   });
+  // }
 
   onSubmit() {
     this.notfound = false;
@@ -72,7 +72,7 @@ export class LoginComponent {
     this.userService.loginUser(user).subscribe(
       res => {
         this.authService.saveTokenResponse(res.jwt, res.data)
-        this.sendEmail()
+        this.checkCode()
       },
       error => {
         if (error.status == 404){
@@ -88,7 +88,6 @@ export class LoginComponent {
 
   sendEmail() {
     this.loading = true;
-  
     this.userService.sendEmailCode(this.authService.getUserId()).subscribe(
       res => {
         this.loading = false;
@@ -96,6 +95,18 @@ export class LoginComponent {
       },
       error => {
         this.loading = false;
+      }
+    );
+  }
+
+  checkCode(){
+    this.userService.checkCodeAuth(this.authService.getUserId()).subscribe(
+      res => {
+        if (res.isActive == 1) {
+          this.router.navigate(['dashboard']);
+        }else{
+          this.sendEmail()
+        }
       }
     );
   }

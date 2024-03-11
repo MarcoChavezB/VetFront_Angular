@@ -15,5 +15,6 @@ export const environment ={
   specieStore: 'http://127.0.0.1:8000/api/specie/store',
   getPetsByUser: 'http://127.0.0.1:8000/api/pet/index/',
   storeAppointment: 'http://127.0.0.1:8000/api/vetappointment/store',
-  indexAppointments: 'http://127.0.0.1:8000/api/vetappointment/index'
+  indexAppointments: 'http://127.0.0.1:8000/api/vetappointment/index',
+  checkCodeAuth: 'http://127.0.0.1:8000/api/code/isActive/'
 }

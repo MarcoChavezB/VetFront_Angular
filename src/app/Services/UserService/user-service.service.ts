@@ -86,6 +86,8 @@ export class UserServiceService {
     return this.http.get<PetResults>(this.urlPetsByUser + userId)
   }
 
-
+  checkCodeAuth(userId: string): Observable<any> {
+    return this.http.get<any>(environment.checkCodeAuth + userId)
+  }
 
 }
