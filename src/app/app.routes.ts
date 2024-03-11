@@ -6,6 +6,8 @@ import { AuthGuard } from './Guards/Auth/auth.guard';
 import { NotfoundComponent } from './Views/notfound/notfound.component';
 import { MainComponent } from './Views/Dashboard/main/main.component';
 import { AuthComponent } from './Layouts/auth/auth.component';
+import {AppointmentRequestComponent} from "./Views/appointment-request/appointment-request.component";
+import {AppointmentIndexComponent} from "./Views/appointment-index/appointment-index.component";
 import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
 export const routes: Routes = [
   {
@@ -33,6 +35,14 @@ export const routes: Routes = [
       {
         path: 'register-pet',
         component: RegisterPetFormComponent
+      },
+      {
+        path: 'appointment-request',
+        component: AppointmentRequestComponent
+      },
+      {
+        path: 'appointment-index',
+        component: AppointmentIndexComponent
       }
     ]
   }

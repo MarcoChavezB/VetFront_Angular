@@ -1,0 +1,33 @@
+<div class="flex flex-col">
+  <table class="min-w-full rounded-md border border-gray-300 table-auto">
+    <thead>
+    <tr class="text-left bg-gray-100 border-b border-gray-300">
+      <th class="px-3 py-2 text-sm font-medium">User</th>
+      <th class="px-3 py-2 text-sm font-medium">Pet</th>
+      <th class="px-3 py-2 text-sm font-medium">Reason</th>
+      <th class="px-3 py-2 text-sm font-medium">Appointment Date</th>
+      <th class="px-3 py-2 text-sm font-medium">Created At</th>
+      <th class="px-3 py-2 text-sm font-medium">Status</th>
+      <th class="px-3 py-2 text-sm font-medium">Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let appointment of appointmentsR?.vet_appointments" class="border-b border-gray-300 hover:bg-gray-200">
+      <td class="px-3 py-2 text-sm">{{appointment.user}}</td>
+      <td class="px-3 py-2 text-sm">{{appointment.pet}}</td>
+      <td class="px-3 py-2 text-sm">{{appointment.reason}}</td>
+      <td class="px-3 py-2 text-sm">{{appointment.appointment_date}}</td>
+      <td class="px-3 py-2 text-sm">{{appointment.created_at}}</td>
+      <td class="px-3 py-2 text-sm">{{appointment.status}}</td>
+      <td class="px-3 py-2 text-sm">
+        <button class="bg-green-500 text-white px-2 py-1 rounded">Completar</button>
+        <button class="bg-blue-400 text-white px-2 py-1 rounded">Consultar</button>
+        <button class="bg-red-500 text-white px-2 py-1 rounded">Rechazar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="appointmentsR?.vet_appointments?.length === 0" class="text-center py-4">
+    No hay citas registradas
+  </div>
+</div>
