@@ -20,7 +20,7 @@ export class ProductService {
     return this.http.get<productResult>(this.index)
   }
 
-  storeProduct(product: {}):Observable<productResult>{
-    return this.http.post<productResult>(this.store, {product})
+  storeProduct(name: string, price: string, stock: number, description:string, category_id:number):Observable<productResult>{
+      return this.http.post<productResult>(this.store, {name, price, stock, description, category_id})
   }
 }

@@ -19,11 +19,11 @@ import { FormsModule } from '@angular/forms';
 export class AgregarProdComponent {
   categories: Category[] = []
   id: number = 0
-  name: string = ''
-  price: string = ''
-  stock: number = 0
-  description: string = ''
-  category_id: number = 0
+  name: string = 'Pastillas para garrapata'
+  price: string = '90'
+  stock: number = 5
+  description: string = 'pastillas para garrapata para cachorro'
+  category_id: number = 2
 
   constructor(
     private readonly categoryService: CategoryServiceService,
@@ -46,5 +46,15 @@ export class AgregarProdComponent {
     )
   }
 
+  addProduct(){
+    this.productService.storeProduct( this.name, this.price, this.stock, this.description, this.category_id).subscribe(
+      (res) => {
+        console.log(res)
+      },
+      (err) => {
+        console.log(err.error)
+      }
+    )
+  }
 
 }
