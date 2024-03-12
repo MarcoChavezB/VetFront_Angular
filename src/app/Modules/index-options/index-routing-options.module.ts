@@ -10,6 +10,7 @@ import {
 import {
   ConfirmCompletedAppointmentComponent
 } from "../../Views/ConfirmNotifications/confirm-completed-appointment/confirm-completed-appointment.component";
+import {PrescriptionsComponent} from "../../Views/prescriptions/prescriptions.component";
 
 const routes: Routes = [
   {
@@ -24,6 +25,11 @@ const routes: Routes = [
     path: 'cancel/:id',
     component: ConfirmCancelAppointmentComponent
   },
+  {
+    path: 'prescription/store/:id',
+    component: PrescriptionsComponent
+
+  }
 ]
 
 

@@ -23,5 +23,6 @@ export const environment ={
   reOpenAppointment: 'http://127.0.0.1:8000/api/vetappointment/reopen/',
   markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
-  productStore: 'http://127.0.0.1:8000/api/product/store'
+  productStore: 'http://127.0.0.1:8000/api/product/store',
+  prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store'
 }
