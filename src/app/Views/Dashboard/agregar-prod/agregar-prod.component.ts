@@ -20,6 +20,7 @@ import {
     CommonModule,
     FormsModule,
   ],
+  
   animations: [
     trigger('shake', [
       transition('* => *', [ 
@@ -46,7 +47,8 @@ export class AgregarProdComponent {
   stock: number = 0
   description: string = ''
   category_id: number = 0
-
+  nameError:string = ''
+  showNameError:boolean = false
   hasError: boolean = false;
   disableButton: boolean = true;
 
@@ -73,15 +75,21 @@ export class AgregarProdComponent {
     )
   }
 
-  addProduct(){
-    this.productService.storeProduct( this.name, this.price, this.stock, this.description, this.category_id).subscribe(
-      (res) => {
-        console.log(res)
-      },
-      (err) => {
-        console.log(err.error)
-      }
-    )
+  addProduct() {
+    this.productService.storeProduct(this.name, this.price, this.stock, this.description, this.category_id)
+      .subscribe(
+        (res) => {
+          console.log(res);  
+        },
+        (err) => {
+          if (err && err.error && err.error.error) {
+            console.log(err.error.error);
+          } else {
+            console.error(err);
+          }
+        }
+      );
   }
+  
 
 }
