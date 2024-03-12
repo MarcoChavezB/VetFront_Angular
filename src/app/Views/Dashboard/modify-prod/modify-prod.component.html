@@ -82,3 +82,16 @@
     </div>
   </form>
 </main>
+
+
+<app-alert-success-top
+*ngIf="showSuccess"
+[message]="successMessage"
+>
+</app-alert-success-top>
+
+<app-alert-error-top
+*ngIf="showError"
+[message]="errorMessage"
+>
+</app-alert-error-top>

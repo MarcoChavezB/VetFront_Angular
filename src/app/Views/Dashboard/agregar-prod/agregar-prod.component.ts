@@ -11,6 +11,9 @@ import {
   transition,
   keyframes
 } from '@angular/animations';
+import { AlertErrorComponent } from '../../../Components/Alerts/alert-error/alert-error.component';
+import { AlertSuccessComponent } from '../../../Components/Alerts/alert-success/alert-success.component';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
@@ -19,6 +22,9 @@ import {
   imports: [
     CommonModule,
     FormsModule,
+    AlertErrorComponent,
+    AlertSuccessComponent,
+    RouterLink
   ],
   
   animations: [
@@ -50,6 +56,9 @@ export class AgregarProdComponent {
   nameError:string = ''
   showNameError:boolean = false
   hasError: boolean = false;
+  showSuccess: boolean = false;
+  errorMessage: string = ''
+  successMessage: string = ''
   disableButton: boolean = true;
 
 
@@ -74,16 +83,16 @@ export class AgregarProdComponent {
       }
     )
   }
-
   addProduct() {
     this.productService.storeProduct(this.name, this.price, this.stock, this.description, this.category_id)
       .subscribe(
         (res) => {
-          console.log(res);  
+          this.showAlertSuccess('Producto agregado correctamente');
         },
         (err) => {
           if (err && err.error && err.error.error) {
-            console.log(err.error.error);
+            const firstError = this.getFirstError(err.error.error);
+            this.showAlert(firstError);
           } else {
             console.error(err);
           }
@@ -91,5 +100,24 @@ export class AgregarProdComponent {
       );
   }
   
+  getFirstError(errors: Record<string, string[]>): string {
+    const firstErrorKey = Object.keys(errors)[0];
+    return errors[firstErrorKey][0];
+  }
+  
+  showAlert(message: string) {
+    this.hasError = true;
+    this.errorMessage = message;
+    setTimeout(() => {
+      this.hasError = false;
+    }, 2000);
+  }
 
+  showAlertSuccess(message: string) {
+    this.showSuccess = true;
+    this.successMessage = message;
+    setTimeout(() => {
+      this.showSuccess = false;
+    }, 2000);
+  }
 }

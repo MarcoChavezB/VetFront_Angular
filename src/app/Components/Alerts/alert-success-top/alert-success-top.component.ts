@@ -1,16 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+
 @Component({
-  selector: 'app-alert-success',
+  selector: 'app-alert-success-top',
   standalone: true,
-  imports: [
-    CommonModule
-  ],
-  templateUrl: './alert-success.component.html',
-  styleUrl: './alert-success.component.css'
+  imports: [],
+  templateUrl: './alert-success-top.component.html',
+  styleUrl: './alert-success-top.component.css'
 })
-export class AlertSuccessComponent {
+export class AlertSuccessTopComponent {
   @Input() message: string = 'Mensaje predeterminado';
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
