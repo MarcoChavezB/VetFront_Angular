@@ -1,0 +1,81 @@
+<form class="flex items-center min-h-screen px-4" [formGroup]="prescrriptionForm" (ngSubmit)="storePrescription()">
+  <div class="mx-auto w-full max-w-sm space-y-6">
+    <div class="space-y-2 text-center">
+      <h1 class="text-3xl font-bold">Consulta</h1>
+      <div class="space-y-4">
+
+        <div class="alert" *ngIf="backendErrors">
+          <div class="text-red-500" *ngFor="let error of backendErrors | keyvalue" [@shake]="error">
+            {{ error.value }}
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <input type="text" formControlName="diagnosis"
+                  placeholder="Diagnóstico"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+          <div class="alert"
+               *ngIf="prescrriptionForm.controls['diagnosis'].invalid && (prescrriptionForm.controls['diagnosis'].dirty || prescrriptionForm.controls['diagnosis'].touched)">
+            <div
+              [@shake]="prescrriptionForm.controls['diagnosis'].errors?.['required']"
+              *ngIf="prescrriptionForm.controls['diagnosis'].errors?.['required']">El diagnóstico es requerido.
+            </div>
+            <div
+              [@shake]="prescrriptionForm.controls['diagnosis'].errors?.['maxlength']"
+              *ngIf="prescrriptionForm.controls['diagnosis'].errors?.['maxlength']">Maximo de caracteres exedido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <input type="text" formControlName="observations"
+                 placeholder="Observaciones"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+          <div class="alert"
+               *ngIf="prescrriptionForm.controls['observations'].invalid && (prescrriptionForm.controls['observations'].dirty || prescrriptionForm.controls['observations'].touched)">
+            <div
+              [@shake]="prescrriptionForm.controls['observations'].errors?.['required']"
+              *ngIf="prescrriptionForm.controls['observations'].errors?.['required']">Las observaciones son requeridas.
+            </div>
+            <div
+              [@shake]="prescrriptionForm.controls['observations'].errors?.['maxlength']"
+              *ngIf="prescrriptionForm.controls['observations'].errors?.['maxlength']">Maximo de caracteres exedido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <input type="text" formControlName="indications"
+                 placeholder="Indicaciones"
+                 class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          >
+          <div class="alert"
+               *ngIf="prescrriptionForm.controls['indications'].invalid && (prescrriptionForm.controls['indications'].dirty || prescrriptionForm.controls['indications'].touched)">
+            <div
+              [@shake]="prescrriptionForm.controls['indications'].errors?.['required']"
+              *ngIf="prescrriptionForm.controls['indications'].errors?.['required']">Las indicaciones son requeridas.
+            </div>
+            <div
+              [@shake]="prescrriptionForm.controls['indications'].errors?.['maxlength']"
+              *ngIf="prescrriptionForm.controls['indications'].errors?.['maxlength']">Maximo de caracteres exedido.
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <button type="submit"
+                  routerLink="/appointment-index"
+                  [disabled]="!prescrriptionForm.valid || isSubmitting"
+                  [ngClass]="{'bg-gray-500': !prescrriptionForm.valid || isSubmitting, 'bg-[#1da1f2] hover:bg-gray-500': prescrriptionForm.valid || !isSubmitting}"
+                  class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
+            Guardar
+          </button>
+          <p class="text-gray-500 dark:text-gray-400"><a class="text-accent" routerLink="/appointment-index">Cancelar</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</form>

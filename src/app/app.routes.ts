@@ -23,18 +23,11 @@ import { UserGuard } from './Guards/User/user.guard';
 
 import { AuthGuard } from './Guards/Auth/auth.guard';
 
-import {
-  ConfirmCompletedAppointmentComponent
-} from "./Views/ConfirmNotifications/confirm-completed-appointment/confirm-completed-appointment.component";
+
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
-import {
-  ConfirmReopenAppointmentComponent
-} from "./Views/ConfirmNotifications/confirm-reopen-appointment/confirm-reopen-appointment.component";
-import {
-  ConfirmCancelAppointmentComponent
-} from "./Views/ConfirmNotifications/confirm-cancel-appointment/confirm-cancel-appointment.component";
+
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -62,21 +55,13 @@ export const routes: Routes = [
         component: AppointmentIndexComponent
       },
       {
-        path: 'confirm-completed-appointment/:id',
-        component: ConfirmCompletedAppointmentComponent
-      },
-      {
         path: 'appointment-cancelled-index',
         component: AppointmentCancelledIndexComponent
       },
       {
-        path: 'confirm-reopen-appointment/:id',
-        component: ConfirmReopenAppointmentComponent
-      },
-      {
-        path: 'confirm-cancel-appointment/:id',
-        component: ConfirmCancelAppointmentComponent
+        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule)
       }
+
     ],
   },
   {
@@ -110,4 +95,3 @@ export const routes: Routes = [
     component: NotfoundComponent
   }
 ];
-

@@ -9,7 +9,7 @@ export const environment ={
   show: 'http://127.0.0.1:8000/api/show/',
 
   authenticate: 'http://127.0.0.1:8000/api/authenticatetoken', // token
-  codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified', 
+  codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified',
   emailVerifiedAuth: 'http://127.0.0.1:8000/api/emailverified',
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
   adminAuth: 'http://127.0.0.1:8000/api/adminauth',
@@ -32,6 +32,7 @@ export const environment ={
   markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
   productStore: 'http://127.0.0.1:8000/api/product/store',
+  prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store',
   productModify: 'http://127.0.0.1:8000/api/product/update/',
   showProductId: 'http://127.0.0.1:8000/api/product/show/',
   deleteProduct: 'http://127.0.0.1:8000/api/product/delete/'
