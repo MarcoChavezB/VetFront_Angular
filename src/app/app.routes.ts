@@ -28,6 +28,7 @@ import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
 import { UsersComponent } from './Views/Dashboard/users/users.component';
+import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
     children: [
+      {
+        path: '',
+        component: DashboardComponent
+      },
       {
         path: 'products',
         component: ProductsComponent
