@@ -7,7 +7,15 @@ export const environment ={
   update: 'http://127.0.0.1:8000/api/update',
   delete: 'http://127.0.0.1:8000/api/delete/',
   show: 'http://127.0.0.1:8000/api/show/',
-  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken',
+
+  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken', // token
+  codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified', 
+  emailVerifiedAuth: 'http://127.0.0.1:8000/api/emailverified',
+  activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
+  adminAuth: 'http://127.0.0.1:8000/api/guestauth',
+  userAuth: 'http://127.0.0.1:8000/api/userauth',
+  guestAuth: 'http://127.0.0.1:8000/api/adminauth',
+
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
   sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/',
   speciesIndex: 'http://127.0.0.1:8000/api/specie/index',

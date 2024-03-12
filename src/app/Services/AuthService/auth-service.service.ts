@@ -69,6 +69,7 @@ export class AuthServiceService {
             localStorage.removeItem('access_token');
             localStorage.removeItem('user');
             this.router.navigate(['/login']);
+            console.log('cerro sesion')
           }
         }
       )

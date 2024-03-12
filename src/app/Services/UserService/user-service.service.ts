@@ -31,6 +31,13 @@ export class UserServiceService {
   private urlAuthenticate = environment.authenticate
   private urlPetsByUser = environment.getPetsByUser
 
+  private urlcodeVerifiedAuth = environment.codeVerifiedAuth
+  private urlemailVerifiedAuth = environment.emailVerifiedAuth 
+  private urlactiveAccountAuth = environment.activeAccountAuth 
+  private urladminAuth = environment.adminAuth
+  private urluserAuth = environment.userAuth 
+  private urlguestAuth = environment.guestAuth   
+
   constructor(
     private readonly http: HttpClient,
   ) { }
@@ -88,6 +95,30 @@ export class UserServiceService {
 
   checkCodeAuth(userId: string): Observable<any> {
     return this.http.get<any>(environment.checkCodeAuth + userId)
+  }
+
+  codeVerifiedAuth(): Observable<any> {
+    return this.http.get<any>(this.urlcodeVerifiedAuth)
+  }
+
+  emailVerifiedAuth(): Observable<any> {
+    return this.http.get<any>(this.urlemailVerifiedAuth)
+  }
+
+  activeAccountAuth(): Observable<any> {
+    return this.http.get<any>(this.urlactiveAccountAuth)
+  }
+
+  adminAuth(): Observable<any> {
+    return this.http.get<any>(this.urladminAuth)
+  }
+
+  userAuth(): Observable<any> {
+    return this.http.get<any>(this.urluserAuth)
+  }
+
+  guestAuth(): Observable<any> {
+    return this.http.get<any>(this.urlguestAuth)
   }
 
 }

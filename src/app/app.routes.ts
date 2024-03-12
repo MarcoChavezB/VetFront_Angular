@@ -10,6 +10,18 @@ import {AppointmentIndexComponent} from "./Views/appointment-index/appointment-i
 import {RegisterPetFormComponent} from "./Views/register-pet-form/register-pet-form.component";
 import { ProductsComponent } from './Views/Dashboard/products/products.component';
 import { AgregarProdComponent } from './Views/Dashboard/agregar-prod/agregar-prod.component';
+import { ActiveAccountComponent } from './Views/Alerts/active-account/active-account.component';
+import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
+
+import { ActiveAccountGuard } from './Guards/Active_acount/active-acount.guard';
+import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
+import { EmailVerifiedGuard } from './Guards/Email_verified/email-verified.guard';
+
+import { AdminGuard } from './Guards/Admin/admin.guard';
+import { GuestGuard } from './Guards/Guest/guest.guard';
+import { UserGuard } from './Guards/User/user.guard';
+
+import { AuthGuard } from './Guards/Auth/auth.guard';
 
 import {
   ConfirmCompletedAppointmentComponent
@@ -23,11 +35,12 @@ import {
 import {
   ConfirmCancelAppointmentComponent
 } from "./Views/ConfirmNotifications/confirm-cancel-appointment/confirm-cancel-appointment.component";
-import { AuthGuard } from './Guards/Auth/auth.guard';
+
 export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
+    canActivate: [AuthGuard, EmailVerifiedGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
         path: 'products',
@@ -36,27 +49,6 @@ export const routes: Routes = [
       {
         path: 'addprod',
         component: AgregarProdComponent
-      }
-    ],
-    canActivate: [AuthGuard]
-  },
-  {
-    path: '',
-    component: AuthComponent,
-
-    children: [
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'code',
-        component: CodeVerifyComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
       },
       {
         path: 'register-pet',
@@ -86,19 +78,37 @@ export const routes: Routes = [
         path: 'confirm-cancel-appointment/:id',
         component: ConfirmCancelAppointmentComponent
       }
+    ],
+  },
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'code',
+        component: CodeVerifyComponent
+      },
+      {
+        path: 'register',
+        component: RegisterComponent
+      },
+      {
+        path: 'Notpermission',
+        component: PermissionAuthComponent
+      },
+      {
+        path: 'AccountActiveNotFound',
+        component: ActiveAccountComponent
+      }
     ]
-  }
-];
-
-export const routesAuth: Routes= [
-  {
-    path: 'dashboard',
-  },
-  {
-    path: 'home',
-  },
-  {
+  }, {
     path: '**',
     component: NotfoundComponent
   }
-]
+];
+
