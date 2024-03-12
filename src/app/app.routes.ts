@@ -32,7 +32,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, EmailVerifiedGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
+    canActivate: [AuthGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
         path: 'products',
