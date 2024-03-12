@@ -14,6 +14,7 @@ import {UserRegistrationInterface,
 from '../../Models/user';
 import { CodeInterface } from '../../Models/Code';
 import {PetResults} from "../../Models/Pet";
+import { totalInterface } from '../../Models/Total';
 
 
 @Injectable({
@@ -122,5 +123,9 @@ export class UserServiceService {
 
   desactivateAccount(userId: number): Observable<any>{
     return this.http.post<any>(environment.desactivateUser + userId, {})
+  }
+
+  getTotalUsers(): Observable<totalInterface>{
+    return this.http.get<totalInterface>(environment.totalUsuarios)
   }
 }

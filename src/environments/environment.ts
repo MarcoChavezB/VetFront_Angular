@@ -36,6 +36,10 @@ export const environment ={
   productModify: 'http://127.0.0.1:8000/api/product/update/',
   showProductId: 'http://127.0.0.1:8000/api/product/show/',
   deleteProduct: 'http://127.0.0.1:8000/api/product/delete/',
+  desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/',
 
-  desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/'
+  totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
+  totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
+  totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',
+  productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
 }

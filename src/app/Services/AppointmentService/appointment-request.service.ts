@@ -3,6 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {AppointmentResults, AppointmentStoreInterface} from "../../Models/Appointment";
 import {Observable} from "rxjs";
+import { totalInterface } from '../../Models/Total';
 
 
 @Injectable({
@@ -44,5 +45,9 @@ export class AppointmentRequestService {
 
   markppointmentAsCancelled(id: number): Observable<any>{
     return this.http.put<any>(this.urlMarkAppointmentAsCancelled + id, {})
+  }
+
+  getTotalAppointments(): Observable<totalInterface> {
+    return this.http.get<totalInterface>(environment.totalAppointments)
   }
 }
