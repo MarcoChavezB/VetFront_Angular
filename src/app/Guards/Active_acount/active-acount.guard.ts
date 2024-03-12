@@ -15,7 +15,7 @@ export class ActiveAccountGuard implements CanActivate {
       return this.userservice.activeAccountAuth().pipe(        
         map(() => true),
         catchError(() => {
-          this.authService.resetAll()
+          this.authService.logout()
           this.router.navigate(['/AccountActiveNotFound']);
           return of(false);          
         })

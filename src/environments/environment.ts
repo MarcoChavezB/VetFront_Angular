@@ -12,9 +12,9 @@ export const environment ={
   codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified', 
   emailVerifiedAuth: 'http://127.0.0.1:8000/api/emailverified',
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
-  adminAuth: 'http://127.0.0.1:8000/api/guestauth',
+  adminAuth: 'http://127.0.0.1:8000/api/adminauth',
   userAuth: 'http://127.0.0.1:8000/api/userauth',
-  guestAuth: 'http://127.0.0.1:8000/api/adminauth',
+  guestAuth: 'http://127.0.0.1:8000/api/guestauth',
 
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
   sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/',

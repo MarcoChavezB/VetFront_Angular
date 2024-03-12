@@ -59,7 +59,6 @@ export class UserServiceService {
     return this.http.post<LoginResponseInterface>(this.urlLogin, user)
   }
 
-
   logoutuser(): Observable<statusInterface>{
     return this.http.get<statusInterface>(this.urlLogout)
   }
