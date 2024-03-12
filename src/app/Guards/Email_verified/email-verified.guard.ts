@@ -6,16 +6,17 @@ import { Observable, map, catchError, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
+export class EmailVerifiedGuard implements CanActivate {
   constructor(private authService: UserServiceService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return this.authService.adminAuth().pipe(        
+      return this.authService.emailVerifiedAuth().pipe(        
         map(() => true),
         catchError(() => {
-          this.router.navigate(['/Notpermission']);
+          this.router.navigate(['/login']);
+          alert('Necesitas verificar tu correo electrónico')
           return of(false);
         })
     );
