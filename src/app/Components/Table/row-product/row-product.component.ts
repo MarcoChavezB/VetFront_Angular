@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-row-product',
@@ -15,4 +15,14 @@ export class RowProductComponent {
   @Input() price: string = '';
   @Input() stock: number = 0;
   @Input() description: string = '';
+
+  @Output() getEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() getEmitDelete: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  modifyProduct(){
+    this.getEmit.emit(true);
+  }
+  deleteProduct(){
+    this.getEmitDelete.emit(true);  
+  }
 }

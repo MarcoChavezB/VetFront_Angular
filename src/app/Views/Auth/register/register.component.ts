@@ -72,7 +72,7 @@ export class RegisterComponent {
       res => {
         this.router.navigate(['/login']);
         this.isSubmitting = false;
-        alert('¡Registrado correctamente!')
+        alert('¡Registrado correctamente, se te envio una confirmación a tu correo electrónico!')
       },
       err => {
         this.isSubmitting = false;

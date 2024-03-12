@@ -62,6 +62,7 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.loading = true;
     this.notfound = false;
     this.error = false;
     this.passwordVerify = false;
@@ -73,15 +74,19 @@ export class LoginComponent {
       res => {
         this.authService.saveTokenResponse(res.jwt, res.data)
         this.checkCode()
+        this.loading = false;
       },
       error => {
         if (error.status == 404){
           this.notfound = true;
         } else if(error.status == 401) {
           this.passwordVerify = true;
-        }else {
+        }else if(error.status == 403) {
+          alert('Aun no verificas tu email en tu correo electrónico')
+        } else {
           this.error = true
         }
+        this.loading = false;
       }
     );  
   }
@@ -92,6 +97,7 @@ export class LoginComponent {
       res => {
         this.loading = false;
         this.router.navigate(['code']);
+        alert('Se te envio un codigo de verificación a tu correo electrónico')
       },
       error => {
         this.loading = false;

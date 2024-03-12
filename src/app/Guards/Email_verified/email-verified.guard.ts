@@ -2,22 +2,21 @@ import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { UserServiceService } from '../../Services/UserService/user-service.service';
 import { Observable, map, catchError, of } from 'rxjs';
-import { AuthServiceService } from '../../Services/AuthService/auth-service.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AdminGuard implements CanActivate {
-  constructor(private authService: AuthServiceService, private userservice: UserServiceService, private router: Router) {}
+export class EmailVerifiedGuard implements CanActivate {
+  constructor(private authService: UserServiceService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-      return this.userservice.adminAuth().pipe(        
+      return this.authService.emailVerifiedAuth().pipe(        
         map(() => true),
         catchError(() => {
-          this.authService.logout()
-          this.router.navigate(['/Notpermission']);
+          this.router.navigate(['/login']);
+          alert('Necesitas verificar tu correo electrónico')
           return of(false);
         })
     );

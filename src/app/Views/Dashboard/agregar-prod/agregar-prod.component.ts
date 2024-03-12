@@ -4,6 +4,14 @@ import { Category } from '../../../Models/Category';
 import { CommonModule } from '@angular/common';
 import { ProductService } from '../../../Services/ProductService/product.service';
 import { FormsModule } from '@angular/forms';
+import {
+  trigger,
+  style,
+  animate,
+  transition,
+  keyframes
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-agregar-prod',
@@ -11,7 +19,22 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    
+  ],
+  
+  animations: [
+    trigger('shake', [
+      transition('* => *', [ 
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-5px)' }), 
+          style({ transform: 'translateX(5px)' }), 
+          style({ transform: 'translateX(-7px)' }),
+          style({ transform: 'translateX(7px)' }), 
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
   ],
   templateUrl: './agregar-prod.component.html',
   styleUrl: './agregar-prod.component.css'
@@ -24,6 +47,12 @@ export class AgregarProdComponent {
   stock: number = 0
   description: string = ''
   category_id: number = 0
+  nameError:string = ''
+  showNameError:boolean = false
+  hasError: boolean = false;
+  disableButton: boolean = true;
+
+
 
   constructor(
     private readonly categoryService: CategoryServiceService,
@@ -46,5 +75,21 @@ export class AgregarProdComponent {
     )
   }
 
+  addProduct() {
+    this.productService.storeProduct(this.name, this.price, this.stock, this.description, this.category_id)
+      .subscribe(
+        (res) => {
+          console.log(res);  
+        },
+        (err) => {
+          if (err && err.error && err.error.error) {
+            console.log(err.error.error);
+          } else {
+            console.error(err);
+          }
+        }
+      );
+  }
+  
 
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -13,4 +13,5 @@ import { RouterLink } from '@angular/router';
 export class AlertComponent {
   @Input() message: string = '';
   state: string = 'in';
+
 }

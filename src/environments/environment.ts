@@ -7,7 +7,15 @@ export const environment ={
   update: 'http://127.0.0.1:8000/api/update',
   delete: 'http://127.0.0.1:8000/api/delete/',
   show: 'http://127.0.0.1:8000/api/show/',
-  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken',
+
+  authenticate: 'http://127.0.0.1:8000/api/authenticatetoken', // token
+  codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified', 
+  emailVerifiedAuth: 'http://127.0.0.1:8000/api/emailverified',
+  activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
+  adminAuth: 'http://127.0.0.1:8000/api/adminauth',
+  userAuth: 'http://127.0.0.1:8000/api/userauth',
+  guestAuth: 'http://127.0.0.1:8000/api/guestauth',
+
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
   sendEmailCode: 'http://127.0.0.1:8000/api/email/verify/code/',
   speciesIndex: 'http://127.0.0.1:8000/api/specie/index',
@@ -24,5 +32,11 @@ export const environment ={
   markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
   productStore: 'http://127.0.0.1:8000/api/product/store',
+<<<<<<< HEAD
   prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store'
+=======
+  productModify: 'http://127.0.0.1:8000/api/product/update/',
+  showProductId: 'http://127.0.0.1:8000/api/product/show/',
+  deleteProduct: 'http://127.0.0.1:8000/api/product/delete/'
+>>>>>>> af03567552065b98119e44774cc893035cac0d95
 }
