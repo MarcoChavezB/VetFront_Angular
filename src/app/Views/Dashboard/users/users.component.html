@@ -1,0 +1,107 @@
+<main class="h-full w-full flex justify-center items-center ml-5">
+  <div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-xl bg-clip-border">
+    <div class="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white rounded-none bg-clip-border">
+      <div class="flex items-center justify-between gap-8 mb-8">
+        <div>
+          <h5
+            class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
+            Informacion de usuarios
+          </h5>
+          <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
+            Todos los usuarios en el sistema 
+          </p>
+        </div>
+        <div class="flex flex-col gap-2 shrink-0 sm:flex-row">
+          <button
+            class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check-fill" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5m8.854-9.646a.5.5 0 0 0-.708-.708L7.5 7.793 6.354 6.646a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="p-6 px-0 overflow-scroll">
+      <table class="w-full mt-4 text-left table-auto min-w-max">
+        <thead>
+          <tr>
+            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                User ID
+              </p>
+            </th>
+            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                name
+              </p>
+            </th>
+            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                email
+              </p>
+            </th>
+            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                is Activated
+              </p>
+            </th>
+            <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+              <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              </p>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr 
+          *ngFor="let user of users"
+          class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
+            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 font-semibold">{{user.id}}</td>
+            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{user.name}}</td>
+            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0">{{user.email}}</td>
+            <td
+            *ngIf="!user.account_active"
+             class="p-4  align-middle [&amp;:has([role=checkbox])]:pr-0">
+                  <div class="relative w-5 h-5 overflow-hidden bg-red-500 rounded-full">
+                  </div>
+            </td>
+
+            <td
+            *ngIf="user.account_active"
+             class="p-4  align-middle [&amp;:has([role=checkbox])]:pr-0">
+                  <div class="relative w-5 h-5 overflow-hidden bg-green-500 rounded-full">
+                  </div>
+            </td>
+
+            <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 flex w-12">
+              <button 
+              (click)="showDesactivateConfirmation(user.name, user.id)"
+              class="bg-slate-900 text-white inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3">
+                Desactivar
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+
+<app-alert-success
+*ngIf="showSuccess"
+[message]="message"
+(close)="closeAlertSuccess()"
+/>
+
+<app-alert-error
+*ngIf="showError"
+[message]="message"
+/>
+
+<app-alert-confirmation
+(confirm)="confirmDesactivate()"
+(close)="closeAlertConfirm()"
+*ngIf="showConfirmation"
+[message]="message"
+/>

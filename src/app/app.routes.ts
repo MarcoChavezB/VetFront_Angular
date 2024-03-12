@@ -27,7 +27,7 @@ import { AuthGuard } from './Guards/Auth/auth.guard';
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
-import { SaleProdComponent } from './Views/Dashboard/sale-prod/sale-prod.component';
+import { UsersComponent } from './Views/Dashboard/users/users.component';
 
 export const routes: Routes = [
   {
@@ -44,8 +44,8 @@ export const routes: Routes = [
         component: AgregarProdComponent
       },
       {
-        path: 'saleProd',
-        component: SaleProdComponent
+        path: 'users',
+        component: UsersComponent
       },
       {
         path: 'register-pet',

@@ -1,6 +1,6 @@
 export const environment ={
   production : false,
-  index : "dev-index",
+  index : "http://127.0.0.1:8000/api/users/index",
   store: 'http://127.0.0.1:8000/api/store',
   login: 'http://127.0.0.1:8000/api/login',
   logout: 'http://127.0.0.1:8000/api/logout',
@@ -35,5 +35,7 @@ export const environment ={
   prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store',
   productModify: 'http://127.0.0.1:8000/api/product/update/',
   showProductId: 'http://127.0.0.1:8000/api/product/show/',
-  deleteProduct: 'http://127.0.0.1:8000/api/product/delete/'
+  deleteProduct: 'http://127.0.0.1:8000/api/product/delete/',
+
+  desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/'
 }
