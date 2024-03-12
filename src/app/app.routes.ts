@@ -24,6 +24,7 @@ import {
   ConfirmCancelAppointmentComponent
 } from "./Views/ConfirmNotifications/confirm-cancel-appointment/confirm-cancel-appointment.component";
 import { AuthGuard } from './Guards/Auth/auth.guard';
+import { ModifyProdComponent } from './Views/Dashboard/modify-prod/modify-prod.component';
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -36,6 +37,10 @@ export const routes: Routes = [
       {
         path: 'addprod',
         component: AgregarProdComponent
+      },
+      {
+        path: 'modifyProd',
+        component: ModifyProdComponent
       }
     ],
     canActivate: [AuthGuard]

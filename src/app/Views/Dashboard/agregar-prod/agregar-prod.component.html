@@ -10,21 +10,25 @@
           <label
           class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
           for="name">Product Name</label>
+
           <input
           [(ngModel)]="name"
           name="name"
           class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
           placeholder="Product Name">
+        
         </div>
         <div class="grid w-full items-center gap-1.5"><label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             for="description">Description</label>
-            <textarea
+          
+          <textarea
             [(ngModel)]="description"
             name="description"
             class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
             id="description" placeholder="Description" spellcheck="false" data-ms-editor="true">
           </textarea>
+
           </div>
             <div class="grid w-full items-center gap-1.5">
               <label
@@ -44,22 +48,32 @@
         <div class="grid w-full items-center gap-1.5"><label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             for="stock">Inventory</label>
+            
             <input
             [(ngModel)]="stock"
             name="stock"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            id="stock" placeholder="Unidades" spellcheck="false" data-ms-editor="true"></div>
+            id="stock" placeholder="Unidades" spellcheck="false" data-ms-editor="true">
+          
+          </div>
         <div class="grid w-full items-center gap-1.5"><label
             class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
             for="price">Price</label>
+
             <input
             [(ngModel)]="price"
             name="price"
             class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            id="price" placeholder="$Price" spellcheck="false" data-ms-editor="true"></div>
+            id="price" placeholder="$Price" spellcheck="false" data-ms-editor="true">
+          
+          </div>
       </div>
-      <div class="flex items-center p-6 gap-5"><button
-          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">Cancel</button><button
+      <div class="flex items-center p-6 gap-5">
+        <button
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">Cancel
+        </button>
+          <button
+          [disabled]="disableButton"
           class="text-white bg-slate-900 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
           (click)="addProduct()"
           >

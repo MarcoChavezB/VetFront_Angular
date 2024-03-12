@@ -89,6 +89,8 @@
             [price]="product.price"
             [stock]="product.stock"
             [description]="product.description"
+            (getEmit)="modifyProduct(product.id)"
+            (getEmitDelete)="showAlertDelete(product.id)"
             ></app-row-product>
           </div>
         </tbody>
@@ -96,3 +98,26 @@
     </div>
   </div>
 </main>
+
+
+  <app-modify-prod
+  *ngIf="modificar"
+  [idModify]="modifyId"
+  [objectProd]="objectProd"
+  (close)="closeModify()"
+  ></app-modify-prod>
+
+    <app-alert-confirmation
+    *ngIf="alertDelete"
+    (close)="closeAlert()"
+    (confirm)="confirmDelete()"
+    [message]="'Estas seguro de eliminar este producto?'"
+    ></app-alert-confirmation>
+
+    <app-alert-success
+    [message]="'Se elimino el producto correctamente'"
+    (close)="closeSuccess()"
+    *ngIf="alertSucces"
+    >
+    </app-alert-success>
+  

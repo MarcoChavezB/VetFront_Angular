@@ -12,6 +12,11 @@ export class ProductService {
 
   index = environment.productIndex
   store = environment.productStore
+  modify = environment.productModify
+  show = environment.showProductId  
+  delete = environment.deleteProduct
+
+  
   constructor(
     private readonly http: HttpClient
   ) { }
@@ -22,5 +27,17 @@ export class ProductService {
 
   storeProduct(name: string, price: string, stock: number, description:string, category_id:number):Observable<productResult>{
       return this.http.post<productResult>(this.store, {name, price, stock, description, category_id})
+  }
+
+  modifyProduct(id:number, name: string, price: string, stock: number, description:string, category_id:number):Observable<productResult>{
+    return this.http.put<productResult>(this.modify + id, {name, price, stock, description, category_id})
+  }
+
+  getProductId(id: number):Observable<productResult>{
+    return this.http.get<productResult>(this.show + id)
+  }
+
+  deleteProduct(id: number):Observable<productResult>{
+    return this.http.delete<productResult>(this.delete + id)
   }
 }
