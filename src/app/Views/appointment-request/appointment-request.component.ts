@@ -9,6 +9,7 @@ import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {AppointmentStoreInterface} from "../../Models/Appointment";
 import {AppointmentRequestService} from "../../Services/AppointmentService/appointment-request.service";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-appointment-request',
@@ -54,7 +55,8 @@ export class AppointmentRequestComponent {
     private petService: PetServiceService,
     private authService: AuthServiceService,
     private userService: UserServiceService,
-    private appointmentService: AppointmentRequestService
+    private appointmentService: AppointmentRequestService,
+    private router: Router
   ) {
   }
 
@@ -80,12 +82,11 @@ export class AppointmentRequestComponent {
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
         this.isSubmitting = false;
-        console.log(res)
+        this.router.navigate(['/dashboard/user/appointments']);
       },
       err => {
         this.isSubmitting = false;
         if (err.error.errors){
-          console.log(err)
           this.backendErrors = err.error.errors;
         }
       }
