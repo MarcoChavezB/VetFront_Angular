@@ -6,6 +6,7 @@ import { ProductService } from '../../Services/ProductService/product.service';
 import { UserServiceService } from '../../Services/UserService/user-service.service';
 import { product } from '../../Models/Product';
 import { CommonModule } from '@angular/common';
+import { AppointmentUser } from '../../Models/AppontmentUser';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +25,7 @@ export class DashboardComponent {
   totalUsers: number = 0;
 
   products: product[] = [];
+  appointments: AppointmentUser[] = [];
 
 
 
@@ -38,6 +40,7 @@ export class DashboardComponent {
     this.getTotalProducts();
     this.getTotalUser();
     this.getProductsStockBajo();
+    this.getAppointments()
   }
 
   getTotalAppointments(){
@@ -77,6 +80,17 @@ export class DashboardComponent {
     this.productService.getProductsStockBajo().subscribe(
       (res) => {
         this.products = res.products
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  getAppointments(){
+    this.appointmentService.getAppointmentsWithUser().subscribe(
+      (res) => {
+        this.appointments = res.info
       },
       (err) => {
         console.log(err);

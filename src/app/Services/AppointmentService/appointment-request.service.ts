@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import {AppointmentResults, AppointmentStoreInterface} from "../../Models/Appointment";
 import {Observable} from "rxjs";
 import { totalInterface } from '../../Models/Total';
+import { AppointmentUser, AppointmentUserResults } from '../../Models/AppontmentUser';
 
 
 @Injectable({
@@ -49,5 +50,9 @@ export class AppointmentRequestService {
 
   getTotalAppointments(): Observable<totalInterface> {
     return this.http.get<totalInterface>(environment.totalAppointments)
+  }
+
+  getAppointmentsWithUser(): Observable<AppointmentUserResults>{
+    return this.http.get<AppointmentUserResults>(environment.AppointmentUser)
   }
 }

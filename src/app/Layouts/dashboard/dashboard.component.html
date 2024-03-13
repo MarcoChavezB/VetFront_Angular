@@ -15,10 +15,59 @@
       />
     </section>
     <section class="bottom">
-      <section class="rounded-lg border bg-card text-card-foreground shadow-sm" >
-
+      <section 
+      style="max-height: 60vh; overflow-y: auto; overflow-x: hidden; "
+      class="rounded-lg border bg-card text-card-foreground shadow-sm" >
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  date
+                </p>
+              </th>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Reason
+                </p>
+              </th>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Person
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let appoint of appointments">
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.appointment_date}}
+                  </p>
+                </div>
+              </td>
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.reason}}
+                  </p>
+                </div>
+              </td>
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.user}}
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
-      <section class="rounded-lg border bg-card text-card-foreground shadow-sm" >
+      <section 
+      style="max-height: 60vh; overflow-y: auto; overflow-x: hidden; "
+      class="rounded-lg border bg-card text-card-foreground shadow-sm" >
         <table class="w-full">
           <thead>
             <tr>
