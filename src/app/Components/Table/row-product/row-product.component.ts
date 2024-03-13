@@ -13,6 +13,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class RowProductComponent {
   @Input() name: string = '';
   @Input() price: string = '';
+  @Input() category: number = 0;
   @Input() stock: number = 0;
   @Input() description: string = '';
 

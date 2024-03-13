@@ -27,6 +27,8 @@ import { AuthGuard } from './Guards/Auth/auth.guard';
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
+import { UsersComponent } from './Views/Dashboard/users/users.component';
+import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
 
 import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
@@ -36,8 +38,12 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, EmailVerifiedGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
+    canActivate: [AuthGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
     children: [
+      {
+        path: '',
+        component: DashboardComponent
+      },
       {
         path: 'products',
         component: ProductsComponent
@@ -45,6 +51,10 @@ export const routes: Routes = [
       {
         path: 'addprod',
         component: AgregarProdComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
       },
       {
         path: 'register-pet',

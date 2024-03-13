@@ -74,7 +74,6 @@ export class LoginComponent {
       res => {
         this.authService.saveTokenResponse(res.jwt, res.data)
         this.checkCode()
-        this.loading = false;
       },
       error => {
         if (error.status == 404){

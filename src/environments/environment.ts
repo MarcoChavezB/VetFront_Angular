@@ -1,6 +1,6 @@
 export const environment ={
   production : false,
-  index : "dev-index",
+  index : "http://127.0.0.1:8000/api/users/index",
   store: 'http://127.0.0.1:8000/api/store',
   login: 'http://127.0.0.1:8000/api/login',
   logout: 'http://127.0.0.1:8000/api/logout',
@@ -40,5 +40,12 @@ export const environment ={
   prescriptionsIndex: 'http://127.0.0.1:8000/api/vetprescription/index',
   userPrescriptionsIndex: 'http://127.0.0.1:8000/api/vetprescription/user/',
   getVetAppointmentsByUser: 'http://127.0.0.1:8000/api/vetappointment/user/',
-  completedAppointments: 'http://127.0.0.1:8000/api/vetappointment/completed/index'
+  completedAppointments: 'http://127.0.0.1:8000/api/vetappointment/completed/index',
+  desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/',
+
+  totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
+  totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
+  totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',
+  productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
+  AppointmentUser: 'http://127.0.0.1:8000/api/info/Appointments'
 }
