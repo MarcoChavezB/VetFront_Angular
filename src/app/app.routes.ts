@@ -12,10 +12,8 @@ import { ProductsComponent } from './Views/Dashboard/products/products.component
 import { AgregarProdComponent } from './Views/Dashboard/agregar-prod/agregar-prod.component';
 import { ActiveAccountComponent } from './Views/Alerts/active-account/active-account.component';
 import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
-
-import { ActiveAccountGuard } from './Guards/Active_acount/active-acount.guard';
+import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
-import { EmailVerifiedGuard } from './Guards/Email_verified/email-verified.guard';
 
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { GuestGuard } from './Guards/Guest/guest.guard';
@@ -23,12 +21,13 @@ import { UserGuard } from './Guards/User/user.guard';
 
 import { AuthGuard } from './Guards/Auth/auth.guard';
 
-
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
 import { UsersComponent } from './Views/Dashboard/users/users.component';
 import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
+import { AllProductsComponent } from './Views/Dashboard/products/all-products/all-products.component';
+import { DesactivateProductsComponent } from './Views/Dashboard/products/desactivate-products/desactivate-products.component';
 
 import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
@@ -38,21 +37,36 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
+    canActivate: [AuthGuard, CodeVerifyGuard, GuestGuard],
     children: [
       {
+        // admin
         path: '',
         component: DashboardComponent
       },
       {
         path: 'products',
-        component: ProductsComponent
+        component: ProductsComponent,
+        children: [
+          {
+            // admin
+            path: '',
+            component: AllProductsComponent
+          },
+          {
+            // admin
+            path: 'desactivate-products',
+            component: DesactivateProductsComponent
+          },
+        ]
       },
       {
+        // admin
         path: 'addprod',
         component: AgregarProdComponent
       },
       {
+        // admin
         path: 'users',
         component: UsersComponent
       },
@@ -66,14 +80,14 @@ export const routes: Routes = [
       },
       {
         path: 'appointment-index',
-        component: AppointmentIndexComponent
+        component: AppointmentIndexComponent // admin
       },
       {
         path: 'appointment-cancelled-index',
-        component: AppointmentCancelledIndexComponent
+        component: AppointmentCancelledIndexComponent // admin
       },
       {
-        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule)
+        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule) //admin
       },
       {
         path: 'user-pets',
@@ -81,11 +95,15 @@ export const routes: Routes = [
       },
       {
         path: 'species-index',
-        component: SpeciesIndexComponent
+        component: SpeciesIndexComponent // admin
       },
       {
         path: 'prescriptions-index',
-        component: PrescriptionsIndexComponent
+        component: PrescriptionsIndexComponent //admin
+      },
+      {
+        path: 'services',
+        component: ServicesComponent // admin
       },
       {
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
@@ -111,8 +129,12 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent
-      },
-      {
+      }
+    ]
+  }, {
+    path:'',
+    children:
+    [ {
         path: 'Notpermission',
         component: PermissionAuthComponent
       },
@@ -121,7 +143,7 @@ export const routes: Routes = [
         component: ActiveAccountComponent
       }
     ]
-  }, {
+  },{
     path: '**',
     component: NotfoundComponent
   }

@@ -1,0 +1,132 @@
+<table class="w-full mt-4 text-left table-auto min-w-max">
+  <thead>
+    <tr>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          name
+        </p>
+      </th>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          categoria
+        </p>
+      </th>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          stock
+        </p>
+      </th>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          description
+        </p>
+      </th>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          precio
+        </p>
+      </th>
+      <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+        <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+        </p>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let prod of products">
+      <th class="p-4 border-b border-blue-gray-50">
+        <div class="flex items-center gap-3">
+          <div class="flex flex-col">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{prod.name}}
+            </p>
+          </div>
+        </div>
+      </th>
+      <td class="p-4 border-b border-blue-gray-50">
+        <div class="flex flex-col">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{prod.category.category}}
+          </p>
+        </div>
+      </td>
+      <td class="p-4 border-b border-blue-gray-50">
+        <div class="w-max">
+          <div *ngIf="prod.stock > 10"
+            class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-green-900 uppercase rounded-md select-none whitespace-nowrap bg-green-500/20">
+            <span class="">
+              {{prod.stock}}
+            </span>
+          </div>
+          <div *ngIf="prod.stock <= 10"
+            class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-red-900 uppercase rounded-md select-none whitespace-nowrap bg-red-500/20">
+            <span class="">
+              {{prod.stock}}
+            </span>
+          </div>
+        </div>
+      </td>
+      <td class="p-4 border-b border-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+          {{prod.description}}
+        </p>
+      </td>
+      <td class="p-4 border-b border-blue-gray-50">
+        <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+          {{prod.price}}
+        </p>
+      </td>
+      <td class="p-4 border-b border-blue-gray-50">
+        <button (click)="showAlertActivate(prod.id)"
+          class=" relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+              class="bi bi-box-arrow-in-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M3.5 6a.5.5 0 0 0-.5.5v8a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5v-8a.5.5 0 0 0-.5-.5h-2a.5.5 0 0 1 0-1h2A1.5 1.5 0 0 1 14 6.5v8a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 2 14.5v-8A1.5 1.5 0 0 1 3.5 5h2a.5.5 0 0 1 0 1z" />
+              <path fill-rule="evenodd"
+                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z" />
+            </svg>
+          </span>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+<app-modify-prod *ngIf="modificar" [idModify]="modifyId" [objectProd]="objectProd" (close)="closeModify()"
+  (refresh)="getProductList()"></app-modify-prod>
+
+<app-alert-confirmation *ngIf="alertActivate" (close)="closeAlert()" (confirm)="confirmActivate()"
+  [message]="'Estas seguro de activar este producto?'"></app-alert-confirmation>
+
+<app-alert-success [message]="'Se activo el producto correctamente'" (close)="closeSuccess()" *ngIf="alertSucces">
+</app-alert-success>
+
+
+<div *ngIf="!products.length" class="flex justify-center items-center mt-20">
+  <div class="flex flex-col items-center justify-center max-w-3xl text-center">
+    <div class="inline-block rounded-lg p-3 bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg"
+        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+        <path d="m7.5 4.27 9 5.15"></path>
+        <path
+          d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+        </path>
+        <path d="m3.3 7 8.7 5 8.7-5"></path>
+        <path d="M12 22V12"></path>
+      </svg>
+    </div>
+    <div class="mt-4">
+      <h1 class="text-3xl font-bold tracking-tight">
+        Sin productos desactivados
+      </h1>
+      <p class="max-w-[600px] mt-4 text-gray-500 md:mt-2 dark:text-gray-400">
+        No tienes ningun producto para mostrar
+      </p>
+    </div>
+  </div>
+</div>

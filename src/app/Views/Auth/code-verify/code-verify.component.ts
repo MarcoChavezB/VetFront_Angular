@@ -12,6 +12,7 @@ import {
   keyframes
 } from '@angular/animations';
 import { Router } from '@angular/router';
+import { SimpleLoadingComponent } from '../../../Components/loaders/simple-loading/simple-loading.component';
 
 
 @Component({
@@ -20,7 +21,8 @@ import { Router } from '@angular/router';
   imports: [
     CommonModule,
     FormsModule,
-    AlertComponent
+    AlertComponent,
+    SimpleLoadingComponent
   ],
   animations:[
     trigger('shake', [
@@ -61,6 +63,9 @@ export class CodeVerifyComponent {
   disabledSumbitButton: boolean = false;
   codigo: string = "";
   userId: string = "";
+  loadingResend: boolean = false
+  loadingVerify: boolean = false
+
   
   @ViewChild('code1') code1: ElementRef | undefined;
   @ViewChild('code2') code2: ElementRef | undefined;
@@ -96,7 +101,9 @@ export class CodeVerifyComponent {
     }
   }
   verifyCode() {
+    this.showAlert("Verificando codigo");
     this.hasError = false;
+    this.loadingVerify = true;
     this.codigo = Object.values(this.code).join("");
     this.userId = this.AuthService.getUserId();
 
@@ -113,6 +120,7 @@ export class CodeVerifyComponent {
       },
       (error) => {
         this.resetInputs()
+        this.loadingVerify=false
         this.hasError = true;
         if (error.error && error.error.mensaje) {
           this.showAlert(error.error.mensaje);
@@ -130,16 +138,18 @@ export class CodeVerifyComponent {
   }
   
   resendEmail() {
+    
     const lastSentTime = localStorage.getItem('lastSentTime');
     const currentTime = new Date().getTime();
   
     if (!lastSentTime || (currentTime - parseInt(lastSentTime, 10) >= 50000)) {
+      this.loadingResend=true
       this.DataSVuser.sendEmailCode(this.AuthService.getUserId()).subscribe(
         res => {
           localStorage.setItem('resendCode', 'true');
           localStorage.setItem('lastSentTime', currentTime.toString());
-          this.diableButtonEmail = true;
           this.showAlert("Codigo enviado");
+          this.loadingResend=false
         },
         error => {
           this.showAlert(error.error.mensaje);

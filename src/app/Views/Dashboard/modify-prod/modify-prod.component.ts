@@ -21,6 +21,8 @@ import { AlertErrorTopComponent } from '../../../Components/Alerts/alert-error-t
 })
 export class ModifyProdComponent {
   categories: Category[] = []
+  @Output() refresh: EventEmitter<boolean> = new EventEmitter<boolean>();
+
   id: number = 0
   name: string = ''
   price: string = ''
@@ -65,14 +67,15 @@ export class ModifyProdComponent {
   modify(){
     this.productService.modifyProduct(this.idModify, this.name, this.price, this.stock, this.description, this.category_id).subscribe(
       (res) => {
-
+        this.showAlertSuccess(res.message)
+        this.refresh.emit(true)
       },
       (err) => {
           if (err && err.error && err.error.error) {
             const firstError = this.getFirstError(err.error.error);
             this.showAlert(firstError);
           } else {
-            console.error(err);
+            this.showAlert(err.error.message)
           }
       }
     )

@@ -28,6 +28,7 @@ export class AuthInterceptor implements HttpInterceptor {
       });
       console.log(req)
       console.log('interceptor')
+
     }
 
     return next.handle(req).pipe(
@@ -38,6 +39,12 @@ export class AuthInterceptor implements HttpInterceptor {
             alert('Token invalido o expirado')
           }
           );
+        } else if (error.status === 404){
+          this.authService.logout()
+          this.route.navigate(['/NotFound'])
+        } else if (error.status === 403){
+          this.authService.logout()
+          this.route.navigate(['/Notpermission'])
         }
         return throwError(() => error);
       })

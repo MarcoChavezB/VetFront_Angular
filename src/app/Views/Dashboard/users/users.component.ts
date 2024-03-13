@@ -36,6 +36,7 @@ export class UsersComponent {
     this.userService.getUsers().subscribe(
         (res) => {
             this.users = res.Users;
+            console.log(this.users)
         },
         (err) => {
             console.log("error", err);
