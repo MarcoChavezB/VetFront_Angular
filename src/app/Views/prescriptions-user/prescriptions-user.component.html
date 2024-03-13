@@ -1,0 +1,29 @@
+<div class="flex flex-col">
+  <table class="min-w-full rounded-md border border-gray-300 table-auto">
+    <thead>
+    <tr class="text-left bg-gray-100 border-b border-gray-300">
+      <th class="px-3 py-2 text-sm font-medium">Pet</th>
+      <th class="px-3 py-2 text-sm font-medium">Appointment Date</th>
+      <th class="px-3 py-2 text-sm font-medium">Attended Date</th>
+      <th class="px-3 py-2 text-sm font-medium">Diagnosis</th>
+      <th class="px-3 py-2 text-sm font-medium">Observations</th>
+      <th class="px-3 py-2 text-sm font-medium">Indications</th>
+      <th class="px-3 py-2 text-sm font-medium">Vet</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prescription of prescriptionsR?.prescriptions" class="border-b border-gray-300 hover:bg-gray-200">
+      <td class="px-3 py-2 text-sm">{{prescription.pet}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.appointment_date}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.created_at}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.diagnosis}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.observations}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.indications}}</td>
+      <td class="px-3 py-2 text-sm">{{prescription.vet}}</td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="prescriptionsR?.prescriptions?.length === 0" class="text-center py-4">
+    No hay consultas atendidas.
+  </div>
+</div>

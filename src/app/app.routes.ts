@@ -28,6 +28,10 @@ import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
 
+import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
+import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
+import {PrescriptionsIndexComponent} from "./Views/prescriptions-index/prescriptions-index.component";
+
 export const routes: Routes = [
   {
     path: 'dashboard',
@@ -60,8 +64,25 @@ export const routes: Routes = [
       },
       {
         path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule)
+      },
+      {
+        path: 'user-pets',
+        component: UserPetsComponent
+      },
+      {
+        path: 'species-index',
+        component: SpeciesIndexComponent
+      },
+      {
+        path: 'prescriptions-index',
+        component: PrescriptionsIndexComponent
+      },
+      {
+        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
+      },
+      {
+        path: 'admin', loadChildren: () => import('./Modules/admin-routes/admin-routes.module').then(m => m.AdminRoutesModule)
       }
-
     ],
   },
   {

@@ -16,6 +16,8 @@ export class AppointmentRequestService {
   private urlGetCancelledAppointments = environment.cancelledAppointments
   private urlReOpenAppointment = environment.reOpenAppointment
   private urlMarkAppointmentAsCancelled = environment.markAppointmentAsCancelled
+  private getVetAppointmentsByUser = environment.getVetAppointmentsByUser
+  private urlGetCompletedAppointments = environment.completedAppointments
 
   constructor(
     private readonly http: HttpClient,
@@ -44,5 +46,13 @@ export class AppointmentRequestService {
 
   markppointmentAsCancelled(id: number): Observable<any>{
     return this.http.put<any>(this.urlMarkAppointmentAsCancelled + id, {})
+  }
+
+  getAppointmentsByUser(id: number): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.getVetAppointmentsByUser + id)
+  }
+
+  getCompletedAppointments(): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlGetCompletedAppointments)
   }
 }
