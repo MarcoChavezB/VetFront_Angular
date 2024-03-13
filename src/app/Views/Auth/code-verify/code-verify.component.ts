@@ -64,6 +64,8 @@ export class CodeVerifyComponent {
   codigo: string = "";
   userId: string = "";
   loadingResend: boolean = false
+  loadingVerify: boolean = false
+
   
   @ViewChild('code1') code1: ElementRef | undefined;
   @ViewChild('code2') code2: ElementRef | undefined;
@@ -101,6 +103,7 @@ export class CodeVerifyComponent {
   verifyCode() {
     this.showAlert("Verificando codigo");
     this.hasError = false;
+    this.loadingVerify = true;
     this.codigo = Object.values(this.code).join("");
     this.userId = this.AuthService.getUserId();
 
@@ -117,6 +120,7 @@ export class CodeVerifyComponent {
       },
       (error) => {
         this.resetInputs()
+        this.loadingVerify=false
         this.hasError = true;
         if (error.error && error.error.mensaje) {
           this.showAlert(error.error.mensaje);
