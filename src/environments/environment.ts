@@ -36,6 +36,11 @@ export const environment ={
   productModify: 'http://127.0.0.1:8000/api/product/update/',
   showProductId: 'http://127.0.0.1:8000/api/product/show/',
   deleteProduct: 'http://127.0.0.1:8000/api/product/delete/',
+  userPets: 'http://127.0.0.1:8000/api/pet/userpets/',
+  prescriptionsIndex: 'http://127.0.0.1:8000/api/vetprescription/index',
+  userPrescriptionsIndex: 'http://127.0.0.1:8000/api/vetprescription/user/',
+  getVetAppointmentsByUser: 'http://127.0.0.1:8000/api/vetappointment/user/',
+  completedAppointments: 'http://127.0.0.1:8000/api/vetappointment/completed/index',
   desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/',
 
   totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',

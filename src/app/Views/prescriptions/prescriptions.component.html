@@ -66,13 +66,12 @@
 
         <div class="space-y-2">
           <button type="submit"
-                  routerLink="/appointment-index"
                   [disabled]="!prescrriptionForm.valid || isSubmitting"
                   [ngClass]="{'bg-gray-500': !prescrriptionForm.valid || isSubmitting, 'bg-[#1da1f2] hover:bg-gray-500': prescrriptionForm.valid || !isSubmitting}"
                   class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
             Guardar
           </button>
-          <p class="text-gray-500 dark:text-gray-400"><a class="text-accent" routerLink="/appointment-index">Cancelar</a></p>
+          <p class="text-gray-500 dark:text-gray-400"><a class="text-accent" routerLink="/dashboard/appointment-index">Cancelar</a></p>
         </div>
 
       </div>

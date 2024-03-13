@@ -60,6 +60,7 @@ export class PrescriptionsComponent {
     this.prescriptionService.storePrescription(prescription).subscribe(
       res => {
         this.isSubmitting = false;
+        this.router.navigate(['/dashboard/appointment-index']);
       },
       err => {
         this.isSubmitting = false;
