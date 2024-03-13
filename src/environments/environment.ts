@@ -42,6 +42,8 @@ export const environment ={
   getVetAppointmentsByUser: 'http://127.0.0.1:8000/api/vetappointment/user/',
   completedAppointments: 'http://127.0.0.1:8000/api/vetappointment/completed/index',
   desactivateUser: 'http://127.0.0.1:8000/api/users/desactivate/',
+  showPet: 'http://127.0.0.1:8000/api/users/pet/show/',
+  updatePet: 'http://127.0.0.1:8000/api/users/pet/update/',
 
   totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
   totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
