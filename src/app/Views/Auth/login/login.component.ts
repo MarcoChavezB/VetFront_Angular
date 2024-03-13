@@ -110,7 +110,7 @@ export class LoginComponent {
         if (res.isActive == 1) {
           this.router.navigate(['dashboard']);
         }else{
-          this.sendEmail()
+          this.router.navigate(['code']);
         }
       }
     );
