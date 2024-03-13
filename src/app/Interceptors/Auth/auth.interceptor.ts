@@ -38,6 +38,9 @@ export class AuthInterceptor implements HttpInterceptor {
             alert('Token invalido o expirado')
           }
           );
+        } else if (error.status === 404){
+          this.authService.resetAll()
+          this.route.navigate(['/AccountActiveNotFound'])
         }
         return throwError(() => error);
       })
