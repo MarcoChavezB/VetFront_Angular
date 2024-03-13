@@ -27,6 +27,8 @@ import { AuthGuard } from './Guards/Auth/auth.guard';
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
+import { UsersComponent } from './Views/Dashboard/users/users.component';
+import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
 
 export const routes: Routes = [
   {
@@ -35,12 +37,20 @@ export const routes: Routes = [
     canActivate: [AuthGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
+        path: '',
+        component: DashboardComponent
+      },
+      {
         path: 'products',
         component: ProductsComponent
       },
       {
         path: 'addprod',
         component: AgregarProdComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent
       },
       {
         path: 'register-pet',

@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 import { productResult } from "../../Models/Product";
+import { totalInterface } from "../../Models/Total";
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,13 @@ export class ProductService {
 
   deleteProduct(id: number):Observable<productResult>{
     return this.http.delete<productResult>(this.delete + id)
+  }
+
+  getTotalProducts(): Observable<totalInterface> {
+    return this.http.get<totalInterface>(environment.totalProductos)
+  }
+
+  getProductsStockBajo(): Observable<productResult> {
+    return this.http.get<productResult>(environment.productsStockBajo)
   }
 }

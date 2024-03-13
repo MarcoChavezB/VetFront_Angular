@@ -1,1 +1,120 @@
-<p>dashboard works!</p>
+<div class="h-full w-full flex justify-center items-center">
+  <main class="grid  screen w-full" style="height: 90%;">
+    <section class="top">
+      <app-statistic-card
+      [title]="'Total Citas'"
+      [value]="totalAppointments"
+      />
+      <app-statistic-card
+      [title]="'Usuarios totales'"
+      [value]="totalUsers"
+      />
+      <app-statistic-card
+      [title]="'Productos totales'"
+      [value]="totalProducts"
+      />
+    </section>
+    <section class="bottom">
+      <section 
+      style="max-height: 60vh; overflow-y: auto; overflow-x: hidden; "
+      class="rounded-lg border bg-card text-card-foreground shadow-sm" >
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  date
+                </p>
+              </th>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Reason
+                </p>
+              </th>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Person
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody >
+            <tr *ngFor="let appoint of appointments">
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.appointment_date}}
+                  </p>
+                </div>
+              </td>
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.reason}}
+                  </p>
+                </div>
+              </td>
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{appoint.user}}
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      <section 
+      style="max-height: 60vh; overflow-y: auto; overflow-x: hidden; "
+      class="rounded-lg border bg-card text-card-foreground shadow-sm" >
+        <table class="w-full">
+          <thead>
+            <tr>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Name
+                </p>
+              </th>
+              <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+                <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                  Stock
+                </p>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prod of products">
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="flex flex-col">
+                  <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                    {{prod.name}}
+                  </p>
+                </div>
+              </td>
+              <td class="p-4 border-b border-blue-gray-50">
+                <div class="w-max">
+                    <div
+                    *ngIf="prod.stock > 2"
+                      class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-yellow-900 uppercase rounded-md select-none whitespace-nowrap bg-yellow-500/20">
+                      <span class="">
+                        {{prod.stock}}
+                      </span>
+                    </div>
+                    <div
+                    *ngIf="prod.stock <= 2"
+                      class="relative grid items-center px-2 py-1 font-sans text-xs font-bold text-red-900 uppercase rounded-md select-none whitespace-nowrap bg-red-500/20">
+                      <span class="">
+                        {{prod.stock}}
+                      </span>
+                    </div>
+                  </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </section>
+  </main>
+</div>

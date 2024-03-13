@@ -6,6 +6,7 @@ export interface UserInterface {
     email_verified_at: string;
     created_at: string;
     updated_at: string;
+    account_active: boolean;
 }
 
 export interface UserResults{
