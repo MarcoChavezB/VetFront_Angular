@@ -49,5 +49,8 @@ export const environment ={
   totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
   totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
-  AppointmentUser: 'http://127.0.0.1:8000/api/info/Appointments'
+  AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
+
+  productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
+  enableProd: 'http://127.0.0.1:8000/api/products/activate/'
 }

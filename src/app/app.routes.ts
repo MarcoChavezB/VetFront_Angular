@@ -26,6 +26,8 @@ import {
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
 import { UsersComponent } from './Views/Dashboard/users/users.component';
 import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
+import { AllProductsComponent } from './Views/Dashboard/products/all-products/all-products.component';
+import { DesactivateProductsComponent } from './Views/Dashboard/products/desactivate-products/desactivate-products.component';
 
 import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
@@ -38,18 +40,33 @@ export const routes: Routes = [
     canActivate: [AuthGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
+        // admin
         path: '',
         component: DashboardComponent
       },
       {
         path: 'products',
-        component: ProductsComponent
+        component: ProductsComponent,
+        children: [
+          {
+            // admin
+            path: '',
+            component: AllProductsComponent
+          },
+          {
+            // admin
+            path: 'desactivate-products',
+            component: DesactivateProductsComponent
+          },
+        ]
       },
       {
+        // admin
         path: 'addprod',
         component: AgregarProdComponent
       },
       {
+        // admin
         path: 'users',
         component: UsersComponent
       },
@@ -110,6 +127,7 @@ export const routes: Routes = [
         component: CodeVerifyComponent
       },
       {
+        // admin
         path: 'register',
         component: RegisterComponent
       }
