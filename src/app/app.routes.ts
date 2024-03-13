@@ -41,6 +41,7 @@ export const routes: Routes = [
     canActivate: [AuthGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
+        // admin
         path: '',
         component: DashboardComponent
       },
@@ -49,20 +50,24 @@ export const routes: Routes = [
         component: ProductsComponent,
         children: [
           {
+            // admin
             path: '',
             component: AllProductsComponent
           },
           {
+            // admin
             path: 'desactivate-products',
             component: DesactivateProductsComponent
           },
         ]
       },
       {
+        // admin
         path: 'addprod',
         component: AgregarProdComponent
       },
       {
+        // admin
         path: 'users',
         component: UsersComponent
       },
@@ -123,6 +128,7 @@ export const routes: Routes = [
         component: CodeVerifyComponent
       },
       {
+        // admin
         path: 'register',
         component: RegisterComponent
       },
