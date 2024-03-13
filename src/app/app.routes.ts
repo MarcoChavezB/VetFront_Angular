@@ -29,6 +29,8 @@ import {
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
 import { UsersComponent } from './Views/Dashboard/users/users.component';
 import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
+import { AllProductsComponent } from './Views/Dashboard/products/all-products/all-products.component';
+import { DesactivateProductsComponent } from './Views/Dashboard/products/desactivate-products/desactivate-products.component';
 
 export const routes: Routes = [
   {
@@ -42,7 +44,17 @@ export const routes: Routes = [
       },
       {
         path: 'products',
-        component: ProductsComponent
+        component: ProductsComponent,
+        children: [
+          {
+            path: '',
+            component: AllProductsComponent
+          },
+          {
+            path: 'desactivate-products',
+            component: DesactivateProductsComponent
+          },
+        ]
       },
       {
         path: 'addprod',

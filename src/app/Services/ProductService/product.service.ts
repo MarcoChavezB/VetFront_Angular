@@ -26,6 +26,10 @@ export class ProductService {
     return this.http.get<productResult>(this.index)
   }
 
+  getProductsDisabled(): Observable<productResult> {
+    return this.http.get<productResult>(environment.productsDisabled)
+  }
+
   storeProduct(name: string, price: string, stock: number, description:string, category_id:number):Observable<productResult>{
       return this.http.post<productResult>(this.store, {name, price, stock, description, category_id})
   }
@@ -48,5 +52,9 @@ export class ProductService {
 
   getProductsStockBajo(): Observable<productResult> {
     return this.http.get<productResult>(environment.productsStockBajo)
+  }
+
+  enableProd(id:number): Observable<productResult>{
+    return this.http.post<productResult>(environment.enableProd + id, {})
   }
 }

@@ -8,7 +8,12 @@ export interface product{
   updated_at: string;
   created_at: string;
   is_active: number;
+  category: {
+    id: number;
+    category: string;
+  };
 }
 export interface productResult{
   products: product[];
+  message: string; 
 }

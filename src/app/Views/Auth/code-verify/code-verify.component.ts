@@ -96,6 +96,7 @@ export class CodeVerifyComponent {
     }
   }
   verifyCode() {
+    this.showAlert("Verificando codigo");
     this.hasError = false;
     this.codigo = Object.values(this.code).join("");
     this.userId = this.AuthService.getUserId();
