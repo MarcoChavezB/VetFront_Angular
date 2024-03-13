@@ -5,6 +5,7 @@ import {PrescriptionStoreInterface} from "../../Models/Prescription";
 import {AuthServiceService} from "../../Services/AuthService/auth-service.service";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
+import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 
 @Component({
   selector: 'app-prescriptions',
@@ -18,7 +19,22 @@ import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
     RouterLink
   ],
   templateUrl: './prescriptions.component.html',
-  styleUrl: './prescriptions.component.css'
+  styleUrl: './prescriptions.component.css',
+  animations: [
+    trigger('shake', [
+      transition('* => *', [
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-5px)' }),
+          style({ transform: 'translateX(5px)' }),
+          style({ transform: 'translateX(-7px)' }),
+          style({ transform: 'translateX(7px)' }),
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
+  ]
 })
 export class PrescriptionsComponent {
 
@@ -60,6 +76,7 @@ export class PrescriptionsComponent {
     this.prescriptionService.storePrescription(prescription).subscribe(
       res => {
         this.isSubmitting = false;
+        this.router.navigate(['/dashboard/appointment-index']);
       },
       err => {
         this.isSubmitting = false;

@@ -12,10 +12,8 @@ import { ProductsComponent } from './Views/Dashboard/products/products.component
 import { AgregarProdComponent } from './Views/Dashboard/agregar-prod/agregar-prod.component';
 import { ActiveAccountComponent } from './Views/Alerts/active-account/active-account.component';
 import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
-
-import { ActiveAccountGuard } from './Guards/Active_acount/active-acount.guard';
+import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
-import { EmailVerifiedGuard } from './Guards/Email_verified/email-verified.guard';
 
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { GuestGuard } from './Guards/Guest/guest.guard';
@@ -32,11 +30,15 @@ import { DashboardComponent } from './Layouts/dashboard/dashboard.component';
 import { AllProductsComponent } from './Views/Dashboard/products/all-products/all-products.component';
 import { DesactivateProductsComponent } from './Views/Dashboard/products/desactivate-products/desactivate-products.component';
 
+import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
+import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
+import {PrescriptionsIndexComponent} from "./Views/prescriptions-index/prescriptions-index.component";
+
 export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, ActiveAccountGuard, CodeVerifyGuard, AdminGuard],
+    canActivate: [AuthGuard, CodeVerifyGuard, AdminGuard],
     children: [
       {
         path: '',
@@ -82,8 +84,29 @@ export const routes: Routes = [
       },
       {
         path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule)
+      },
+      {
+        path: 'user-pets',
+        component: UserPetsComponent
+      },
+      {
+        path: 'species-index',
+        component: SpeciesIndexComponent
+      },
+      {
+        path: 'prescriptions-index',
+        component: PrescriptionsIndexComponent
+      },
+      {
+        path: 'services',
+        component: ServicesComponent
+      },
+      {
+        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
+      },
+      {
+        path: 'admin', loadChildren: () => import('./Modules/admin-routes/admin-routes.module').then(m => m.AdminRoutesModule)
       }
-
     ],
   },
   {

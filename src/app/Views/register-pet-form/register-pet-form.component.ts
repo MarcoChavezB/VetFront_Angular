@@ -6,7 +6,7 @@ import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule, FormGroup, FormControl, Validators} from "@angular/forms";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {PetRegisterInterface} from "../../Models/Pet";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {SpecieServiceService} from "../../Services/SpecieService/specie-service.service";
 
 @Component({
@@ -62,7 +62,8 @@ export class RegisterPetFormComponent {
   constructor(
     private petService: PetServiceService,
     private authService: AuthServiceService,
-    private specieService: SpecieServiceService
+    private specieService: SpecieServiceService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -99,6 +100,8 @@ export class RegisterPetFormComponent {
         this.registerPetForm.reset();
         this.storePetLoading = false;
         console.log(res);
+        this.router.navigate(['/dashboard/appointment-request']);
+
       },
       err => {
         this.storePetLoading = false;

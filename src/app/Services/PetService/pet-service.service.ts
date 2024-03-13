@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {SpecieInterface, SpecieResults} from "../../Models/Specie";
-import {PetRegisterInterface} from "../../Models/Pet";
+import {PetRegisterInterface, PetResults} from "../../Models/Pet";
 @Injectable({
   providedIn: 'root'
 })
@@ -11,6 +11,7 @@ export class PetServiceService {
 
   private urlSpeciesIndex = environment.speciesIndex
   private urlPetStore = environment.petStore
+  private urlUserPets = environment.userPets
 
   constructor(
     private readonly http: HttpClient,
@@ -22,5 +23,9 @@ export class PetServiceService {
 
   storePet(pet: PetRegisterInterface): Observable<any> {
     return this.http.post<PetRegisterInterface>(this.urlPetStore, pet)
+  }
+
+  getUserPets(id: number): Observable<PetResults> {
+    return this.http.get<PetResults>(this.urlUserPets + id)
   }
 }

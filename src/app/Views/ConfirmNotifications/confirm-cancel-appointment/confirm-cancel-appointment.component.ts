@@ -31,7 +31,11 @@ export class ConfirmCancelAppointmentComponent {
   cancelAppointment() {
     if(this.appointmentId) {
       this.appointmentService.markppointmentAsCancelled(this.appointmentId).subscribe(res => {
-        this.router.navigate(['/appointment-index']);
+        this.router.navigate(['/dashboard/appointment-cancelled-index']);
+      },err =>{
+        if (err.status == 404){
+          this.router.navigate(['/404']);
+        }
       });
     }
   }
