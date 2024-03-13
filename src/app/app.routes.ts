@@ -12,8 +12,7 @@ import { ProductsComponent } from './Views/Dashboard/products/products.component
 import { AgregarProdComponent } from './Views/Dashboard/agregar-prod/agregar-prod.component';
 import { ActiveAccountComponent } from './Views/Alerts/active-account/active-account.component';
 import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
-
-import { ActiveAccountGuard } from './Guards/Active_acount/active-acount.guard';
+import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
 
 import { AdminGuard } from './Guards/Admin/admin.guard';
@@ -85,6 +84,10 @@ export const routes: Routes = [
       {
         path: 'prescriptions-index',
         component: PrescriptionsIndexComponent
+      },
+      {
+        path: 'services',
+        component: ServicesComponent
       },
       {
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
