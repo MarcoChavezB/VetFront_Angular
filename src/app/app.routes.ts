@@ -21,7 +21,6 @@ import { UserGuard } from './Guards/User/user.guard';
 
 import { AuthGuard } from './Guards/Auth/auth.guard';
 
-
 import {
   AppointmentCancelledIndexComponent
 } from "./Views/appointment-cancelled-index/appointment-cancelled-index.component";
@@ -64,14 +63,14 @@ export const routes: Routes = [
       },
       {
         path: 'appointment-index',
-        component: AppointmentIndexComponent
+        component: AppointmentIndexComponent // admin
       },
       {
         path: 'appointment-cancelled-index',
-        component: AppointmentCancelledIndexComponent
+        component: AppointmentCancelledIndexComponent // admin
       },
       {
-        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule)
+        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule) //admin
       },
       {
         path: 'user-pets',
@@ -79,15 +78,15 @@ export const routes: Routes = [
       },
       {
         path: 'species-index',
-        component: SpeciesIndexComponent
+        component: SpeciesIndexComponent // admin
       },
       {
         path: 'prescriptions-index',
-        component: PrescriptionsIndexComponent
+        component: PrescriptionsIndexComponent //admin
       },
       {
         path: 'services',
-        component: ServicesComponent
+        component: ServicesComponent // admin
       },
       {
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
@@ -113,8 +112,12 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent
-      },
-      {
+      }
+    ]
+  }, {
+    path:'',
+    children:
+    [ {
         path: 'Notpermission',
         component: PermissionAuthComponent
       },
@@ -123,7 +126,7 @@ export const routes: Routes = [
         component: ActiveAccountComponent
       }
     ]
-  }, {
+  },{
     path: '**',
     component: NotfoundComponent
   }
