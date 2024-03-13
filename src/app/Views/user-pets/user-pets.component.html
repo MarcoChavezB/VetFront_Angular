@@ -14,10 +14,9 @@
       <td class="px-3 py-2 text-sm">{{pet.gender}}</td>
       <td class="px-3 py-2 text-sm">{{pet.specie}}</td>
       <td class="px-3 py-2 text-sm">
-        <button class="bg-blue-400 text-white px-2 py-1 rounded">Modificar</button>
+        <button class="bg-blue-400 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/pet/update/', pet.id]">Modificar</button>
         <!--
                  <button class="bg-green-500 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/complete', appointment.id]">Completar</button>
-        <button class="bg-blue-400 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/prescription/store', pet.id]">Consultar</button>
         <button class="bg-red-500 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/cancel', appointment.id]">Rechazar</button>
 
          -->

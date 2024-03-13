@@ -51,10 +51,9 @@ export class SpeciesIndexComponent {
 
   ngOnInit() {
     this.petService.getSpecies().subscribe(species => {
-      console.log(species);
       this.speciesR = species;
     }, err => {
-      if (err.status === 404){
+      if (!err.error.success){
         this.speciesR = {species: []};
       }
     })

@@ -25,11 +25,9 @@ export class UserPetsComponent {
   ngOnInit() {
     this.petService.getUserPets(this.authService.getUserId()).subscribe(pets => {
       this.petsR = pets;
-      console.log(this.petsR);
     },
       err =>{
-        if (err.status === 404){
-          console.log('No pets found')
+        if (!err.error.success){
           this.petsR = {pets: []}
         }
       });
