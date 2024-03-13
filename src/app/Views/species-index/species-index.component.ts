@@ -4,7 +4,8 @@ import {SpecieResults, SpecieStoreInterface} from "../../Models/Specie";
 import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule, FormGroup, Validators, FormControl, FormsModule} from "@angular/forms";
-
+import {AlertSuccessComponent} from "../../Components/Alerts/alert-success/alert-success.component";
+import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 @Component({
   selector: 'app-species-index',
   standalone: true,
@@ -17,7 +18,22 @@ import {ReactiveFormsModule, FormGroup, Validators, FormControl, FormsModule} fr
     NgClass
   ],
   templateUrl: './species-index.component.html',
-  styleUrl: './species-index.component.css'
+  styleUrl: './species-index.component.css',
+  animations: [
+    trigger('shake', [
+      transition('* => *', [
+        animate('1s', keyframes([
+          style({ transform: 'translateX(0)' }),
+          style({ transform: 'translateX(-5px)' }),
+          style({ transform: 'translateX(5px)' }),
+          style({ transform: 'translateX(-7px)' }),
+          style({ transform: 'translateX(7px)' }),
+          style({ transform: 'translateX(-10px)' }),
+          style({ transform: 'translateX(0)' }),
+        ]))
+      ])
+    ])
+  ]
 })
 export class SpeciesIndexComponent {
 
@@ -37,6 +53,10 @@ export class SpeciesIndexComponent {
     this.petService.getSpecies().subscribe(species => {
       console.log(species);
       this.speciesR = species;
+    }, err => {
+      if (err.status === 404){
+        this.speciesR = {species: []};
+      }
     })
   }
 

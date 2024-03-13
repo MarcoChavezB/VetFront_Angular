@@ -28,6 +28,10 @@ export class UserPetsComponent {
       console.log(this.petsR);
     },
       err =>{
+        if (err.status === 404){
+          console.log('No pets found')
+          this.petsR = {pets: []}
+        }
       });
   }
 }

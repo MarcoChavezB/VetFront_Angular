@@ -21,8 +21,12 @@ export class PrescriptionsIndexComponent {
   ngOnInit() {
     this.prescriptionService.getPrescriptions().subscribe(prescriptions => {
       this.prescriptionsR = prescriptions;
-      console.log(this.prescriptionsR);
-    });
+    },
+      err => {
+        if (err.status === 404){
+          this.prescriptionsR = {prescriptions: []};
+        }
+      });
   }
 
 }

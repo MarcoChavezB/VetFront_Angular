@@ -23,7 +23,10 @@ export class PrescriptionsUserComponent {
   ngOnInit() {
     this.prescriptionService.getUserPrescriptions(this.authService.getUserId()).subscribe(prescriptions => {
       this.prescriptionsR = prescriptions;
-      console.log(this.prescriptionsR);
+    }, err =>{
+      if (err.status === 404){
+        this.prescriptionsR = {prescriptions: []};
+      }
     });
   }
 
