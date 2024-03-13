@@ -37,7 +37,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, CodeVerifyGuard, AdminGuard],
+    canActivate: [AuthGuard, CodeVerifyGuard, GuestGuard],
     children: [
       {
         // admin
@@ -127,7 +127,6 @@ export const routes: Routes = [
         component: CodeVerifyComponent
       },
       {
-        // admin
         path: 'register',
         component: RegisterComponent
       }
