@@ -15,7 +15,6 @@ import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permissi
 
 import { ActiveAccountGuard } from './Guards/Active_acount/active-acount.guard';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
-import { EmailVerifiedGuard } from './Guards/Email_verified/email-verified.guard';
 
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { GuestGuard } from './Guards/Guest/guest.guard';

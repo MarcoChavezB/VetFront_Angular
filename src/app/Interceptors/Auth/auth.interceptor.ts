@@ -39,8 +39,11 @@ export class AuthInterceptor implements HttpInterceptor {
           }
           );
         } else if (error.status === 404){
-          this.authService.resetAll()
+          this.authService.logout()
           this.route.navigate(['/AccountActiveNotFound'])
+        } else if (error.status === 403){
+          this.authService.logout()
+          this.route.navigate(['/Notpermission'])
         }
         return throwError(() => error);
       })
