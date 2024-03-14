@@ -28,10 +28,8 @@ export class AppointmentIndexComponent {
     this.appointmentService.getAppointments().subscribe(
       appointments => {
       this.appointmentsR = appointments;
-      console.log(this.appointmentsR)
     },err =>{
-        if (err.status === 404){
-          console.log('No appointments found')
+        if (!err.error.success){
           this.appointmentsR = {vet_appointments: []}
         }
       });

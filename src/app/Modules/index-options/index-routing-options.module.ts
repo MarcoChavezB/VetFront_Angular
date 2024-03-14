@@ -11,6 +11,7 @@ import {
   ConfirmCompletedAppointmentComponent
 } from "../../Views/ConfirmNotifications/confirm-completed-appointment/confirm-completed-appointment.component";
 import {PrescriptionsComponent} from "../../Views/prescriptions/prescriptions.component";
+import {UpdatePetComponent} from "../../Views/update-pet/update-pet.component";
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
     path: 'prescription/store/:id',
     component: PrescriptionsComponent
 
+  },
+  {
+    path: 'pet/update/:id',
+    component: UpdatePetComponent
   }
 ]
 

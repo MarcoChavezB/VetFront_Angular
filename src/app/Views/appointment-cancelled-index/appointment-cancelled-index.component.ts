@@ -27,11 +27,9 @@ export class AppointmentCancelledIndexComponent {
     this.appointmentService.getCancelledAppointments().subscribe(
       appointments => {
         this.appointmentsR = appointments;
-        console.log(this.appointmentsR)
       },err =>{
         console.log(err)
-        if (err.status === 404){
-          console.log('No appointments found')
+        if (!err.error.success){
           this.appointmentsR = {vet_appointments: []}
         }
       });

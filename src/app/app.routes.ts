@@ -106,8 +106,7 @@ export const routes: Routes = [
       },
       {
         path: 'prescriptions-index',
-        component: PrescriptionsIndexComponent,
-        canActivate: [UserGuard]
+        component: PrescriptionsIndexComponent
       },
       {
         path: 'services',
@@ -119,7 +118,8 @@ export const routes: Routes = [
         canActivate: [UserGuard]
       },
       {
-        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
+        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule),
+        canActivate: [UserGuard]
       },
       {
         path: 'admin', loadChildren: () => import('./Modules/admin-routes/admin-routes.module').then(m => m.AdminRoutesModule)
