@@ -14,7 +14,7 @@ import { ActiveAccountComponent } from './Views/Alerts/active-account/active-acc
 import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
 import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
-
+import { ServiceformComponent } from './Views/Dashboard/services/serviceform/serviceform.component';
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { GuestGuard } from './Guards/Guest/guest.guard';
 import { UserGuard } from './Guards/User/user.guard';
@@ -104,6 +104,10 @@ export const routes: Routes = [
       {
         path: 'services',
         component: ServicesComponent // admin
+      },
+      {
+        path: 'servicesstore',
+        component: ServiceformComponent // admin
       },
       {
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)

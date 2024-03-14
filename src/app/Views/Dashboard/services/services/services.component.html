@@ -1,1 +1,127 @@
-<p>services works!</p>
+<div class="w-full mt-4 text-left table-auto min-w-max">
+    SERVICES
+</div>
+<table class="w-full mt-4 text-left table-auto min-w-max">
+    <thead>
+      <tr>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            name
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            description
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            precio
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+          </p>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let serv of services">
+        <th class="p-4 border-b border-blue-gray-50">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                {{serv.name}}
+              </p>
+            </div>
+          </div>
+        </th>
+        <td class="p-4 border-b border-blue-gray-50">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{serv.description}}
+          </p>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{serv.price}}
+          </p>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <button
+          (click)="modifyservice(serv.id)"
+            class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+            type="button">
+            <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+                class="w-4 h-4">
+                <path
+                  d="M21.731 2.269a2.625 2.625 0 00-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 000-3.712zM19.513 8.199l-3.712-3.712-12.15 12.15a5.25 5.25 0 00-1.32 2.214l-.8 2.685a.75.75 0 00.933.933l2.685-.8a5.25 5.25 0 002.214-1.32L19.513 8.2z">
+                </path>
+              </svg>
+            </span>
+          </button>
+      
+          <button
+          (click)="showAlertDelete(serv.id)"
+          class=" relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+          type="button">
+          <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+            </svg>
+          </span>
+        </button>
+      </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+    <app-serviceupdate
+        *ngIf="modificar"
+        [idModify]="modifyId"
+        [objectProd]="objectProd"
+        (close)="closeModify()"
+        (refresh)="getServices()"
+    ></app-serviceupdate>
+    
+    <app-alert-confirmation
+        *ngIf="alertDelete"
+        (close)="closeAlert()"
+        (confirm)="confirmDelete()"
+        [message]="'Estas seguro de eliminar este servicio?'"
+    ></app-alert-confirmation>
+  
+    <app-alert-success
+        [message]="'Se elimino el servicio correctamente'"
+        (close)="closeSuccess()"
+        *ngIf="alertSucces"
+        >
+    </app-alert-success>
+  
+  
+    
+  <div *ngIf="!existService" class="flex justify-center items-center mt-20">
+    <div class="flex flex-col items-center justify-center max-w-3xl text-center">
+      <div class="inline-block rounded-lg p-3 bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <path d="m7.5 4.27 9 5.15"></path>
+          <path
+            d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+          </path>
+          <path d="m3.3 7 8.7 5 8.7-5"></path>
+          <path d="M12 22V12"></path>
+        </svg>
+      </div>
+      <div class="mt-4">
+        <h1 class="text-3xl font-bold tracking-tight">
+          Sin servicios
+        </h1>
+        <p class="max-w-[600px] mt-4 text-gray-500 md:mt-2 dark:text-gray-400">
+          No hay ningun servicio para mostrar
+        </p>
+      </div>
+    </div>
+  </div>
