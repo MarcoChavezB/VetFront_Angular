@@ -89,13 +89,13 @@ export class AuthServiceService {
   }
 
   getRole() {
-    if (typeof window !== 'undefined') {
-      const user = localStorage.getItem('user');
-      if (user) {
-        const userParsed = JSON.parse(user);
-        const role = userParsed.role;
-        console.log(role)
-        switch (role) {
+    if (typeof window !== 'undefined') { 
+      const user = localStorage.getItem('user');  
+      if (user) { 
+        const userParsed = JSON.parse(user); 
+        const role = userParsed.role; 
+        console.log(role) 
+        switch (role) { 
           case 'admin':
             return 2;
           case 'user':
