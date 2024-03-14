@@ -17,7 +17,7 @@
           <input name="name" type="text" id="name"
                  formControlName="name"
                  class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                 placeholder="Nombre aquí" [value]="petR?.name">
+                 placeholder="Nombre aquí">
           <div class="alert"
                *ngIf="updatePetForm.controls['name'].invalid && (updatePetForm.controls['name'].dirty || updatePetForm.controls['name'].touched)">
             <div
@@ -35,7 +35,6 @@
         <div class="space-y-2">
           <select formControlName="gender"
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-            <option value="">Selecciona el sexo</option>
             <option value="Hembra">Hembra</option>
             <option value="Macho">Macho</option>
           </select>
@@ -51,7 +50,6 @@
         <div class="space-y-2">
           <select formControlName="specie_id"
                   class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50">
-            <option value="">Selecciona la especie</option>
             <option *ngFor="let specie of speciesR?.species" [value]="specie.id">
               {{ specie.specie_name }}
             </option>

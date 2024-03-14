@@ -39,3 +39,19 @@ export interface PetUpdateResult{
   updated_at: string,
   specie: string
 }
+
+export interface PetIndexInterface {
+  id: number,
+  name: string,
+  gender: string,
+  specie_id: number,
+  user_id: number,
+  created_at: string,
+  updated_at: string,
+  specie: string,
+  owner: string
+}
+
+export interface PetIndexResults {
+  pets: PetIndexInterface[]
+}

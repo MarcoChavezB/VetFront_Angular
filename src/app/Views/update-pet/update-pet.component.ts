@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {PetInterface, PetUpdateInterface, PetUpdateResult} from "../../Models/Pet";
+import {PetUpdateInterface, PetUpdateResult} from "../../Models/Pet";
 import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -63,10 +63,18 @@ export class UpdatePetComponent {
 
   }
 
+  updatePetForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    gender: new FormControl('', [Validators.required]),
+    specie_id: new FormControl('', [Validators.required]),
+  });
+
   showPet(id: number) {
     this.petService.showPet(id).subscribe(pet => {
       this.petR = pet.pet[0];
-        console.log(this.petR);
+      this.updatePetForm.controls['name'].setValue(this.petR.name);
+      this.updatePetForm.controls['specie_id'].setValue(String(this.petR.specie_id));
+      this.updatePetForm.controls['gender'].setValue(this.petR.gender);
     },
       err => {
         if (err.error.success === false){
@@ -77,16 +85,11 @@ export class UpdatePetComponent {
 
   fetchSpecies() {
     this.petService.getSpecies().subscribe(species => {
-      console.log(species);
       this.speciesR = species;
     })
   }
 
-    updatePetForm = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      gender: new FormControl('', [Validators.required]),
-      specie_id: new FormControl('', [Validators.required]),
-    });
+
 
 
   updatePet(){

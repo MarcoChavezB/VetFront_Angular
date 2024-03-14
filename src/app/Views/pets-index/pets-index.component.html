@@ -1,0 +1,36 @@
+<div class="flex flex-col">
+  <table class="min-w-full rounded-md border border-gray-300 table-auto">
+    <thead>
+    <tr class="text-left bg-gray-100 border-b border-gray-300">
+      <th class="px-3 py-2 text-sm font-medium">Nombre</th>
+      <th class="px-3 py-2 text-sm font-medium">Genero</th>
+      <th class="px-3 py-2 text-sm font-medium">Especie</th>
+      <th class="px-3 py-2 text-sm font-medium">Dueño</th>
+      <th class="px-3 py-2 text-sm font-medium">Actions</th>
+      <th class="px-3 py-2 text-sm font-medium">
+        <input name="name" type="text" id="name"
+               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+               placeholder="Nombre de la mascota"
+               #inputField
+               (keyup)="inputField.value.trim() != '' ? findByName(inputField.value) : ngOnInit()"
+        >
+
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let pet of petsR?.pets" class="border-b border-gray-300 hover:bg-gray-200">
+      <td class="px-3 py-2 text-sm">{{pet.name}}</td>
+      <td class="px-3 py-2 text-sm">{{pet.gender}}</td>
+      <td class="px-3 py-2 text-sm">{{pet.specie}}</td>
+      <td class="px-3 py-2 text-sm">{{pet.owner}}</td>
+      <td class="px-3 py-2 text-sm">
+        <button class="bg-red-400 text-white px-2 py-1 rounded" (click)="deactivatePet(pet.id)">Desactivar</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div *ngIf="petsR?.pets?.length === 0" class="text-center py-4">
+    No hay mascotas activas.
+  </div>
+</div>
