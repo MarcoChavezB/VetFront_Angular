@@ -66,11 +66,6 @@ export class ServiceformComponent {
       .subscribe(
         (res) => {
           this.showAlertSuccess('Servicio agregado correctamente');
-          this.newserv = {
-            name: '',
-            description: '',
-            price:''
-          }
         },
         (err) => {
           if (err && err.error && err.error.error) {

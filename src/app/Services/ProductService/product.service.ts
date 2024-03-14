@@ -5,6 +5,7 @@ import { environment } from "../../../environments/environment";
 import { Observable } from "rxjs";
 import { productResult } from "../../Models/Product";
 import { totalInterface } from "../../Models/Total";
+import { SaleFormat } from "../../Models/SaleFormat";
 
 @Injectable({
   providedIn: 'root'
@@ -56,5 +57,13 @@ export class ProductService {
 
   enableProd(id:number): Observable<productResult>{
     return this.http.post<productResult>(environment.enableProd + id, {})
+  }
+
+  getTotal(requestData: any): Observable<any> {
+    return this.http.post<any>(environment.getTotal, requestData);
+  }
+
+  makeSale(requestData: SaleFormat): Observable<SaleFormat> {
+    return this.http.post<SaleFormat>(environment.makeSale, requestData);
   }
 }

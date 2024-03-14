@@ -1,0 +1,9 @@
+.inp{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.names{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}

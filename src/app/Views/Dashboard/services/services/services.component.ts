@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { ServiceupdateComponent } from '../serviceupdate/serviceupdate/serviceupdate.component';
+import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 @Component({
   selector: 'app-services',
   standalone: true,
@@ -23,10 +24,21 @@ export class ServicesComponent {
 
   constructor(
     private readonly ProdService: ServiciosService,
+    private readonly authservice: AuthServiceService,
     ) {
     
   }
+  role:number | null = 0
 
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
+
+  ngOnInit(): void {
+    this.getServices();
+    this.getrole();
+  }
+  
   nombresPropiedades: string[] = [];
   modifyId: number = 0;
   modificar: boolean = false;
@@ -36,9 +48,7 @@ export class ServicesComponent {
   objectProd: any = {}
   existService: boolean = true;
 
-  ngOnInit(): void {
-    this.getServices();
-  }
+  
 
   getServices() {
     this.ProdService.getServices().subscribe(

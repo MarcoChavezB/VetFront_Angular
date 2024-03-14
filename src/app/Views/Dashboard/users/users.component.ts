@@ -45,7 +45,7 @@ export class UsersComponent {
 }
 
 showDesactivateConfirmation(nombre: string, id:number){
-  this.showAlertConfirm('¿Está seguro de desactivar al usuario ' + nombre + '?');
+  this.showAlertConfirm('¿Está seguro de cambiar de status al usuario ' + nombre + '?');
   this.userId = id;
 }
 
@@ -85,12 +85,12 @@ confirmDesactivate(){
     (res) => {
       this.showConfirmation = false;
       this.getUsers();
-      this.showAlert('Usuario desactivado', 'success');
+      this.showAlert('Usuario cambiado de status', 'success');
     },
     (err) => {
       this.showConfirmation = false;
       console.log(err);
-      this.showAlert('Error al desactivar usuario', 'error');
+      this.showAlert('Error al cambiar de status al usuario', 'error');
     }
   )
 }

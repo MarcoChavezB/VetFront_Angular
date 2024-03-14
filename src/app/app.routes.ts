@@ -15,10 +15,9 @@ import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permissi
 import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
 import { ServiceformComponent } from './Views/Dashboard/services/serviceform/serviceform.component';
-import { AdminGuard } from './Guards/Admin/admin.guard';
-import { GuestGuard } from './Guards/Guest/guest.guard';
-import { UserGuard } from './Guards/User/user.guard';
 
+import { AdminGuard } from './Guards/Admin/admin.guard';
+import { UserGuard } from './Guards/User/user.guard';
 import { AuthGuard } from './Guards/Auth/auth.guard';
 
 import {
@@ -38,10 +37,9 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     component: MainComponent,
-    canActivate: [AuthGuard, CodeVerifyGuard, GuestGuard],
+    canActivate: [AuthGuard, CodeVerifyGuard],
     children: [
       {
-        // admin
         path: '',
         component: DashboardComponent
       },
@@ -54,50 +52,80 @@ export const routes: Routes = [
         component: ProductsComponent,
         children: [
           {
-            // admin
             path: '',
             component: AllProductsComponent
           },
           {
-            // admin
             path: 'desactivate-products',
-            component: DesactivateProductsComponent
+            component: DesactivateProductsComponent,
+            canActivate: [AdminGuard]
           },
         ]
       },
       {
-        // admin
         path: 'addprod',
-        component: AgregarProdComponent
+        component: AgregarProdComponent,
+        canActivate: [UserGuard]
       },
       {
-        // admin
         path: 'users',
-        component: UsersComponent
+        component: UsersComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'register-pet',
-        component: RegisterPetFormComponent
+        component: RegisterPetFormComponent,
+        canActivate: [UserGuard]
       },
       {
         path: 'appointment-request',
-        component: AppointmentRequestComponent
+        component: AppointmentRequestComponent,
+        canActivate: [UserGuard]
       },
       {
-        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule) //admin
+        path: 'appointment-index',
+        component: AppointmentIndexComponent 
+      },
+      {
+        path: 'appointment-cancelled-index',
+        component: AppointmentCancelledIndexComponent 
+      },
+      {
+        path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule), //admin
+        canActivate: [UserGuard]
+
+      },
+      {
+        path: 'user-pets',
+        component: UserPetsComponent,
+        canActivate: [UserGuard]
+      },
+      {
+        path: 'species-index',
+        component: SpeciesIndexComponent
+      },
+      {
+        path: 'prescriptions-index',
+        component: PrescriptionsIndexComponent
+      },
+      {
+        path: 'services',
+        component: ServicesComponent 
       },
       {
         path: 'servicesstore',
-        component: ServiceformComponent // admin
+        component: ServiceformComponent,
+        canActivate: [UserGuard]
       },
       {
-        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
+        path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule),
+        canActivate: [UserGuard]
       },
       {
-        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule)
+        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule),
       },
       {
-        path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule)
+        path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule),
       },
       {
         path: 'admin/species', loadChildren: () => import('./Modules/specie-module/specie-module.module').then(m => m.SpecieModuleModule)

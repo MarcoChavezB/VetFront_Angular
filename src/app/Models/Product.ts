@@ -3,16 +3,17 @@ export interface product{
   category_id: number;
   name: string;
   description: string;
-  price: string;
+  price: number; // Cambiado a tipo numérico
   stock: number;
   updated_at: string;
   created_at: string;
   is_active: number;
-  cantidad: number;
   category: {
     id: number;
     category: string;
   };
+  cantidad: number;
+  totalPrice: number;
 }
 export interface productResult{
   products: product[];

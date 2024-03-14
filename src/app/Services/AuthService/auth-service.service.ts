@@ -54,10 +54,9 @@ export class AuthServiceService {
   
   resetAll(){
     if (typeof window !== 'undefined') {
-
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
-
+    localStorage.removeItem('cart');
     }
   }
 
@@ -68,6 +67,7 @@ export class AuthServiceService {
           if (res.status == true) {
             localStorage.removeItem('access_token');
             localStorage.removeItem('user');
+            localStorage.removeItem('cart');
             console.log('cerro sesion')
           }
         }
