@@ -16,6 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AsideNavComponent {
   
+  role:number | null = 0
+
   constructor( 
     private authService: AuthServiceService,
     private readonly productService: ProductService,
@@ -30,34 +32,11 @@ export class AsideNavComponent {
     totalProducts: number = 0;
     ngOnInit(){
     this.getNumberPord()
-    this.checkRole()
+    this.getrole()
   }
 
-
-  checkRole() {
-    const role = this.authService.getRole();
-    switch (role) {
-      case 0:
-        this.guest = true;
-        this.user = false;
-        this.admin = false;
-        break;
-      case 1:
-        this.guest = false;
-        this.user = true;
-        this.admin = false;
-        break;
-      case 2:
-        this.guest = false;
-        this.user = false;
-        this.admin = true;
-        break;
-      default:
-        this.guest = false;
-        this.user = false;
-        this.admin = false;
-        break;
-    }
+  getrole(){
+    this.role = this.authService.getRole()
   }
 
   exit() {

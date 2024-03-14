@@ -16,7 +16,6 @@ export class AdminGuard implements CanActivate {
       return this.userservice.adminAuth().pipe(        
         map(() => true),
         catchError(() => {
-          this.authService.logout()
           this.router.navigate(['/Notpermission']);
           return of(false);
         })
