@@ -122,7 +122,13 @@ export const routes: Routes = [
         canActivate: [UserGuard]
       },
       {
-        path: 'admin', loadChildren: () => import('./Modules/admin-routes/admin-routes.module').then(m => m.AdminRoutesModule)
+        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule),
+      },
+      {
+        path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule),
+      },
+      {
+        path: 'admin/species', loadChildren: () => import('./Modules/specie-module/specie-module.module').then(m => m.SpecieModuleModule)
       }
     ],
   },

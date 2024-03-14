@@ -34,7 +34,7 @@ export class SpeciesDeactivatedIndexComponent {
 
   activateSpecie(specieId: number){
     this.specieService.activateSpecie(specieId).subscribe(species => {
-      this.router.navigate(['/dashboard/species-index']);
+      this.router.navigate(['/dashboard/admin/species/species-index']);
     }, err => {
       if (!err.error.success){
         this.speciesR = {species: []};

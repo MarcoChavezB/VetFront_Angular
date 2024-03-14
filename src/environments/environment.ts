@@ -72,5 +72,8 @@ export const environment ={
   servicemodify: 'http://127.0.0.1:8000/api/services/update/',
   serviceshow: 'http://127.0.0.1:8000/api/services/show/',
   servicedelete: 'http://127.0.0.1:8000/api/services/destroy/',
+
+  getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
+  makeSale: 'http://127.0.0.1:8000/api/product/venta'
   
 }

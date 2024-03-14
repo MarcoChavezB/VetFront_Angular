@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {PetUpdateInterface, PetUpdateResult} from "../../Models/Pet";
 import {PetServiceService} from "../../Services/PetService/pet-service.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {SpecieResults} from "../../Models/Specie";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
@@ -17,7 +17,8 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
     NgForOf,
     NgIf,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    RouterLink
   ],
   templateUrl: './update-pet.component.html',
   styleUrl: './update-pet.component.css',
@@ -102,7 +103,7 @@ export class UpdatePetComponent {
     }
     this.petService.updatePet(this.pet_id, pet).subscribe(res => {
       this.isLoading = false;
-      this.router.navigate(['/dashboard/user-pets']);
+      this.router.navigate(['/dashboard/user/pets']);
     },
       err =>{
       this.isLoading = false;

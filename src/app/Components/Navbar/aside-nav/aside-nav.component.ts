@@ -33,7 +33,6 @@ export class AsideNavComponent {
 
   getrole(){
     this.role = this.authService.getRole()
-    console.log(this.role)
   }
 
   exit() {
