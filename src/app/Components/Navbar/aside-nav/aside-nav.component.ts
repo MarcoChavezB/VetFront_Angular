@@ -4,13 +4,12 @@ import { AuthServiceService } from '../../../Services/AuthService/auth-service.s
 import { Router } from '@angular/router';
 import { ProductService } from '../../../Services/ProductService/product.service';
 import { CommonModule } from '@angular/common';
-
 @Component({
   selector: 'app-aside-nav',
   standalone: true,
   imports: [
-    RouterLink,
-    CommonModule
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './aside-nav.component.html',
   styleUrl: './aside-nav.component.css'
@@ -25,8 +24,13 @@ export class AsideNavComponent {
     private router: Router
     ) {}
 
+    guest: boolean = false;
+    admin: boolean = false;
+    user: boolean = false;
+
+
     totalProducts: number = 0;
-  ngOnInit(){
+    ngOnInit(){
     this.getNumberPord()
     this.getrole()
   }
