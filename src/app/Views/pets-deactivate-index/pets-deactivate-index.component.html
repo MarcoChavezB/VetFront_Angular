@@ -33,4 +33,10 @@
   <div *ngIf="petsR?.pets?.length === 0" class="text-center py-4">
     No hay mascotas activas.
   </div>
+
+  <app-confirmation-dialog
+    *ngIf="showConfirmationDialog"
+    (onConfirm)="onConfirm()"
+    (onCancel)="onCancel()"
+  ></app-confirmation-dialog>
 </div>

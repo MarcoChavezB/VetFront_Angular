@@ -26,4 +26,12 @@
   <div *ngIf="speciesR?.species?.length === 0" class="text-center py-4">
     No hay especies registradas
   </div>
+
+  <app-confirmation-dialog
+    *ngIf="showConfirmationDialog"
+    (onConfirm)="onConfirm()"
+    (onCancel)="onCancel()"
+  ></app-confirmation-dialog>
+
 </div>
+

@@ -3,6 +3,8 @@ import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink, Router} from "@angular/router";
 import { FormsModule } from '@angular/forms';
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
 @Component({
   selector: 'app-pets-deactivate-index',
   standalone: true,
@@ -10,16 +12,20 @@ import { FormsModule } from '@angular/forms';
     NgForOf,
     NgIf,
     RouterLink,
-    FormsModule
+    FormsModule,
+    ConfirmationDialogComponent
   ],
   templateUrl: './pets-deactivate-index.component.html',
   styleUrl: './pets-deactivate-index.component.css'
 })
 export class PetsDeactivateIndexComponent {
   petsR: any;
+  showConfirmationDialog = false;
+  petToActivate: number | null = null;
   constructor(
     private petService: PetServiceService,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) {}
   ngOnInit() {
     this.petService.getDeactivatedPets().subscribe(pets => {
@@ -42,14 +48,24 @@ export class PetsDeactivateIndexComponent {
       });
   }
   activatePet(petId: number){
-    this.petService.activatePet(petId).subscribe(pets => {
-        this.router.navigate(['/dashboard/admin/pets/pets-index']);
-    },
-      err =>{
-        if (!err.error.success){
-          this.petsR = {pets: []}
-        }
-      });
+    this.petToActivate = petId;
+    this.showConfirmationDialog = true;
+  }
+
+  onConfirm(){
+    this.showConfirmationDialog = false;
+    this.petService.activatePet(this.petToActivate).subscribe(pets => {
+      this.alertService.showAlert('Mascota activada con éxito');
+      this.router.navigate(['/dashboard/admin/pets/pets-index']);
+    }, err => {
+      if (!err.error.success){
+        this.petsR = {pets: []}
+      }
+    })
+  }
+
+  onCancel(){
+    this.showConfirmationDialog = false;
   }
 
 }

@@ -3,7 +3,8 @@ import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import { FormsModule } from '@angular/forms';
-
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
 @Component({
   selector: 'app-pets-index',
   standalone: true,
@@ -13,14 +14,18 @@ import { FormsModule } from '@angular/forms';
     NgForOf,
     NgIf,
     RouterLink,
-    FormsModule
+    FormsModule,
+    ConfirmationDialogComponent
   ],
 })
 export class PetsIndexComponent {
   petsR: any;
+  showConfirmationDialog = false;
+  petToDeactivate: number | null = null;
   constructor(
     private petService: PetServiceService,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) {}
 
   ngOnInit() {
@@ -46,14 +51,24 @@ export class PetsIndexComponent {
   }
 
   deactivatePet(petId: number){
-    this.petService.deactivatePet(petId).subscribe(pets => {
+    this.petToDeactivate = petId;
+    this.showConfirmationDialog = true;
+  }
+
+  onConfirm(){
+    this.showConfirmationDialog = false;
+    this.petService.deactivatePet(this.petToDeactivate).subscribe(pets => {
+      this.alertService.showAlert('Mascota desactivada con éxito');
       this.router.navigate(['/dashboard/admin/pets/deactivated-pets']);
-    },
-      err =>{
-        if (!err.error.success){
-          this.petsR = {pets: []}
-        }
-      });
+    }, err => {
+      if (!err.error.success){
+        this.petsR = {pets: []};
+      }
+    })
+  }
+
+  onCancel(){
+    this.showConfirmationDialog = false;
   }
 
 }

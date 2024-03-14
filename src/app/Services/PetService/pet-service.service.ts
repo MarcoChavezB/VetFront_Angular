@@ -68,11 +68,11 @@ export class PetServiceService {
     return this.http.get<PetIndexResults>(this.urlDeactivatedPets + name)
   }
 
-  activatePet(id: number): Observable<any> {
+  activatePet(id: number | null): Observable<any> {
     return this.http.put<any>(this.urlActivatePet + id, {})
   }
 
-  deactivatePet(id: number): Observable<any> {
+  deactivatePet(id: number | null): Observable<any> {
     return this.http.delete<any>(this.urlDeactivatePet + id)
   }
 }
