@@ -8,6 +8,7 @@ export interface product{
   updated_at: string;
   created_at: string;
   is_active: number;
+  cantidad: number;
   category: {
     id: number;
     category: string;
