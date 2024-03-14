@@ -12,20 +12,12 @@ import {
 
 const routes: Routes =[
   {
-    path: 'completed-appointments',
-    component: AppointmentCompletedIndexComponent
-  },
-  {
-    path: 'pets',
+    path: 'pets-index',
     component: PetsIndexComponent
   },
   {
     path: 'deactivated-pets',
     component: PetsDeactivateIndexComponent
-  },
-  {
-    path: 'deactivated-species',
-    component: SpeciesDeactivatedIndexComponent
   }
 ]
 
@@ -39,4 +31,4 @@ const routes: Routes =[
   ],
   exports: [RouterModule]
 })
-export class AdminRoutingModule { }
+export class PetRouting { }

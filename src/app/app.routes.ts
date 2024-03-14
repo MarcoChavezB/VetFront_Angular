@@ -84,31 +84,7 @@ export const routes: Routes = [
         component: AppointmentRequestComponent
       },
       {
-        path: 'appointment-index',
-        component: AppointmentIndexComponent // admin
-      },
-      {
-        path: 'appointment-cancelled-index',
-        component: AppointmentCancelledIndexComponent // admin
-      },
-      {
         path:'appointment', loadChildren: () => import('./Modules/index-options/index-options.module').then(m => m.IndexOptionsModule) //admin
-      },
-      {
-        path: 'user-pets',
-        component: UserPetsComponent
-      },
-      {
-        path: 'species-index',
-        component: SpeciesIndexComponent // admin
-      },
-      {
-        path: 'prescriptions-index',
-        component: PrescriptionsIndexComponent //admin
-      },
-      {
-        path: 'services',
-        component: ServicesComponent // admin
       },
       {
         path: 'servicesstore',
@@ -118,7 +94,13 @@ export const routes: Routes = [
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)
       },
       {
-        path: 'admin', loadChildren: () => import('./Modules/admin-routes/admin-routes.module').then(m => m.AdminRoutesModule)
+        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule)
+      },
+      {
+        path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule)
+      },
+      {
+        path: 'admin/species', loadChildren: () => import('./Modules/specie-module/specie-module.module').then(m => m.SpecieModuleModule)
       }
     ],
   },

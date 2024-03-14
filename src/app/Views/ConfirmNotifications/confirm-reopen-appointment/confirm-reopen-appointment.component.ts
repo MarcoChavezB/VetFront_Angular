@@ -30,7 +30,7 @@ export class ConfirmReopenAppointmentComponent {
   reOpenAppointment() {
     if(this.appointmentId) {
       this.appointmentService.reOpenAppointment(this.appointmentId).subscribe(res => {
-        this.router.navigate(['/dashboard/appointment-index']);
+        this.router.navigate(['/dashboard/admin/appointments/appointment-index']);
       },
         err =>{
           if (err.status == 404) {

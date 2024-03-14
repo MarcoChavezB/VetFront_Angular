@@ -47,7 +47,7 @@ export class PetsIndexComponent {
 
   deactivatePet(petId: number){
     this.petService.deactivatePet(petId).subscribe(pets => {
-      this.router.navigate(['/dashboard/admin/deactivated-pets']);
+      this.router.navigate(['/dashboard/admin/pets/deactivated-pets']);
     },
       err =>{
         if (!err.error.success){

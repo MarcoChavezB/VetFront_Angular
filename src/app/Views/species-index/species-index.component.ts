@@ -104,7 +104,7 @@ export class SpeciesIndexComponent {
 
   deactivateSpecie(specieId: number){
     this.specieService.deactivateSpecie(specieId).subscribe(species => {
-      this.router.navigate(['/dashboard/admin/deactivated-species']);
+      this.router.navigate(['/dashboard/admin/species/deactivated-species']);
     }, err => {
       if (!err.error.success){
         this.speciesR = {species: []};
