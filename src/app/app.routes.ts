@@ -32,6 +32,7 @@ import { DesactivateProductsComponent } from './Views/Dashboard/products/desacti
 import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
 import {PrescriptionsIndexComponent} from "./Views/prescriptions-index/prescriptions-index.component";
+import { SalesComponent } from './Views/Dashboard/products/sales/sales.component';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,10 @@ export const routes: Routes = [
         // admin
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'ventas/:id',
+        component: SalesComponent
       },
       {
         path: 'products',

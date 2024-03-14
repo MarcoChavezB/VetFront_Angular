@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { product } from '../../../../Models/Product';
 import { ProductService } from '../../../../Services/ProductService/product.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { ModifyProdComponent } from '../../modify-prod/modify-prod.component';
@@ -34,6 +34,7 @@ export class AllProductsComponent {
 
   constructor(
     private readonly ProdService: ProductService,
+    private router: Router
     ) {
     
   }
@@ -94,6 +95,10 @@ export class AllProductsComponent {
         console.log(err)
       }
     )
+  }
+
+  selProduct(id:number){
+    this.router.navigate(['dashboard/ventas', id]);
   }
 
   closeSuccess(){
