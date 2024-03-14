@@ -9,7 +9,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CardProdComponent {
   @Input() title: string = 'title card'; 
-  @Input() price: string = 'price card';
+  @Input() price: number = 0;
   @Input() description: string = 'description card';
   @Input() cantidad: number = 0;
 

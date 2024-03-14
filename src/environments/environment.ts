@@ -52,5 +52,7 @@ export const environment ={
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
 
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
-  enableProd: 'http://127.0.0.1:8000/api/products/activate/'
+  enableProd: 'http://127.0.0.1:8000/api/products/activate/',
+  getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
+  makeSale: 'http://127.0.0.1:8000/api/product/venta'
 }
