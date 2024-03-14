@@ -12,7 +12,9 @@
         <app-card-prod
         [title]="item.name"
         [price]="item.price"
-        [description]="item.description"
+        [cantidad]="item.cantidad"
+        (delete)="deleteItem(item.id)"
+        (add)="addItem(item.id)"
         />
 
         </div>
@@ -29,7 +31,7 @@
       <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
       <div class="flex justify-between mt-10 mb-5">
         <span class="font-semibold text-sm uppercase">Items {{quantity}}</span>
-        <span class="font-semibold text-sm">590$</span>
+        <span class="font-semibold text-sm">{{price}}$</span>
       </div>
       <div>
         <label class="font-medium inline-block mb-3 text-sm uppercase">
