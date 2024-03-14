@@ -14,7 +14,7 @@ import { ActiveAccountComponent } from './Views/Alerts/active-account/active-acc
 import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permission-auth.component';
 import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
-
+import { ServiceformComponent } from './Views/Dashboard/services/serviceform/serviceform.component';
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { GuestGuard } from './Guards/Guest/guest.guard';
 import { UserGuard } from './Guards/User/user.guard';
@@ -32,6 +32,7 @@ import { DesactivateProductsComponent } from './Views/Dashboard/products/desacti
 import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
 import {PrescriptionsIndexComponent} from "./Views/prescriptions-index/prescriptions-index.component";
+import { SalesComponent } from './Views/Dashboard/products/sales/sales.component';
 
 export const routes: Routes = [
   {
@@ -43,6 +44,10 @@ export const routes: Routes = [
         // admin
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'ventas/:id',
+        component: SalesComponent
       },
       {
         path: 'products',
@@ -104,6 +109,10 @@ export const routes: Routes = [
       {
         path: 'services',
         component: ServicesComponent // admin
+      },
+      {
+        path: 'servicesstore',
+        component: ServiceformComponent // admin
       },
       {
         path: 'user', loadChildren: () => import('./Modules/user-routes/user-routes.module').then(m => m.UserRoutesModule)

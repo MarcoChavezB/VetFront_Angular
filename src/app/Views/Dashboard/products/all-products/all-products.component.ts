@@ -2,7 +2,7 @@
 import { Component } from '@angular/core';
 import { product } from '../../../../Models/Product';
 import { ProductService } from '../../../../Services/ProductService/product.service';
-import { Router } from 'express';
+import { Router } from '@angular/router';
 import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { ModifyProdComponent } from '../../modify-prod/modify-prod.component';
@@ -30,9 +30,11 @@ export class AllProductsComponent {
   alertSucces: boolean = false;
   deleteId: number = 0;
   objectProd: any = {}
+  existProduct: boolean = true;
 
   constructor(
     private readonly ProdService: ProductService,
+    private router: Router
     ) {
     
   }
@@ -45,6 +47,9 @@ export class AllProductsComponent {
     this.ProdService.getProducts().subscribe(
       (data) => {
         this.products = data.products;
+        if(this.products.length == 0){
+          this.existProduct = false;
+        }
       },
       (error) => {
         console.log(error);
@@ -90,6 +95,10 @@ export class AllProductsComponent {
         console.log(err)
       }
     )
+  }
+
+  selProduct(id:number){
+    this.router.navigate(['dashboard/ventas', id]);
   }
 
   closeSuccess(){

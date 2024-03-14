@@ -19,11 +19,16 @@ export class RowProductComponent {
 
   @Output() getEmit: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() getEmitDelete: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() selProduct: EventEmitter<boolean> = new EventEmitter<boolean>();
+
 
   modifyProduct(){
     this.getEmit.emit(true);
   }
   deleteProduct(){
     this.getEmitDelete.emit(true);  
+  }
+  selProductEmit(){
+    this.selProduct.emit(true);
   }
 }

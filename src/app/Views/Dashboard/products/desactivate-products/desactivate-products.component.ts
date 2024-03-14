@@ -29,6 +29,7 @@ export class DesactivateProductsComponent {
   alertSucces: boolean = false;
   activateId: number = 0;
   objectProd: any = {}
+  existProduct: boolean = true;
 
   constructor(
     private readonly ProdService: ProductService,
@@ -44,6 +45,9 @@ export class DesactivateProductsComponent {
     this.ProdService.getProductsDisabled().subscribe(
       (data) => {
         this.products = data.products;
+        if(this.products.length == 0){
+          this.existProduct = false;
+        }
       },
       (error) => {
         console.log(error);
