@@ -73,59 +73,7 @@
             Registrar
           </button>
         </div>
-        <div class="mt-4 text-center text-sm">
-          <p class="text-gray-500 dark:text-gray-400"><a class="text-accent" (click)="showFormSpecies()">Registrar especie</a></p>
-        </div>
       </div>
     </div>
-
-    <form *ngIf="showForm" class="flex items-center min-h-screen px-4" [formGroup]="registerSpecies" (ngSubmit)="storeSpecie()">
-    <div class="space-y-4" >
-      <h1 class="text-3xl font-bold">Registrar nueva especie.</h1>
-      <div class="space-y-2">
-
-        <div class="alert" *ngIf="storeSpecieBackendErrors">
-          <div class="text-red-500" *ngFor="let error of storeSpecieBackendErrors | keyvalue" [@shake]="error">
-            {{ error.value }}
-          </div>
-        </div>
-
-        <label for="specie_name"
-               class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-          Especie:</label>
-        <input name="specie_name" type="text" id="specie_name"
-                formControlName="specie_name"
-               class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-               placeholder="Nombre aquí">
-        <div class="alert"
-             *ngIf="registerSpecies.controls['specie_name'].invalid && (registerSpecies.controls['specie_name'].dirty || registerSpecies.controls['specie_name'].touched)">
-          <div
-            [@shake]="registerSpecies.controls['specie_name'].errors?.['required']"
-            *ngIf="registerSpecies.controls['specie_name'].errors?.['required']">El nombre es requerido.
-          </div>
-          <div
-            [@shake]="registerSpecies.controls['specie_name'].errors?.['minlength']"
-            *ngIf="registerSpecies.controls['specie_name'].errors?.['minlength']">
-            El nombre debe tener al menos 3 caracteres.
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-2">
-        <button type="submit"
-                [disabled]="!registerSpecies.valid || storeSpecieLoading"
-                [ngClass]="{'bg-gray-500': !registerSpecies.valid || storeSpecieLoading, 'bg-[#1da1f2] hover:bg-gray-500': registerSpecies.valid || !storeSpecieLoading}"
-                class="bg-slate-950 text-white inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full">
-          Agregar
-        </button>
-      </div>
-      <div class="mt-4 text-center text-sm">
-        <p class="text-gray-500 dark:text-gray-400"><a class="text-accent" (click)="closeFormSpecies()">Cancelar</a></p>
-      </div>
-    </div>
-    </form>
   </div>
 </form>
-
-
-

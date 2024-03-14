@@ -31,7 +31,7 @@ export class AppointmentCompletedIndexComponent {
         console.log(appointments)
         console.log(this.appointmentsR)
       },err =>{
-        if (err.status === 404){
+        if (!err.error.success){
           console.log('No appointments found')
           this.appointmentsR = {vet_appointments: []}
         }

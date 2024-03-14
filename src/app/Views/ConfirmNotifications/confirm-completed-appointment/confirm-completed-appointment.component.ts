@@ -30,7 +30,7 @@ export class ConfirmCompletedAppointmentComponent {
   confirmAppointment() {
     if (this.appointmentId) {
       this.appointmentService.markAppointmentAsCompleted(this.appointmentId).subscribe(res => {
-        this.router.navigate(['/dashboard/admin/completed-appointments']);
+        this.router.navigate(['/dashboard/admin/appointments/appointment-index']);
       },
         err => {
           if (err.status == 404) {

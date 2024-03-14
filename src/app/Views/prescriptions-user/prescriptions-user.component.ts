@@ -24,7 +24,7 @@ export class PrescriptionsUserComponent {
     this.prescriptionService.getUserPrescriptions(this.authService.getUserId()).subscribe(prescriptions => {
       this.prescriptionsR = prescriptions;
     }, err =>{
-      if (err.status === 404){
+      if (!err.error.success){
         this.prescriptionsR = {prescriptions: []};
       }
     });

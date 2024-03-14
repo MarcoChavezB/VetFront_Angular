@@ -23,7 +23,7 @@ export class PrescriptionsIndexComponent {
       this.prescriptionsR = prescriptions;
     },
       err => {
-        if (err.status === 404){
+        if (!err.error.success){
           this.prescriptionsR = {prescriptions: []};
         }
       });
