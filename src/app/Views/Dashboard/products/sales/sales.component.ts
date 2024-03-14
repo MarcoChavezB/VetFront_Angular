@@ -186,8 +186,10 @@ export class SalesComponent {
         if (err && err.error && err.error.error) {
           const firstError = this.getFirstError(err.error.error);
           this.showAlertError(firstError);
+
         } else {
           this.showAlertError(err.error.message)
+          console.log("error2: " + err.error.message)
         }
       }
     )

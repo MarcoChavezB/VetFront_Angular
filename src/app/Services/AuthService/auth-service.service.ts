@@ -54,10 +54,9 @@ export class AuthServiceService {
   
   resetAll(){
     if (typeof window !== 'undefined') {
-
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
-
+    localStorage.removeItem('cart');
     }
   }
 

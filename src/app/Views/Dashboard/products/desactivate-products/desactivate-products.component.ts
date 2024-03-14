@@ -5,6 +5,7 @@ import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { ModifyProdComponent } from '../../modify-prod/modify-prod.component';
 import { CommonModule } from '@angular/common';
+import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-desactivate-products',
@@ -31,16 +32,49 @@ export class DesactivateProductsComponent {
   objectProd: any = {}
   existProduct: boolean = true;
 
+  guest: boolean = false;
+  admin: boolean = false;
+  user: boolean = false;
+
+
   constructor(
     private readonly ProdService: ProductService,
+    private authService: AuthServiceService,
     ) {
     
   }
 
   ngOnInit(): void {
     this.getProductList();
+    this.checkRole()
   }
 
+  
+  checkRole() {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 0:
+        this.guest = true;
+        this.user = false;
+        this.admin = false;
+        break;
+      case 1:
+        this.guest = false;
+        this.user = true;
+        this.admin = false;
+        break;
+      case 2:
+        this.guest = false;
+        this.user = false;
+        this.admin = true;
+        break;
+      default:
+        this.guest = false;
+        this.user = false;
+        this.admin = false;
+        break;
+    }
+  }
   getProductList() {
     this.ProdService.getProductsDisabled().subscribe(
       (data) => {
