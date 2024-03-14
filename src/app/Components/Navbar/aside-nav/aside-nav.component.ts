@@ -3,17 +3,22 @@ import { RouterLink } from '@angular/router';
 import { AuthServiceService } from '../../../Services/AuthService/auth-service.service';
 import { Router } from '@angular/router';
 import { ProductService } from '../../../Services/ProductService/product.service';
+import { CommonModule } from '@angular/common';
+
 @Component({
   selector: 'app-aside-nav',
   standalone: true,
   imports: [
-    RouterLink
+    RouterLink,
+    CommonModule
   ],
   templateUrl: './aside-nav.component.html',
   styleUrl: './aside-nav.component.css'
 })
 export class AsideNavComponent {
   
+  role:number | null = 0
+
   constructor( 
     private authService: AuthServiceService,
     private readonly productService: ProductService,
@@ -23,6 +28,12 @@ export class AsideNavComponent {
     totalProducts: number = 0;
   ngOnInit(){
     this.getNumberPord()
+    this.getrole()
+  }
+
+  getrole(){
+    this.role = this.authService.getRole()
+    console.log(this.role)
   }
 
   exit() {
