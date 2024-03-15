@@ -75,6 +75,8 @@ export const environment ={
   servicedelete: 'http://127.0.0.1:8000/api/services/destroy/',
 
   getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
-  makeSale: 'http://127.0.0.1:8000/api/product/venta'
+  makeSale: 'http://127.0.0.1:8000/api/product/venta',
+
+  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/'
   
 }

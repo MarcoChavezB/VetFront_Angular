@@ -44,7 +44,7 @@ export const routes: Routes = [
         component: DashboardComponent
       },
       {
-        path: 'ventas/:id',
+        path: 'ventas',
         component: SalesComponent
       },
       {

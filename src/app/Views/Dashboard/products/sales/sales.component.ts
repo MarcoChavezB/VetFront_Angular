@@ -9,6 +9,7 @@ import { SaleFormat } from '../../../../Models/SaleFormat';
 import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/alert-error.component';
+import { SearchBarComponent } from '../../../../Components/shoping/search-bar/search-bar.component';
 
 @Component({
   selector: 'app-sales',
@@ -19,7 +20,8 @@ import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/a
     CommonModule,
     AlertConfirmationComponent,
     AlertSuccessComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    SearchBarComponent
   ],
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
@@ -27,7 +29,6 @@ import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/a
 export class SalesComponent {
   totalCost: number = 0;
   items: product[] = [];
-  id: number = 0;
   quantity: number = 0;
   price:number = 0;
   customerPhone: string = '';
@@ -45,27 +46,18 @@ export class SalesComponent {
   messageError: string = ''
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private readonly porductService: ProductService,
     ){
       this.items = JSON.parse(localStorage.getItem('cart') || '[]');
     }
 
-  ngOnInit(): void {
-    this.activatedRoute.params.subscribe(params => {
-      this.id = params['id'];
-    });
-    this.getProduc();
-  }
-
-
-  getProduc(){
-    this.porductService.getProductId(this.id).subscribe(
+  getProduc(id: number){
+    this.porductService.getProductId(id).subscribe(
       (data) => {
         this.saveLocalStorage(data.products);
       },
       (error) => {
-        console.log(error);
+        console.log(error)
       }
     )
   }
@@ -93,7 +85,6 @@ export class SalesComponent {
   }
 
   getCart(){
-    console.log(this.formatBeforeSend())
     return this.items;
   }
 
@@ -118,6 +109,9 @@ export class SalesComponent {
     this.items = [];
     this.quantity = 0;
     this.price = 0;
+    this.customerName = '';
+    this.customerLastName = '';
+    this.customerPhone = '';
   }
 
   addItem(id: number) {    
