@@ -6,6 +6,7 @@ import {AuthServiceService} from "../../Services/AuthService/auth-service.servic
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 
 @Component({
   selector: 'app-prescriptions',
@@ -46,7 +47,8 @@ export class PrescriptionsComponent {
     private prescriptionService: PrescriptionServiceService,
     private authService: AuthServiceService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertService: GlobalAlertService
   ) {}
 
   ngOnInit() {
@@ -75,6 +77,7 @@ export class PrescriptionsComponent {
 
     this.prescriptionService.storePrescription(prescription).subscribe(
       res => {
+        this.alertService.showAlert('Consulta generada con éxito');
         this.isSubmitting = false;
         this.router.navigate(['/dashboard/admin/appointments/prescriptions-index']);
       },

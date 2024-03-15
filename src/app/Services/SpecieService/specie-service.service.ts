@@ -33,11 +33,11 @@ export class SpecieServiceService {
     return this.http.get<SpecieResults>(this.urlSpecieDeactivatedIndex)
   }
 
-  activateSpecie(id: number){
+  activateSpecie(id: number | null){
     return this.http.put<any>(this.urlActivateSpecie + id, {})
   }
 
-  deactivateSpecie(id: number){
+  deactivateSpecie(id: number | null){
     return this.http.delete<any>(this.urlDeactivateSpecie + id)
   }
 

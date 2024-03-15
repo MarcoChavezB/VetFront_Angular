@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {SpecieServiceService} from "../../Services/SpecieService/specie-service.service";
 import {
-  SpecieInterface,
   SpecieResults,
   SpecieStoreInterface,
   SpecieUpdateInterface,
@@ -10,9 +9,10 @@ import {
 import {PetServiceService} from "../../Services/PetService/pet-service.service";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule, FormGroup, Validators, FormControl, FormsModule} from "@angular/forms";
-import {AlertSuccessComponent} from "../../Components/Alerts/alert-success/alert-success.component";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
 @Component({
   selector: 'app-species-index',
   standalone: true,
@@ -22,7 +22,8 @@ import {Router} from "@angular/router";
     FormsModule,
     KeyValuePipe,
     ReactiveFormsModule,
-    NgClass
+    NgClass,
+    ConfirmationDialogComponent
   ],
   templateUrl: './species-index.component.html',
   styleUrl: './species-index.component.css',
@@ -49,13 +50,16 @@ export class SpeciesIndexComponent {
   storeSpecieLoading = false;
   showModal = false;
   showModalUpdate = false;
+  showConfirmationDialog = false;
+  specieToDeactivate: number | null = null;
 
 
 
   constructor(
     private specieService: SpecieServiceService,
     private petService: PetServiceService,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) {}
 
   ngOnInit() {
@@ -88,6 +92,7 @@ export class SpeciesIndexComponent {
     }
     this.specieService.storeSpecie(specie).subscribe(
       res => {
+        this.alertService.showAlert('Especie registrada con éxito');
         this.storeSpecieLoading = false;
         this.registerSpecies.reset();
         this.closeModal();
@@ -103,13 +108,24 @@ export class SpeciesIndexComponent {
   }
 
   deactivateSpecie(specieId: number){
-    this.specieService.deactivateSpecie(specieId).subscribe(species => {
+    this.specieToDeactivate = specieId;
+    this.showConfirmationDialog = true;
+  }
+
+  onConfirm(){
+    this.showConfirmationDialog = false;
+    this.specieService.deactivateSpecie(this.specieToDeactivate).subscribe(species => {
+      this.alertService.showAlert('Especie desactivada con éxito');
       this.router.navigate(['/dashboard/admin/species/deactivated-species']);
     }, err => {
       if (!err.error.success){
         this.speciesR = {species: []};
       }
     })
+  }
+
+  onCancel(){
+    this.showConfirmationDialog = false;
   }
 
   findByName(name: string){
@@ -153,6 +169,7 @@ export class SpeciesIndexComponent {
     }
     this.specieService.updateSpecie(specie, this.specie_id).subscribe(
       res => {
+        this.alertService.showAlert('Especie actualizada con éxito');
         this.storeSpecieLoading = false;
         this.showModalUpdate = false;
         this.storeSpecieBackendErrors = null;

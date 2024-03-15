@@ -6,6 +6,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} fr
 import {SpecieResults} from "../../Models/Specie";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 
 
 @Component({
@@ -49,7 +50,8 @@ export class UpdatePetComponent {
   constructor(
     private petService: PetServiceService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) {
   }
 
@@ -102,7 +104,8 @@ export class UpdatePetComponent {
       specie_id: Number(formValues.specie_id) || 0
     }
     this.petService.updatePet(this.pet_id, pet).subscribe(res => {
-      this.isLoading = false;
+        this.alertService.showAlert('Mascota actualizada con éxito');
+        this.isLoading = false;
       this.router.navigate(['/dashboard/user/pets']);
     },
       err =>{

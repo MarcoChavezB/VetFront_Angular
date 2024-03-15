@@ -10,6 +10,7 @@ import {AppointmentStoreInterface} from "../../Models/Appointment";
 import {AppointmentRequestService} from "../../Services/AppointmentService/appointment-request.service";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 
 @Component({
   selector: 'app-appointment-request',
@@ -56,7 +57,8 @@ export class AppointmentRequestComponent {
     private authService: AuthServiceService,
     private userService: UserServiceService,
     private appointmentService: AppointmentRequestService,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) {
   }
 
@@ -81,6 +83,7 @@ export class AppointmentRequestComponent {
     };
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
+        this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
         this.router.navigate(['/dashboard/user/appointments']);
       },

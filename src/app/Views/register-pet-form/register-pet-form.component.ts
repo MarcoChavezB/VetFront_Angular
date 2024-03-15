@@ -8,7 +8,8 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
 import {PetRegisterInterface} from "../../Models/Pet";
 import {Router, RouterLink} from "@angular/router";
 import {SpecieServiceService} from "../../Services/SpecieService/specie-service.service";
-
+import {AlertSuccessComponent} from "../../Components/Alerts/alert-success/alert-success.component";
+import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 @Component({
   selector: 'app-register-pet-form',
   standalone: true,
@@ -18,7 +19,8 @@ import {SpecieServiceService} from "../../Services/SpecieService/specie-service.
     ReactiveFormsModule,
     RouterLink,
     NgClass,
-    KeyValuePipe
+    KeyValuePipe,
+    AlertSuccessComponent
   ],
   templateUrl: './register-pet-form.component.html',
   styleUrl: './register-pet-form.component.css',
@@ -44,6 +46,7 @@ export class RegisterPetFormComponent {
   showForm: boolean = false;
   storePetBackendErrors: any;
   storeSpecieBackendErrors: any;
+  alertSucces: boolean = false;
 
   storePetLoading = false;
   storeSpecieLoading = false;
@@ -63,7 +66,8 @@ export class RegisterPetFormComponent {
     private petService: PetServiceService,
     private authService: AuthServiceService,
     private specieService: SpecieServiceService,
-    private router: Router
+    private router: Router,
+    private alertService: GlobalAlertService
   ) { }
 
   ngOnInit() {
@@ -97,9 +101,9 @@ export class RegisterPetFormComponent {
 
     this.petService.storePet(pet).subscribe(
       res => {
+        this.alertService.showAlert('Mascota registrada con éxito');
         this.registerPetForm.reset();
         this.storePetLoading = false;
-        console.log(res);
         this.router.navigate(['/dashboard/appointment-request']);
 
       },
@@ -112,25 +116,8 @@ export class RegisterPetFormComponent {
     );
   }
 
-  storeSpecie() {
-    this.storeSpecieLoading = true;
-    let formValue = this.registerSpecies.value;
-    let specie: SpecieStoreInterface = {
-      specie_name: formValue.specie_name || '',
-    }
-    this.specieService.storeSpecie(specie).subscribe(
-      res => {
-        this.storeSpecieLoading = false;
-        this.registerSpecies.reset();
-        this.fetchSpecies();
-        this.showForm = false;
-      },
-      err => {
-        this.storeSpecieLoading = false;
-        if(err.error.errors){
-          this.storeSpecieBackendErrors = err.error.errors;
-        }
-      }
-    );
+  closeSuccess(){
+    this.alertSucces = false;
   }
+
 }

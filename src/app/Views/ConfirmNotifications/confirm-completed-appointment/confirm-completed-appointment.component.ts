@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {AppointmentRequestService} from "../../../Services/AppointmentService/appointment-request.service";
+import {GlobalAlertService} from "../../../Services/GlobalAlert/global-alert.service";
 
 @Component({
   selector: 'app-confirm-completed-appointment',
@@ -15,7 +16,8 @@ export class ConfirmCompletedAppointmentComponent {
   constructor(
     private appointmentService: AppointmentRequestService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private alertService: GlobalAlertService
   ) {
   }
 
@@ -30,7 +32,8 @@ export class ConfirmCompletedAppointmentComponent {
   confirmAppointment() {
     if (this.appointmentId) {
       this.appointmentService.markAppointmentAsCompleted(this.appointmentId).subscribe(res => {
-        this.router.navigate(['/dashboard/admin/appointments/appointment-index']);
+          this.alertService.showAlert('Cita completada con exito');
+          this.router.navigate(['/dashboard/admin/appointments/appointment-index']);
       },
         err => {
           if (err.status == 404) {

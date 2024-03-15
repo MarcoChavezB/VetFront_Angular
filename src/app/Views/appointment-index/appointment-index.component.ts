@@ -3,6 +3,7 @@ import {AppointmentResults} from "../../Models/Appointment";
 import {AppointmentRequestService} from "../../Services/AppointmentService/appointment-request.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {RouterLink} from "@angular/router";
+import {AlertConfirmationComponent} from "../../Components/Alerts/alert-confirmation/alert-confirmation.component";
 
 @Component({
   selector: 'app-appointment-index',
@@ -10,7 +11,7 @@ import {RouterLink} from "@angular/router";
   imports: [
     NgForOf,
     NgIf,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './appointment-index.component.html',
   styleUrl: './appointment-index.component.css'
@@ -18,6 +19,7 @@ import {RouterLink} from "@angular/router";
 export class AppointmentIndexComponent {
 
   appointmentsR: AppointmentResults | undefined;
+
 
   constructor(
     private appointmentService: AppointmentRequestService
