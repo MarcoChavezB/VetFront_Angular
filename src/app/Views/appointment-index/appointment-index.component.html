@@ -20,9 +20,9 @@
       <td class="px-3 py-2 text-sm">{{appointment.created_at}}</td>
       <td class="px-3 py-2 text-sm">{{appointment.status}}</td>
       <td class="px-3 py-2 text-sm">
-        <button class="bg-green-500 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/complete', appointment.id]">Completar</button>
+        <button class="bg-green-500 text-white px-2 py-1 rounded" (click)="activateAppointment(appointment.id)">Completar</button>
         <button class="bg-blue-400 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/prescription/store',appointment.id]">Consultar</button>
-        <button class="bg-red-500 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/cancel', appointment.id]">Rechazar</button>
+        <button class="bg-red-500 text-white px-2 py-1 rounded" (click)="deactivateAppointment(appointment.id)">Rechazar</button>
       </td>
     </tr>
     </tbody>
@@ -30,4 +30,16 @@
   <div *ngIf="appointmentsR?.vet_appointments?.length === 0" class="text-center py-4">
     No hay citas registradas
   </div>
+
+  <app-confirmation-dialog
+    *ngIf="showConfirmationDialog"
+    (onConfirm)="onConfirmDeactivate()"
+    (onCancel)="onCancel()"
+  ></app-confirmation-dialog>
+
+  <app-confirmation-dialog
+    *ngIf="showConfirmationDialogActivate"
+    (onConfirm)="onConfirmActivate()"
+    (onCancel)="onCancelActivate()"
+  ></app-confirmation-dialog>
 </div>

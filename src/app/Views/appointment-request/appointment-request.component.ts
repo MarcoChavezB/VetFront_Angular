@@ -11,6 +11,7 @@ import {AppointmentRequestService} from "../../Services/AppointmentService/appoi
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {Router} from "@angular/router";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
 
 @Component({
   selector: 'app-appointment-request',
@@ -21,7 +22,8 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
     NgForOf,
     NgClass,
     KeyValuePipe,
-    NgIf
+    NgIf,
+    GlobalLoadingComponent
   ],
   templateUrl: './appointment-request.component.html',
   styleUrl: './appointment-request.component.css',
@@ -44,6 +46,7 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
 export class AppointmentRequestComponent {
 
   petsR: PetResults | undefined;
+  loading = false;
 
 
   appointmentRequestForm = new FormGroup({
@@ -73,6 +76,7 @@ export class AppointmentRequestComponent {
   backendErrors: any;
 
   storeAppointmentRequest(){
+    this.loading = true;
     this.isSubmitting = true;
     const formValue = this.appointmentRequestForm.value;
     const appointmentRequest: AppointmentStoreInterface = {
@@ -85,10 +89,12 @@ export class AppointmentRequestComponent {
       res => {
         this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
+        this.loading = false;
         this.router.navigate(['/dashboard/user/appointments']);
       },
       err => {
         this.isSubmitting = false;
+        this.loading = false;
         if (err.error.errors){
           this.backendErrors = err.error.errors;
         }

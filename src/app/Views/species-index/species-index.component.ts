@@ -13,6 +13,7 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
 import {Router} from "@angular/router";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
+import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
 @Component({
   selector: 'app-species-index',
   standalone: true,
@@ -23,7 +24,8 @@ import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-
     KeyValuePipe,
     ReactiveFormsModule,
     NgClass,
-    ConfirmationDialogComponent
+    ConfirmationDialogComponent,
+    GlobalLoadingComponent
   ],
   templateUrl: './species-index.component.html',
   styleUrl: './species-index.component.css',

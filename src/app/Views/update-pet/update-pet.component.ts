@@ -7,6 +7,7 @@ import {SpecieResults} from "../../Models/Specie";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
 
 
 @Component({
@@ -19,7 +20,8 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
     NgIf,
     ReactiveFormsModule,
     NgClass,
-    RouterLink
+    RouterLink,
+    GlobalLoadingComponent
   ],
   templateUrl: './update-pet.component.html',
   styleUrl: './update-pet.component.css',
