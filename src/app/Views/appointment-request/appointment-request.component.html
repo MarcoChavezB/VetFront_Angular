@@ -1,3 +1,4 @@
+<app-global-loading *ngIf="loading" />
 <form class="flex items-center min-h-screen px-4" [formGroup]="appointmentRequestForm" (ngSubmit)="storeAppointmentRequest()">
   <div class="mx-auto w-full max-w-sm space-y-6">
     <div class="space-y-2 text-center">

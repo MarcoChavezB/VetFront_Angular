@@ -34,7 +34,7 @@ export class AppointmentRequestService {
     return this.http.get<AppointmentResults>(this.urlGetAppointments)
   }
 
-  markAppointmentAsCompleted(id: number): Observable<any> {
+  markAppointmentAsCompleted(id: number | null): Observable<any> {
     return this.http.put<any>(this.urlMarkAppointmentAsCompleted+ id, {})
   }
 
@@ -42,11 +42,11 @@ export class AppointmentRequestService {
     return this.http.get<AppointmentResults>(this.urlGetCancelledAppointments)
   }
 
-  reOpenAppointment(id: number): Observable<any> {
+  reOpenAppointment(id: number | null): Observable<any> {
     return this.http.put<any>(this.urlReOpenAppointment + id, {})
   }
 
-  markppointmentAsCancelled(id: number): Observable<any>{
+  markppointmentAsCancelled(id: number | null): Observable<any>{
     return this.http.put<any>(this.urlMarkAppointmentAsCancelled + id, {})
   }
 

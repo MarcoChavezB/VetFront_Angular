@@ -15,18 +15,6 @@ import {UpdatePetComponent} from "../../Views/update-pet/update-pet.component";
 
 const routes: Routes = [
   {
-    path: 'complete/:id',
-    component: ConfirmCompletedAppointmentComponent
-  },
-  {
-    path: 'reopen/:id',
-    component: ConfirmReopenAppointmentComponent
-  },
-  {
-    path: 'cancel/:id',
-    component: ConfirmCancelAppointmentComponent
-  },
-  {
     path: 'prescription/store/:id',
     component: PrescriptionsComponent
 
