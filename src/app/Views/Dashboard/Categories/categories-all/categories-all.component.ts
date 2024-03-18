@@ -6,6 +6,7 @@ import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-succe
 import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/alert-error.component';
 import { CategoryServiceService } from '../../../../Services/CategoryService/category-service.service';
 import { Category, CategoryResult } from '../../../../Models/Category';
+import { ModifyCategoryComponent } from '../modify-category/modify-category.component';
 
 @Component({
   selector: 'app-categories-all',
@@ -15,7 +16,8 @@ import { Category, CategoryResult } from '../../../../Models/Category';
     FormsModule,
     AlertConfirmationComponent,
     AlertSuccessComponent,
-    AlertErrorComponent
+    AlertErrorComponent,
+    ModifyCategoryComponent,
   ],
   templateUrl: './categories-all.component.html',
   styleUrl: './categories-all.component.css'
@@ -26,10 +28,13 @@ export class CategoriesAllComponent {
  ) {}
 
  categories: Category[] = []
+ objectCategory: any = {}
  existCategoryes: boolean = true;
  alertSucces : boolean = false;
   alertDelete : boolean = false;
   message: string = '';
+  id:number = 0
+  modificar: boolean = false;
 
   ngOnInit(): void {
     this.getCategories();
@@ -38,6 +43,9 @@ export class CategoriesAllComponent {
     this.CategoriesService.getCategories().subscribe(
       (res) => {
         this.categories = res.categories
+        if (this.categories.length == 0){
+          this.existCategoryes = false;
+        }
       },
       (err) => {
         console.log(err)
@@ -45,16 +53,23 @@ export class CategoriesAllComponent {
     )
   }
 
-  modifyCategory(id : number){
-
+  modifyCategory(object : any){
+    this.objectCategory = object;
+    this.modificar = true;
   }
 
-  showAlertDelete(id : number){
+  closeModify(){
+    this.modificar = false;
+  }
 
+  showAlertDelete(id : number, name: string){
+    this.id = id;
+    this.message = `¿Estas seguro que deseas eliminar la categoria ${name}?`
+    this.alertDelete = true;
   }
 
   closeAlert(){
-
+    this.alertDelete = false;
   }
 
   closeSuccess(){
@@ -62,6 +77,16 @@ export class CategoriesAllComponent {
   }
 
   confirmDelete(){
+    this.CategoriesService.destroyCategory(this.id).subscribe(
+      (res) => {
+        this.getCategories();
+        this.alertDelete = false;
+        this.showAlert('success', 'La categoria fue eliminada con exito')
+      },
+      (err) => {
+        console.log(err)
+      }
+    )
   }
 
 
@@ -71,13 +96,6 @@ export class CategoriesAllComponent {
       this.message = message;
       setTimeout(() => {
         this.alertSucces = false;
-      }, 3000);
-    }
-    if(type == 'delete'){
-      this.alertDelete = true;
-      this.message = message;
-      setTimeout(() => {
-        this.alertDelete = false;
       }, 3000);
     }
   }

@@ -32,6 +32,11 @@ export const environment ={
   reOpenAppointment: 'http://127.0.0.1:8000/api/vetappointment/reopen/',
   markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
+  categoriesDestroy: 'http://127.0.0.1:8000/api/category/destroy/',
+  getCategoryId: 'http://127.0.0.1:8000/api/category/getCategory/',
+  categoryActivate: 'http://127.0.0.1:8000/api/category/activate/',
+  categoriesDisabled: 'http://127.0.0.1:8000/api/category/index/desactivated',
+
   productStore: 'http://127.0.0.1:8000/api/product/store',
   prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store',
   productModify: 'http://127.0.0.1:8000/api/product/update/',

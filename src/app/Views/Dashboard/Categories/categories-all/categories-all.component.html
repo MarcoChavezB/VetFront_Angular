@@ -52,7 +52,7 @@
       </td>
       <td class="p-4 border-b border-blue-gray-50">
         <button
-        (click)="modifyCategory(category.id)"
+        (click)="modifyCategory(category)"
           class="relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase text-gray-900 transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
           type="button">
           <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -65,7 +65,7 @@
           </span>
         </button>
         <button
-        (click)="showAlertDelete(category.id)"
+        (click)="showAlertDelete(category.id, category.category)"
         class=" relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         type="button">
         <span class="absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -84,37 +84,37 @@
   *ngIf="alertDelete"
   (close)="closeAlert()"
   (confirm)="confirmDelete()"
-  [message]="'Estas seguro de eliminar este producto?'"
+  [message]="message"
   ></app-alert-confirmation>
 
   <app-alert-success
-  [message]="'Se elimino el producto correctamente'"
+  [message]="message"
   (close)="closeSuccess()"
   *ngIf="alertSucces"
   >
   </app-alert-success>
 
+  <app-modify-category
+  [objectCategory]="objectCategory"
+  *ngIf="modificar"
+  (close)="closeModify()"
+  />
+
 
   
 <div *ngIf="!existCategoryes" class="flex justify-center items-center mt-20">
   <div class="flex flex-col items-center justify-center max-w-3xl text-center">
-    <div class="inline-block rounded-lg p-3 bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg"
-        width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
-        <path d="m7.5 4.27 9 5.15"></path>
-        <path
-          d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
-        </path>
-        <path d="m3.3 7 8.7 5 8.7-5"></path>
-        <path d="M12 22V12"></path>
-      </svg>
+    <div class="inline-block rounded-lg p-3 bg-gray-100">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-back" viewBox="0 0 16 16">
+                <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1z"/>
+              </svg>
     </div>
     <div class="mt-4">
       <h1 class="text-3xl font-bold tracking-tight">
-        Sin productos
+        Sin Categorias
       </h1>
       <p class="max-w-[600px] mt-4 text-gray-500 md:mt-2 dark:text-gray-400">
-        No hay ningun producto para mostrar
+        No hay ninguna catgoria para mostrar
       </p>
     </div>
   </div>

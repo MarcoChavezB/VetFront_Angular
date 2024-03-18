@@ -15,4 +15,22 @@ export class CategoryServiceService {
   getCategories():Observable<CategoryResult>{
     return this.http.get<CategoryResult>(environment.categoriesIndex)
   }
+
+  destroyCategory(id: number): Observable<CategoryResult>{
+    return this.http.delete<CategoryResult>(environment.categoriesDestroy + id)
+  }
+
+  getCategoriesDisabled():Observable<CategoryResult>{
+    return this.http.get<CategoryResult>(environment.categoriesDisabled)
+  }
+
+  activateCategory(id: number): Observable<CategoryResult>{
+    return this.http.post<CategoryResult>(environment.categoryActivate + id, {})
+  }
+
+
+  getCategoryId(id: number): Observable<CategoryResult>{
+    return this.http.get<CategoryResult>(environment.getCategoryId + id)
+  }
+
 }
