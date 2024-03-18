@@ -5,10 +5,10 @@
         <div>
           <h5
             class="block font-sans text-xl antialiased font-semibold leading-snug tracking-normal text-blue-gray-900">
-            Products
+            Categories
           </h5>
           <p class="block mt-1 font-sans text-base antialiased font-normal leading-relaxed text-gray-700">
-            Todos los productos registrados en el sistema 
+            Toas las categorias registradas en el sistema 
           </p>
           <div class="flex flex-col items-center justify-between gap-4 md:flex-row relative z-50">
               <div style="height: 10vh;"></div>
@@ -20,7 +20,7 @@
               <ul role="tablist" class="relative flex flex-row p-1 rounded-lg bg-blue-gray-50 bg-opacity-60" sty>
                 <li 
                 (click)="checkSelect('all')"
-                [routerLink]="['/dashboard/products']"
+                [routerLink]="['/dashboard/categories']"
                   role="tab"
                   class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
                   data-value="all">
@@ -32,8 +32,8 @@
                    class="absolute inset-0 z-10 h-full bg-white rounded-md shadow"></div>
                 </li>
                 <li role="tab"
-                (click)="checkSelect('active')"
-                [routerLink]="['/dashboard/products/desactivate-products']"
+                (click)="checkSelect('desactivated')"
+                [routerLink]="['/dashboard/categories/desactivated-categories']"
                   class="relative flex items-center justify-center w-full h-full px-2 py-1 font-sans text-base antialiased font-normal leading-relaxed text-center bg-transparent cursor-pointer select-none text-blue-gray-900"
                   data-value="monitored">
                   <div 

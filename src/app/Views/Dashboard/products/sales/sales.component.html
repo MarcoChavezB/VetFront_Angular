@@ -89,7 +89,7 @@
         </div>
         <button 
         (click)="getTotal()"
-        [disabled]="!items.length"
+        [disabled]="!items.length || !customerName || !customerLastName || !customerPhone"
         class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
               Checkout
         </button>

@@ -32,6 +32,10 @@ import {UserPetsComponent} from "./Views/user-pets/user-pets.component";
 import {SpeciesIndexComponent} from "./Views/species-index/species-index.component";
 import {PrescriptionsIndexComponent} from "./Views/prescriptions-index/prescriptions-index.component";
 import { SalesComponent } from './Views/Dashboard/products/sales/sales.component';
+import { CategoriesIndexComponent } from './Views/Dashboard/Categories/categories-index/categories-index.component';
+import path from 'path';
+import { CategoriesAllComponent } from './Views/Dashboard/Categories/categories-all/categories-all.component';
+import { CategoriesDesactivatedComponent } from './Views/Dashboard/Categories/categories-desactivated/categories-desactivated.component';
 
 export const routes: Routes = [
   {
@@ -42,6 +46,20 @@ export const routes: Routes = [
       {
         path: '',
         component: DashboardComponent
+      },
+      {
+        path: 'categories',
+        component: CategoriesIndexComponent,
+        children:[
+          {
+            path: '',
+            component: CategoriesAllComponent
+          },
+          {
+            path: 'desactivated-categories',
+            component: CategoriesDesactivatedComponent
+          }
+        ],
       },
       {
         path: 'ventas',

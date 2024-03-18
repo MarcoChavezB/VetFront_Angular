@@ -34,11 +34,6 @@ export class SalesComponent {
   customerPhone: string = '';
   customerName: string = '';
   customerLastName: string = '';
-  customerData: {} = {
-    name: "",
-    lastName:"",
-    phone: ""
-  };
   message: string = '';
   showConfirmation: boolean = false;
   showSuccess: boolean = false;
@@ -143,7 +138,7 @@ export class SalesComponent {
   }
 
   getTotal(){
-    console.log(this.formatBeforeSend())
+
     this.porductService.getTotal(this.formatBeforeSend()).subscribe(
       (data) => {
         this.totalCost = data;
@@ -157,13 +152,6 @@ export class SalesComponent {
     )
   }
 
-  // getTotalProduct(){
-  //   this.porductService.getTotal(this.formatBeforeSend()).subscribe(
-  //     (data) => {
-  //       this.totalCost = data;
-  //     }
-  //   )
-  // }
 
   closeConfirmation(){
     this.showConfirmation = false;
@@ -212,5 +200,13 @@ export class SalesComponent {
       this.showError = false;
     }
     , 2000);
+  }
+
+
+  checkInputs(){
+    if(this.customerName == '' || this.customerLastName == '' || this.customerPhone == ''){
+      return false;
+    }
+    return true;
   }
 }

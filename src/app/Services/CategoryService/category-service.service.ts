@@ -8,12 +8,11 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class CategoryServiceService {
-  categoriesIndex = environment.categoriesIndex
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getCategories():Observable<CategoryResult>{
-    return this.http.get<CategoryResult>(this.categoriesIndex)
+    return this.http.get<CategoryResult>(environment.categoriesIndex)
   }
 }
