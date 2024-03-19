@@ -14,6 +14,7 @@ export const environment ={
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
   adminAuth: 'http://127.0.0.1:8000/api/adminauth',
   userAuth: 'http://127.0.0.1:8000/api/userauth',
+  
   guestAuth: 'http://127.0.0.1:8000/api/guestauth',
 
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
@@ -31,6 +32,12 @@ export const environment ={
   reOpenAppointment: 'http://127.0.0.1:8000/api/vetappointment/reopen/',
   markAppointmentAsCancelled: 'http://127.0.0.1:8000/api/vetappointment/reject/',
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
+  categoriesDestroy: 'http://127.0.0.1:8000/api/category/destroy/',
+  getCategoryId: 'http://127.0.0.1:8000/api/category/getCategory/',
+  updateCategory: 'http://127.0.0.1:8000/api/category/update/',
+  categoryActivate: 'http://127.0.0.1:8000/api/category/activate/',
+  categoriesDisabled: 'http://127.0.0.1:8000/api/category/index/desactivated',
+  storeCategories: 'http://127.0.0.1:8000/api/category/store',
   productStore: 'http://127.0.0.1:8000/api/product/store',
   prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store',
   productModify: 'http://127.0.0.1:8000/api/product/update/',
@@ -76,6 +83,8 @@ export const environment ={
   servicedelete: 'http://127.0.0.1:8000/api/services/destroy/',
 
   getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
-  makeSale: 'http://127.0.0.1:8000/api/product/venta'
+  makeSale: 'http://127.0.0.1:8000/api/product/venta',
+
+  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/'
   
 }

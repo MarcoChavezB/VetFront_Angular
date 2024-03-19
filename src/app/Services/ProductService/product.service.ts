@@ -66,4 +66,8 @@ export class ProductService {
   makeSale(requestData: SaleFormat): Observable<SaleFormat> {
     return this.http.post<SaleFormat>(environment.makeSale, requestData);
   }
+
+  getProduct(name: string): Observable<productResult> {
+    return this.http.get<productResult>(environment.getProductSearch + name);
+  }
 }

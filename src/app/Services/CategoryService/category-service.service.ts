@@ -8,12 +8,37 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class CategoryServiceService {
-  categoriesIndex = environment.categoriesIndex
   constructor(
     private readonly http: HttpClient
   ) { }
 
   getCategories():Observable<CategoryResult>{
-    return this.http.get<CategoryResult>(this.categoriesIndex)
+    return this.http.get<CategoryResult>(environment.categoriesIndex)
   }
+
+  destroyCategory(id: number): Observable<CategoryResult>{
+    return this.http.delete<CategoryResult>(environment.categoriesDestroy + id)
+  }
+
+  getCategoriesDisabled():Observable<CategoryResult>{
+    return this.http.get<CategoryResult>(environment.categoriesDisabled)
+  }
+
+  activateCategory(id: number): Observable<CategoryResult>{
+    return this.http.post<CategoryResult>(environment.categoryActivate + id, {})
+  }
+
+
+  getCategoryId(id: number): Observable<CategoryResult>{
+    return this.http.get<CategoryResult>(environment.getCategoryId + id)
+  }
+
+  updateCategory(id: number, category: string, description: string): Observable<CategoryResult>{
+    return this.http.put<CategoryResult>(environment.updateCategory + id,{category, description} )
+  }
+
+  store(category: string, description: string): Observable<CategoryResult>{
+    return this.http.post<CategoryResult>(environment.storeCategories, {category, description})
+  }
+
 }

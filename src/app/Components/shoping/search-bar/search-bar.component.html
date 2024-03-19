@@ -1,0 +1,44 @@
+<div class="tools flex gap-20 w-full items-baseline">
+  <form class="form">
+    <button>
+        <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+            <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+    </button>
+    <input
+    name="search"
+    [(ngModel)]="search"
+    class="input" placeholder="Buscar producto" required="" type="text">
+    <button
+    (click)="resetSearch()" 
+    class="reset" type="reset">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+    </button>
+  </form>
+  <div class="button">
+    <div class="flex flex-col gap-2 shrink-0 sm:flex-row ">
+      <button
+      (click)="getProductSearch()"
+        class="flex select-none items-center gap-3 rounded-lg bg-gray-900 py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg hover:shadow-gray-900/20 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        type="button">
+        Buscar
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="results absolute mt-5">
+  <div class="card">
+    <div 
+    *ngFor="let item of productResult"
+    (click)="emitirId(item.id)"
+    class="wrapper cursor-pointer">
+      <div class="color anti-flash-white">
+        {{item.name}}
+        <span class="hex">{{item.stock}}</span>
+      </div>
+    </div>
+  </div>
+</div>

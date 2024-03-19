@@ -1,4 +1,4 @@
-<table class="w-full mt-4 text-left table-auto min-w-max">
+<table class="w-full text-left table-auto min-w-max">
   <thead>
     <tr>
       <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
@@ -95,7 +95,7 @@
         </button>
     
         <button
-        *ngIf="admin || user"
+        *ngIf="admin"
         (click)="showAlertDelete(prod.id)"
         class=" relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         type="button">

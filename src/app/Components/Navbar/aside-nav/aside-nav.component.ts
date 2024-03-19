@@ -21,7 +21,7 @@ export class AsideNavComponent {
   constructor( 
     private authService: AuthServiceService,
     private readonly productService: ProductService,
-    private router: Router
+    private router: Router     
     ) {}
 
     guest: boolean = false;

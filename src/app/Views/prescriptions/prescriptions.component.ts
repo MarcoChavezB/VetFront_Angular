@@ -7,6 +7,7 @@ import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {KeyValuePipe, NgClass, NgForOf, NgIf} from "@angular/common";
 import {animate, keyframes, style, transition, trigger} from "@angular/animations";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
 
 @Component({
   selector: 'app-prescriptions',
@@ -17,7 +18,8 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
     NgIf,
     ReactiveFormsModule,
     NgClass,
-    RouterLink
+    RouterLink,
+    GlobalLoadingComponent
   ],
   templateUrl: './prescriptions.component.html',
   styleUrl: './prescriptions.component.css',

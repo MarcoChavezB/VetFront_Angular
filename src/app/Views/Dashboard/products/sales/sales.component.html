@@ -1,11 +1,12 @@
 <div class="container mx-auto mt-10">
   <div class="sm:flex shadow-md my-10">
-    <div class="  w-full  sm:w-3/4 bg-white px-10 py-10">
-      <div class="flex justify-between border-b pb-8">
-        <h1 class="font-semibold text-2xl">Shopping Cart</h1>
-        <h2 class="font-semibold text-2xl">{{quantity}} Items</h2>
+    <div class="  w-full  sm:w-3/4 bg-white py-10">
+      <div class="flex justify-center border-b pb-8 w-full ">
+        <app-search-bar
+        (selectedId)="getProduc($event)"
+        />        
       </div>
-      <div class="productos">
+      <div class="productos px-10">
         <div
         *ngFor="let item of items"
         >
@@ -38,7 +39,7 @@
           [(ngModel)]="customerName"
                 type="text"
                 id="promo"
-                placeholder="Enter your code"
+                placeholder="Customer name"
                 class="p-2 text-sm w-full"
               />
         </div>
@@ -54,7 +55,7 @@
           [(ngModel)]="customerLastName"
                 type="text"
                 id="promo"
-                placeholder="Enter your code"
+                placeholder="Customer last name"
                 class="p-2 text-sm w-full"
               />
         </div>
@@ -71,7 +72,7 @@
           [(ngModel)]="customerPhone"
                 type="text"
                 id="promo"
-                placeholder="Enter your code"
+                placeholder="Customer phone"
                 class="p-2 text-sm w-full"
               />
         </div>
@@ -88,7 +89,7 @@
         </div>
         <button 
         (click)="getTotal()"
-        [disabled]="!items.length"
+        [disabled]="!items.length || !customerName || !customerLastName || !customerPhone"
         class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">
               Checkout
         </button>

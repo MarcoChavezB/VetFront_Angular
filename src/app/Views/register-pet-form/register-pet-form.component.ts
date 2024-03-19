@@ -10,6 +10,7 @@ import {Router, RouterLink} from "@angular/router";
 import {SpecieServiceService} from "../../Services/SpecieService/specie-service.service";
 import {AlertSuccessComponent} from "../../Components/Alerts/alert-success/alert-success.component";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
 @Component({
   selector: 'app-register-pet-form',
   standalone: true,
@@ -20,7 +21,8 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
     RouterLink,
     NgClass,
     KeyValuePipe,
-    AlertSuccessComponent
+    AlertSuccessComponent,
+    GlobalLoadingComponent
   ],
   templateUrl: './register-pet-form.component.html',
   styleUrl: './register-pet-form.component.css',
@@ -50,6 +52,7 @@ export class RegisterPetFormComponent {
 
   storePetLoading = false;
   storeSpecieLoading = false;
+  loading = false;
 
 
   registerPetForm = new FormGroup({
@@ -90,6 +93,7 @@ export class RegisterPetFormComponent {
   }
 
   storePet() {
+    this.loading = true;
     this.storePetLoading = true;
     let formValue = this.registerPetForm.value;
     let pet: PetRegisterInterface = {
@@ -104,10 +108,12 @@ export class RegisterPetFormComponent {
         this.alertService.showAlert('Mascota registrada con éxito');
         this.registerPetForm.reset();
         this.storePetLoading = false;
+        this.loading = false;
         this.router.navigate(['/dashboard/appointment-request']);
 
       },
       err => {
+        this.loading = false;
         this.storePetLoading = false;
         if(err.error.errors){
           this.storePetBackendErrors = err.error.errors;

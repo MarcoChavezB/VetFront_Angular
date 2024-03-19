@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { AlertConfirmationComponent } from '../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertErrorComponent } from '../../../Components/Alerts/alert-error/alert-error.component';
 import { AlertSuccessComponent } from '../../../Components/Alerts/alert-success/alert-success.component';
+import { AuthServiceService } from '../../../Services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-users',
@@ -25,12 +26,48 @@ export class UsersComponent {
   showError: boolean = false;
   showConfirmation: boolean = false;
   users: UserInterface[] = []
+
+  guest: boolean = false;
+  admin: boolean = false;
+  user: boolean = false;
+
+
   constructor(
-    private readonly userService: UserServiceService
+    private readonly userService: UserServiceService,
+    private authService: AuthServiceService,
   ){}
 
   ngOnInit(){
     this.getUsers()
+    this.checkRole()
+  }
+
+  
+  
+  checkRole() {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 0:
+        this.guest = true;
+        this.user = false;
+        this.admin = false;
+        break;
+      case 1:
+        this.guest = false;
+        this.user = true;
+        this.admin = false;
+        break;
+      case 2:
+        this.guest = false;
+        this.user = false;
+        this.admin = true;
+        break;
+      default:
+        this.guest = false;
+        this.user = false;
+        this.admin = false;
+        break;
+    }
   }
   getUsers(){
     this.userService.getUsers().subscribe(
