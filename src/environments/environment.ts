@@ -61,6 +61,8 @@ export const environment ={
   totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
   totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
   totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',
+  logsindex: 'http://127.0.0.1:8000/api/users/logsindex',
+  logsmethod: 'http://127.0.0.1:8000/api/users/logsmethod/',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
 

@@ -30,7 +30,7 @@ export class AsideNavComponent {
 
 
     totalProducts: number = 0;
-    ngOnInit(){
+  ngOnInit(){
     this.getNumberPord()
     this.getrole()
   }
