@@ -1,6 +1,8 @@
 export interface log{
     _id: string;
     id_usuario: number,
+    email: string,
+    name: string,
     endpoint: string;
     method: string;
     data_sent: [];

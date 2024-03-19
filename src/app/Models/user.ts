@@ -56,3 +56,7 @@ export interface userinterfacelog {
   account_active: boolean;
   role: string
 }
+
+export interface UserResultslog{
+  Users: userinterfacelog[]
+}

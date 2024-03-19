@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserServiceService } from '../../../Services/UserService/user-service.service';
-import { UserInterface } from '../../../Models/user';
+import { userinterfacelog } from '../../../Models/user';
 import { CommonModule } from '@angular/common';
 import { AlertConfirmationComponent } from '../../../Components/Alerts/alert-confirmation/alert-confirmation.component';
 import { AlertErrorComponent } from '../../../Components/Alerts/alert-error/alert-error.component';
@@ -22,11 +22,13 @@ import { AuthServiceService } from '../../../Services/AuthService/auth-service.s
 export class UsersComponent {
   message: string = ''
   userId: number = 0;
+  userIdrol: number = 0;
   showSuccess: boolean = false;
   showError: boolean = false;
   showConfirmation: boolean = false;
-  users: UserInterface[] = []
-
+  showConfirmationrol: boolean = false;
+  users: userinterfacelog[] = []
+  showSuccessrol: boolean = false;
   guest: boolean = false;
   admin: boolean = false;
   user: boolean = false;
@@ -70,7 +72,7 @@ export class UsersComponent {
     }
   }
   getUsers(){
-    this.userService.getUsers().subscribe(
+    this.userService.getUsersrol().subscribe(
         (res) => {
             this.users = res.Users;
             console.log(this.users)
@@ -84,6 +86,11 @@ export class UsersComponent {
 showDesactivateConfirmation(nombre: string, id:number){
   this.showAlertConfirm('¿Está seguro de cambiar de status al usuario ' + nombre + '?');
   this.userId = id;
+}
+
+showRolConfirmation(nombre: string, id:number){
+  this.showAlertConfirmrol('¿Está seguro de cambiar de rol al usuario ' + nombre + '?');
+  this.userIdrol = id;
 }
 
 
@@ -109,6 +116,19 @@ showAlertConfirm(message: string){
   this.message = message;
 }
 
+showAlertConfirmrol(message: string){
+  this.showConfirmationrol = true;
+  this.message = message;
+}
+
+closeAlertConfirmrol(){
+  this.showConfirmationrol = false;
+}
+
+closeAlertSuccessrol(){
+  this.showSuccessrol = false;
+}
+
 closeAlertConfirm(){
   this.showConfirmation = false;
 }
@@ -128,6 +148,22 @@ confirmDesactivate(){
       this.showConfirmation = false;
       console.log(err);
       this.showAlert('Error al cambiar de status al usuario', 'error');
+    }
+  )
+}
+
+
+confirmChangerol(){
+  this.userService.changerol(this.userIdrol).subscribe(
+    (res) => {
+      this.showConfirmationrol = false;
+      this.getUsers();
+      this.showAlert('Usuario cambiado de rol', 'success');
+    },
+    (err) => {
+      this.showConfirmationrol = false;
+      console.log(err);
+      this.showAlert('Error al cambiar de rol al usuario', 'error');
     }
   )
 }

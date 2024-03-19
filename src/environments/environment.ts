@@ -65,6 +65,8 @@ export const environment ={
   updateSpecie: 'http://127.0.0.1:8000/api/specie/update/',
   showSpecie: 'http://127.0.0.1:8000/api/specie/show/',
 
+  changerol: 'http://127.0.0.1:8000/api/users/changerole/',
+
   totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
   totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
   totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',

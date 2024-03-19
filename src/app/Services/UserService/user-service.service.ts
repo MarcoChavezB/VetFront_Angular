@@ -10,7 +10,8 @@ import {UserRegistrationInterface,
         UserUpdateInterface,
         UserDeleteInterface,
         UserResults,
-        userinterfacelog
+        userinterfacelog,
+        UserResultslog
       }
 from '../../Models/user';
 import { CodeInterface } from '../../Models/Code';
@@ -55,6 +56,10 @@ export class UserServiceService {
 
   getUsers() : Observable<UserResults>{
     return this.http.get<UserResults>(this.urlIndex)
+  }
+
+  getUsersrol() : Observable<UserResultslog>{
+    return this.http.get<UserResultslog>(this.urlIndex)
   }
 
   storeUser(user: UserRegistrationInterface): Observable<UserRegistrationInterface>{
@@ -144,6 +149,10 @@ export class UserServiceService {
 
   getlogsmethod(num: number): Observable<logsresponse>{
     return this.http.get<logsresponse>(this.logsindexmethod + num)
+  }
+
+  changerol(num: number): Observable<any>{
+    return this.http.get<any>(environment.changerol + num)
   }
 
 }
