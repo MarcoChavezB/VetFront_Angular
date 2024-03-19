@@ -8,7 +8,6 @@ import { CategoryServiceService } from '../../../../Services/CategoryService/cat
 import { Category, CategoryResult } from '../../../../Models/Category';
 import { ModifyCategoryComponent } from '../modify-category/modify-category.component';
 import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
-
 @Component({
   selector: 'app-categories-all',
   standalone: true,
@@ -26,8 +25,16 @@ import { AuthServiceService } from '../../../../Services/AuthService/auth-servic
 export class CategoriesAllComponent {
  constructor(
   private readonly CategoriesService : CategoryServiceService,
-  private readonly authService : AuthServiceService
+  private readonly authService: AuthServiceService,
  ) {}
+
+
+
+role:number | null = 0
+
+getrole(){
+  this.role = this.authService.getRole()
+}
 
  categories: Category[] = []
  objectCategory: any = {}
@@ -44,7 +51,7 @@ export class CategoriesAllComponent {
 
   ngOnInit(): void {
     this.getCategories();
-    this.checkRole();
+    this.getrole();
   }
 
   checkRole() {

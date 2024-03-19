@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryServiceService } from '../../../../Services/CategoryService/category-service.service';
 import { AlertErrorTopComponent } from '../../../../Components/Alerts/alert-error-top/alert-error-top.component';
-import { set } from 'vue/types/umd';
+//import { set } from 'vue/types/umd';
 import { CommonModule } from '@angular/common';
 
 @Component({

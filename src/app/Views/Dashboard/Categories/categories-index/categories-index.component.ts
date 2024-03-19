@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { AddCategoryComponent } from '../add-category/add-category.component';
 import { AlertSuccessTopComponent } from '../../../../Components/Alerts/alert-success-top/alert-success-top.component';
-
+import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 @Component({
   selector: 'app-categories-index',
   standalone: true,
@@ -27,6 +27,18 @@ export class CategoriesIndexComponent {
   showAddCategory: boolean = false;
   showAddCategorySuccess: boolean = false;
 
+  constructor(
+    private readonly authservice: AuthServiceService,
+   ) {}
+  
+   ngOnInit(): void {
+    this.getrole();
+  }
+  role:number | null = 0
+  
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
 
   checkSelect(select:string){
     this.selected = select;

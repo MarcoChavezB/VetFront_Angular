@@ -15,7 +15,7 @@ import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permissi
 import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
 import { ServiceformComponent } from './Views/Dashboard/services/serviceform/serviceform.component';
-
+import { LogsComponent } from './Views/Dashboard/Logs/logs/logs.component';
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { UserGuard } from './Guards/User/user.guard';
 import { AuthGuard } from './Guards/Auth/auth.guard';
@@ -65,7 +65,8 @@ export const routes: Routes = [
       },
       {
         path: 'ventas',
-        component: SalesComponent
+        component: SalesComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'ventas-index',
@@ -81,8 +82,7 @@ export const routes: Routes = [
           },
           {
             path: 'desactivate-products',
-            component: DesactivateProductsComponent,
-            //canActivate: [AdminGuard]
+            component: DesactivateProductsComponent
           },
         ]
       },
@@ -146,14 +146,18 @@ export const routes: Routes = [
         canActivate: [UserGuard]
       },
       {
-        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule),
+        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule)
       },
       {
         path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule),
       },
       {
         path: 'admin/species', loadChildren: () => import('./Modules/specie-module/specie-module.module').then(m => m.SpecieModuleModule)
-      }
+      },{
+        path: 'logs',
+        component: LogsComponent,
+        canActivate: [AdminGuard]
+      },
     ],
   },
   {

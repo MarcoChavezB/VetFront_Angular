@@ -22,6 +22,7 @@ import { AuthServiceService } from '../../../../Services/AuthService/auth-servic
   styleUrl: './all-products.component.css'
 })
 export class AllProductsComponent {
+
   products: product[] = [];
 
   nombresPropiedades: string[] = [];

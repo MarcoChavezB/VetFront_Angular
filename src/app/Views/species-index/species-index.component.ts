@@ -14,6 +14,7 @@ import {Router} from "@angular/router";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
 import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
+import { AuthServiceService } from '../../Services/AuthService/auth-service.service';
 @Component({
   selector: 'app-species-index',
   standalone: true,
@@ -55,16 +56,22 @@ export class SpeciesIndexComponent {
   showConfirmationDialog = false;
   specieToDeactivate: number | null = null;
 
+  role:number | null = 0
 
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
 
   constructor(
     private specieService: SpecieServiceService,
+    private readonly authservice: AuthServiceService,
     private petService: PetServiceService,
     private router: Router,
     private alertService: GlobalAlertService
   ) {}
 
   ngOnInit() {
+    this.getrole();
     this.petService.getSpecies().subscribe(species => {
       this.speciesR = species;
     }, err => {

@@ -10,12 +10,13 @@ import {UserRegistrationInterface,
         UserUpdateInterface,
         UserDeleteInterface,
         UserResults,
+        userinterfacelog
       }
 from '../../Models/user';
 import { CodeInterface } from '../../Models/Code';
 import {PetResults} from "../../Models/Pet";
 import { totalInterface } from '../../Models/Total';
-
+import { logsresponse } from '../../Models/Logs';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,10 @@ export class UserServiceService {
   private urladminAuth = environment.adminAuth
   private urluserAuth = environment.userAuth 
   private urlguestAuth = environment.guestAuth   
+  private logsindex = environment.logsindex 
+  private logsindexmethod = environment.logsmethod 
+  private loguser = environment.loguser 
+
 
   constructor(
     private readonly http: HttpClient,
@@ -117,6 +122,10 @@ export class UserServiceService {
     return this.http.get<any>(this.urluserAuth)
   }
 
+  getuserid(id: number): Observable<userinterfacelog>{
+    return this.http.get<userinterfacelog>(this.loguser + id)
+  }
+
   guestAuth(): Observable<any> {
     return this.http.get<any>(this.urlguestAuth)
   }
@@ -128,4 +137,13 @@ export class UserServiceService {
   getTotalUsers(): Observable<totalInterface>{
     return this.http.get<totalInterface>(environment.totalUsuarios)
   }
+
+  getlogs(): Observable<logsresponse>{
+    return this.http.get<logsresponse>(this.logsindex)
+  }
+
+  getlogsmethod(num: number): Observable<logsresponse>{
+    return this.http.get<logsresponse>(this.logsindexmethod + num)
+  }
+
 }

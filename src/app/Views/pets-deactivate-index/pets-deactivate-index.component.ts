@@ -5,6 +5,8 @@ import {RouterLink, Router} from "@angular/router";
 import { FormsModule } from '@angular/forms';
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
+import { AuthServiceService } from '../../Services/AuthService/auth-service.service';
+
 @Component({
   selector: 'app-pets-deactivate-index',
   standalone: true,
@@ -19,15 +21,24 @@ import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-
   styleUrl: './pets-deactivate-index.component.css'
 })
 export class PetsDeactivateIndexComponent {
+
+  role:number | null = 0
+
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
   petsR: any;
   showConfirmationDialog = false;
   petToActivate: number | null = null;
   constructor(
     private petService: PetServiceService,
     private router: Router,
-    private alertService: GlobalAlertService
+    private alertService: GlobalAlertService,
+    private readonly authservice: AuthServiceService,
+
   ) {}
   ngOnInit() {
+    this.getrole()
     this.petService.getDeactivatedPets().subscribe(pets => {
       this.petsR = pets;
     },

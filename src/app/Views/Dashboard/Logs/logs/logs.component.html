@@ -1,0 +1,116 @@
+<div class="w-full mt-4 text-left table-auto min-w-max">
+    LOGS
+</div>
+<table class="w-full mt-4 text-left table-auto min-w-max">
+    <thead>
+      <tr>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            id usuario
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            endpoint
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+          <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+            metodo
+          </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              datos enviados
+            </p>
+        </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              datos recibidos
+            </p>
+        </th>
+
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              fecha
+            </p>
+        </th>
+         
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let log of logs" (click)="getuser(log.id_usuario)"      >
+        <th class="p-4 border-b border-blue-gray-50">
+          <div class="flex items-center gap-3">
+            <div class="flex flex-col">
+              <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                {{log.id_usuario}}
+              </p>
+            </div>
+          </div>
+        </th>
+        <td class="p-4 border-b border-blue-gray-50">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{log.endpoint}}
+          </p>
+        </td>
+        <td class="p-4 border-b border-blue-gray-50">
+          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+            {{log.method}}
+          </p>
+        </td>
+
+        <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{log.data_sent}}
+            </p>
+          </td>
+
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{log.data_received}}
+            </p>
+          </td>
+
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{log.date}}
+            </p>
+          </td>
+
+      </tr>
+    </tbody>
+  </table>
+  
+  <div *ngIf="mostrarcomp" class="app-usershow-overlay">
+    <app-usershow
+      [objectProd]="objectProd"
+      (close)="closeModify()"
+    ></app-usershow>
+  </div>
+  
+
+    
+  <div *ngIf="!existlog" class="flex justify-center items-center mt-20">
+    <div class="flex flex-col items-center justify-center max-w-3xl text-center">
+      <div class="inline-block rounded-lg p-3 bg-gray-100"><svg xmlns="http://www.w3.org/2000/svg"
+          width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6">
+          <path d="m7.5 4.27 9 5.15"></path>
+          <path
+            d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z">
+          </path>
+          <path d="m3.3 7 8.7 5 8.7-5"></path>
+          <path d="M12 22V12"></path>
+        </svg>
+      </div>
+      <div class="mt-4">
+        <h1 class="text-3xl font-bold tracking-tight">
+          Sin logs
+        </h1>
+        <p class="max-w-[600px] mt-4 text-gray-500 md:mt-2 dark:text-gray-400">
+          No hay ningun log para mostrar
+        </p>
+      </div>
+    </div>
+  </div>
