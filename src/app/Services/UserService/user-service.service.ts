@@ -10,6 +10,7 @@ import {UserRegistrationInterface,
         UserUpdateInterface,
         UserDeleteInterface,
         UserResults,
+        userinterfacelog
       }
 from '../../Models/user';
 import { CodeInterface } from '../../Models/Code';
@@ -40,6 +41,8 @@ export class UserServiceService {
   private urlguestAuth = environment.guestAuth   
   private logsindex = environment.logsindex 
   private logsindexmethod = environment.logsmethod 
+  private loguser = environment.loguser 
+
 
   constructor(
     private readonly http: HttpClient,
@@ -119,6 +122,10 @@ export class UserServiceService {
     return this.http.get<any>(this.urluserAuth)
   }
 
+  getuserid(id: number): Observable<userinterfacelog>{
+    return this.http.get<userinterfacelog>(this.loguser + id)
+  }
+
   guestAuth(): Observable<any> {
     return this.http.get<any>(this.urlguestAuth)
   }
@@ -138,5 +145,5 @@ export class UserServiceService {
   getlogsmethod(num: number): Observable<logsresponse>{
     return this.http.get<logsresponse>(this.logsindexmethod + num)
   }
-  
+
 }

@@ -15,7 +15,7 @@ import { PermissionAuthComponent } from './Views/Alerts/permission-auth/permissi
 import { ServicesComponent } from './Views/Dashboard/services/services/services.component';
 import { CodeVerifyGuard } from './Guards/Code_verified/code-verified.guard';
 import { ServiceformComponent } from './Views/Dashboard/services/serviceform/serviceform.component';
-
+import { LogsComponent } from './Views/Dashboard/Logs/logs/logs.component';
 import { AdminGuard } from './Guards/Admin/admin.guard';
 import { UserGuard } from './Guards/User/user.guard';
 import { AuthGuard } from './Guards/Auth/auth.guard';
@@ -149,7 +149,11 @@ export const routes: Routes = [
       },
       {
         path: 'admin/species', loadChildren: () => import('./Modules/specie-module/specie-module.module').then(m => m.SpecieModuleModule)
-      }
+      },{
+        path: 'logs',
+        component: LogsComponent,
+        canActivate: [AdminGuard]
+      },
     ],
   },
   {
