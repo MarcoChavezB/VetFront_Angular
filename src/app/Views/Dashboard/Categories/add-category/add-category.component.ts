@@ -1,53 +1,45 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CategoryServiceService } from '../../../../Services/CategoryService/category-service.service';
 import { AlertErrorTopComponent } from '../../../../Components/Alerts/alert-error-top/alert-error-top.component';
-import { set } from 'vue/types/umd';
-import { CommonModule } from '@angular/common';
+import { AlertSuccessTopComponent } from '../../../../Components/Alerts/alert-success-top/alert-success-top.component';
+import { outputAst } from '@angular/compiler';
 
 @Component({
-  selector: 'app-modify-category',
+  selector: 'app-add-category',
   standalone: true,
   imports: [
-    FormsModule,
     CommonModule,
-    AlertErrorTopComponent
+    FormsModule,
+    AlertErrorTopComponent,
   ],
-  templateUrl: './modify-category.component.html',
-  styleUrl: './modify-category.component.css'
+  templateUrl: './add-category.component.html',
+  styleUrl: './add-category.component.css'
 })
-export class ModifyCategoryComponent {
+export class AddCategoryComponent {
   constructor(
     private readonly categoryService: CategoryServiceService
   ) {}
-  categoryName: string = ''
+  categoryName: string = '' 
   categoryDescription: string = ''
   showAlert: boolean = false;
+  showSuccess: boolean = false;
   messageError: string = ''
-  @Input() objectCategory: any = {}
+  messageSuccess: string = ''
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() success: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-
-  ngOnInit(){
-    this.cargarInfo()
-  }
-
-  cargarInfo(){
-    this.categoryName = this.objectCategory.category
-    this.categoryDescription = this.objectCategory.description
-  }
-
-
   closeModal(){
+    console.log("emit")
     this.close.emit(true)
   }
 
-  modifyCategory(){
-    this.categoryService.updateCategory(this.objectCategory.id, this.categoryName, this.categoryDescription).subscribe(
+  AddCategory(){
+    this.categoryService.store(this.categoryName, this.categoryDescription).subscribe(
       (res) => {
-        this.success.emit(true)
         this.closeModal()
+        this.success.emit(true)
       },
       (err) => {
         if (err && err.error && err.error.error) {
@@ -60,22 +52,26 @@ export class ModifyCategoryComponent {
     )
   }
 
-
   getFirstError(errors: Record<string, string[]>): string {
     const firstErrorKey = Object.keys(errors)[0];
     return errors[firstErrorKey][0];
   }
 
-  showAlertError(message: string) {
+  showAlertError(message: string){
     this.messageError = message;
     this.showAlert = true;
     setTimeout(() => {
       this.showAlert = false;
-    }
-    , 2000);
+    }, 2000);
   }
 
-
+  showAlertSuccess(message: string){
+    this.messageSuccess = message;
+    this.showSuccess = true;
+    setTimeout(() => {
+      this.showSuccess = false;
+    }, 2000);
+  }
 
 
 }

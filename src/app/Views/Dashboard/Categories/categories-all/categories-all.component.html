@@ -1,3 +1,10 @@
+<app-modify-category
+[objectCategory]="objectCategory"
+*ngIf="modificar"
+(success)="reloadCategories()"
+(close)="closeModify()"
+/>
+
 <table class="w-full text-left table-auto min-w-max">
   <thead>
     <tr>
@@ -89,16 +96,9 @@
 
   <app-alert-success
   [message]="message"
-  (close)="closeSuccess()"
   *ngIf="alertSucces"
   >
-  </app-alert-success>
 
-  <app-modify-category
-  [objectCategory]="objectCategory"
-  *ngIf="modificar"
-  (close)="closeModify()"
-  />
 
 
   

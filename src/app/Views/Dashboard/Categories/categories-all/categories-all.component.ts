@@ -72,8 +72,9 @@ export class CategoriesAllComponent {
     this.alertDelete = false;
   }
 
-  closeSuccess(){
-
+  reloadCategories(){
+    this.showAlert('success', 'La categoria fue modificada con exito')
+    this.getCategories();
   }
 
   confirmDelete(){

@@ -34,9 +34,10 @@ export const environment ={
   categoriesIndex: 'http://127.0.0.1:8000/api/category/index',
   categoriesDestroy: 'http://127.0.0.1:8000/api/category/destroy/',
   getCategoryId: 'http://127.0.0.1:8000/api/category/getCategory/',
+  updateCategory: 'http://127.0.0.1:8000/api/category/update/',
   categoryActivate: 'http://127.0.0.1:8000/api/category/activate/',
   categoriesDisabled: 'http://127.0.0.1:8000/api/category/index/desactivated',
-
+  storeCategories: 'http://127.0.0.1:8000/api/category/store',
   productStore: 'http://127.0.0.1:8000/api/product/store',
   prescriptionStore: 'http://127.0.0.1:8000/api/vetprescription/store',
   productModify: 'http://127.0.0.1:8000/api/product/update/',

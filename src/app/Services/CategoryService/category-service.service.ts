@@ -33,4 +33,12 @@ export class CategoryServiceService {
     return this.http.get<CategoryResult>(environment.getCategoryId + id)
   }
 
+  updateCategory(id: number, category: string, description: string): Observable<CategoryResult>{
+    return this.http.put<CategoryResult>(environment.updateCategory + id,{category, description} )
+  }
+
+  store(category: string, description: string): Observable<CategoryResult>{
+    return this.http.post<CategoryResult>(environment.storeCategories, {category, description})
+  }
+
 }
