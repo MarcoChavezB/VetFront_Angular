@@ -72,6 +72,7 @@
           </span>
         </button>
         <button
+        *ngIf="admin"
         (click)="showAlertDelete(category.id, category.category)"
         class=" relative h-10 max-h-[40px] w-10 max-w-[40px] select-none rounded-lg text-center align-middle font-sans text-xs font-medium uppercase transition-all hover:bg-gray-900/10 active:bg-gray-900/20 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
         type="button">

@@ -7,6 +7,7 @@ import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/a
 import { CategoryServiceService } from '../../../../Services/CategoryService/category-service.service';
 import { Category, CategoryResult } from '../../../../Models/Category';
 import { ModifyCategoryComponent } from '../modify-category/modify-category.component';
+import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 
 @Component({
   selector: 'app-categories-all',
@@ -24,7 +25,8 @@ import { ModifyCategoryComponent } from '../modify-category/modify-category.comp
 })
 export class CategoriesAllComponent {
  constructor(
-  private readonly CategoriesService : CategoryServiceService
+  private readonly CategoriesService : CategoryServiceService,
+  private readonly authService : AuthServiceService
  ) {}
 
  categories: Category[] = []
@@ -36,9 +38,41 @@ export class CategoriesAllComponent {
   id:number = 0
   modificar: boolean = false;
 
+  guest: boolean = false;
+  admin: boolean = false;
+  user: boolean = false;
+
   ngOnInit(): void {
     this.getCategories();
+    this.checkRole();
   }
+
+  checkRole() {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 0:
+        this.guest = true;
+        this.user = false;
+        this.admin = false;
+        break;
+      case 1:
+        this.guest = false;
+        this.user = true;
+        this.admin = false;
+        break;
+      case 2:
+        this.guest = false;
+        this.user = false;
+        this.admin = true;
+        break;
+      default:
+        this.guest = false;
+        this.user = false;
+        this.admin = false;
+        break;
+    }
+  }
+
   getCategories(){
     this.CategoriesService.getCategories().subscribe(
       (res) => {
