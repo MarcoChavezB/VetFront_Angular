@@ -75,7 +75,8 @@ export const environment ={
   loguser: 'http://127.0.0.1:8000/api/users/xid/',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
-
+  salesIndex: 'http://127.0.0.1:8000/api/product/vetas/index',
+  
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
   enableProd: 'http://127.0.0.1:8000/api/products/activate/',
 

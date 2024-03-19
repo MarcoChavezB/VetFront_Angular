@@ -37,6 +37,7 @@ import path from 'path';
 import { CategoriesAllComponent } from './Views/Dashboard/Categories/categories-all/categories-all.component';
 import { CategoriesDesactivatedComponent } from './Views/Dashboard/Categories/categories-desactivated/categories-desactivated.component';
 import { ModifyCategoryComponent } from './Views/Dashboard/Categories/modify-category/modify-category.component';
+import { SalesIndexComponent } from './Views/Dashboard/sales/sales-index/sales-index.component';
 
 export const routes: Routes = [
   {
@@ -44,7 +45,6 @@ export const routes: Routes = [
     component: MainComponent,
     canActivate: [AuthGuard, CodeVerifyGuard],
     children: [
-
       {
         path: '',
         component: DashboardComponent
@@ -67,6 +67,10 @@ export const routes: Routes = [
         path: 'ventas',
         component: SalesComponent,
         canActivate: [AdminGuard]
+      },
+      {
+        path: 'ventas-index',
+        component: SalesIndexComponent
       },
       {
         path: 'products',

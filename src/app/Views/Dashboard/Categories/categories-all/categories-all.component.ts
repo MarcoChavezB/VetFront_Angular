@@ -25,7 +25,7 @@ import { AuthServiceService } from '../../../../Services/AuthService/auth-servic
 export class CategoriesAllComponent {
  constructor(
   private readonly CategoriesService : CategoryServiceService,
-  private readonly authservice: AuthServiceService,
+  private readonly authService: AuthServiceService,
  ) {}
 
 
@@ -33,7 +33,7 @@ export class CategoriesAllComponent {
 role:number | null = 0
 
 getrole(){
-  this.role = this.authservice.getRole()
+  this.role = this.authService.getRole()
 }
 
  categories: Category[] = []
@@ -45,10 +45,41 @@ getrole(){
   id:number = 0
   modificar: boolean = false;
 
+  guest: boolean = false;
+  admin: boolean = false;
+  user: boolean = false;
+
   ngOnInit(): void {
     this.getCategories();
     this.getrole();
   }
+
+  checkRole() {
+    const role = this.authService.getRole();
+    switch (role) {
+      case 0:
+        this.guest = true;
+        this.user = false;
+        this.admin = false;
+        break;
+      case 1:
+        this.guest = false;
+        this.user = true;
+        this.admin = false;
+        break;
+      case 2:
+        this.guest = false;
+        this.user = false;
+        this.admin = true;
+        break;
+      default:
+        this.guest = false;
+        this.user = false;
+        this.admin = false;
+        break;
+    }
+  }
+
   getCategories(){
     this.CategoriesService.getCategories().subscribe(
       (res) => {

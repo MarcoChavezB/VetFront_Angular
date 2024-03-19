@@ -1,11 +1,11 @@
 import {HttpClient} from "@angular/common/http";
-
 import { Injectable } from '@angular/core';
 import { environment } from "../../../environments/environment";
-import { Observable } from "rxjs";
+import { Observable, ObservableNotification } from "rxjs";
 import { productResult } from "../../Models/Product";
 import { totalInterface } from "../../Models/Total";
 import { SaleFormat } from "../../Models/SaleFormat";
+import { Venta } from "../../Models/Venta";
 
 @Injectable({
   providedIn: 'root'
@@ -70,4 +70,9 @@ export class ProductService {
   getProduct(name: string): Observable<productResult> {
     return this.http.get<productResult>(environment.getProductSearch + name);
   }
+
+  getVentas(): Observable<Venta[]>{
+    return this.http.get<Venta[]>(environment.salesIndex)
+  }
+  
 }

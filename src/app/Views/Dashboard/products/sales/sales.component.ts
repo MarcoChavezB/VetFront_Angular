@@ -88,10 +88,10 @@ export class SalesComponent {
       customerName: this.customerName,
       customerLastName: this.customerLastName,
       customerPhone: this.customerPhone,
+      total: this.totalCost,
       products: this.items.map(item => ({
         id: item.id !== undefined ? item.id.toString() : '',
         cantidad: item.cantidad !== undefined ? item.cantidad.toString() : '', 
-        total: item.totalPrice !== undefined ? item.totalPrice.toString() : ''
       }
       ))
     }
@@ -138,7 +138,6 @@ export class SalesComponent {
   }
 
   getTotal(){
-
     this.porductService.getTotal(this.formatBeforeSend()).subscribe(
       (data) => {
         this.totalCost = data;

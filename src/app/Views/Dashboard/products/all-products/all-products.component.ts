@@ -49,7 +49,6 @@ export class AllProductsComponent {
   ngOnInit(): void {
     this.getProductList();
     this.checkRole()
-
   }
 
   

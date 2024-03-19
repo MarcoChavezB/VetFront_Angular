@@ -1,3 +1,7 @@
+export interface productResult{
+  products: product[];
+  message: string; 
+}
 export interface product{
   id: number;
   category_id: number;
@@ -14,8 +18,4 @@ export interface product{
   };
   cantidad: number;
   totalPrice: number;
-}
-export interface productResult{
-  products: product[];
-  message: string; 
 }
