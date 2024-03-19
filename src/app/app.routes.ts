@@ -65,7 +65,8 @@ export const routes: Routes = [
       },
       {
         path: 'ventas',
-        component: SalesComponent
+        component: SalesComponent,
+        canActivate: [AdminGuard]
       },
       {
         path: 'products',
@@ -77,8 +78,7 @@ export const routes: Routes = [
           },
           {
             path: 'desactivate-products',
-            component: DesactivateProductsComponent,
-            canActivate: [AdminGuard]
+            component: DesactivateProductsComponent
           },
         ]
       },
@@ -142,7 +142,7 @@ export const routes: Routes = [
         canActivate: [UserGuard]
       },
       {
-        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule),
+        path: 'admin/pets', loadChildren: () => import('./Modules/pet-module/pet-module.module').then(m => m.PetModuleModule)
       },
       {
         path: 'admin/appointments', loadChildren: () => import('./Modules/appointments-module/appointments-module.module').then(m => m.AppointmentsModuleModule),

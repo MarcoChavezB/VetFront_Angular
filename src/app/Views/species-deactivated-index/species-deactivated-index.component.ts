@@ -5,6 +5,8 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
+import { AuthServiceService } from '../../Services/AuthService/auth-service.service';
+
 @Component({
   selector: 'app-species-deactivated-index',
   standalone: true,
@@ -21,13 +23,22 @@ export class SpeciesDeactivatedIndexComponent {
   showConfirmationDialog = false;
   specieToActivate: number | null = null;
 
+  role:number | null = 0
+
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
+
   constructor(
     private specieService: SpecieServiceService,
     private router: Router,
-    private alertService: GlobalAlertService
+    private alertService: GlobalAlertService,
+    private readonly authservice: AuthServiceService,
+
   ) {}
 
   ngOnInit() {
+    this.getrole()
     this.specieService.getDeactivatedSpecies().subscribe(species => {
       this.speciesR = species;
     }, err => {

@@ -5,7 +5,7 @@ import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-succe
 import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/alert-error.component';
 import { Category } from '../../../../Models/Category';
 import { CategoryServiceService } from '../../../../Services/CategoryService/category-service.service';
-
+import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 @Component({
   selector: 'app-categories-desactivated',
   standalone: true,
@@ -20,8 +20,17 @@ import { CategoryServiceService } from '../../../../Services/CategoryService/cat
 })
 export class CategoriesDesactivatedComponent {
   constructor(
-    private readonly CategoriesService : CategoryServiceService
+    private readonly CategoriesService : CategoryServiceService,
+    private readonly authservice: AuthServiceService,
+
    ) {}
+  
+  
+  role:number | null = 0
+  
+  getrole(){
+    this.role = this.authservice.getRole()
+  }
  categories: Category[] = []
  existCategoryes: boolean = true;
  alertSucces : boolean = false;
@@ -31,6 +40,7 @@ export class CategoriesDesactivatedComponent {
 
   ngOnInit(): void {
     this.getCategories();
+    this.getrole()
   }
   getCategories(){
     this.CategoriesService.getCategoriesDisabled().subscribe(

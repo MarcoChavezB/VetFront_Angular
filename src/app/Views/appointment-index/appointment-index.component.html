@@ -8,7 +8,7 @@
       <th class="px-3 py-2 text-sm font-medium">Appointment Date</th>
       <th class="px-3 py-2 text-sm font-medium">Created At</th>
       <th class="px-3 py-2 text-sm font-medium">Status</th>
-      <th class="px-3 py-2 text-sm font-medium">Actions</th>
+      <th *ngIf="role === 2" class="px-3 py-2 text-sm font-medium">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -19,7 +19,7 @@
       <td class="px-3 py-2 text-sm">{{appointment.appointment_date}}</td>
       <td class="px-3 py-2 text-sm">{{appointment.created_at}}</td>
       <td class="px-3 py-2 text-sm">{{appointment.status}}</td>
-      <td class="px-3 py-2 text-sm">
+      <td class="px-3 py-2 text-sm" *ngIf="role === 2">
         <button class="bg-green-500 text-white px-2 py-1 rounded" (click)="activateAppointment(appointment.id)">Completar</button>
         <button class="bg-blue-400 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/prescription/store',appointment.id]">Consultar</button>
         <button class="bg-red-500 text-white px-2 py-1 rounded" (click)="deactivateAppointment(appointment.id)">Rechazar</button>

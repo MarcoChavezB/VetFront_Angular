@@ -5,6 +5,7 @@ import {NgForOf, NgIf} from "@angular/common";
 import {Router, RouterLink} from "@angular/router";
 import {ConfirmationDialogComponent} from "../../Components/Alerts/confirmation-dialog/confirmation-dialog.component";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
+import { AuthServiceService } from '../../Services/AuthService/auth-service.service';
 @Component({
   selector: 'app-appointment-cancelled-index',
   standalone: true,
@@ -19,6 +20,11 @@ import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.servic
 })
 export class AppointmentCancelledIndexComponent {
 
+  role:number | null = 0
+   
+   getrole(){
+     this.role = this.authservice.getRole()
+   }
   appointmentsR: AppointmentResults | undefined;
   showConfirmationDialog = false;
   appointmentToActivate: number | null = null;
@@ -26,11 +32,13 @@ export class AppointmentCancelledIndexComponent {
   constructor(
     private appointmentService: AppointmentRequestService,
     private router: Router,
-    private alertService: GlobalAlertService
+    private alertService: GlobalAlertService,
+    private authservice: AuthServiceService
   ) {
   }
 
   ngOnInit() {
+    this.getrole(),
     this.appointmentService.getCancelledAppointments().subscribe(
       appointments => {
         this.appointmentsR = appointments;
