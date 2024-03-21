@@ -1,6 +1,7 @@
 <div class="w-full mt-4 text-left table-auto min-w-max">
     LOGS
 </div>
+<div class="overflow-x-auto" style="margin-left: 20vh;">
 <table class="w-full mt-4 text-left table-auto min-w-max">
     <thead>
       <tr>
@@ -9,6 +10,16 @@
             id usuario
           </p>
         </th>
+        <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              name
+            </p>
+          </th>
+          <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
+            <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+              email
+            </p>
+          </th>
         <th class="p-4 border-y border-blue-gray-100 bg-blue-gray-50/50">
           <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
             endpoint
@@ -50,6 +61,16 @@
           </div>
         </th>
         <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{log.name}}
+            </p>
+          </td>
+          <td class="p-4 border-b border-blue-gray-50">
+            <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+              {{log.email}}
+            </p>
+          </td>
+        <td class="p-4 border-b border-blue-gray-50">
           <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
             {{log.endpoint}}
           </p>
@@ -60,13 +81,13 @@
           </p>
         </td>
 
-        <td class="p-4 border-b border-blue-gray-50">
+        <td class="p-4 border-b border-blue-gray-50 break-words">
             <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
-              {{log.data_sent}}
+              {{log.data_sent | json}}
             </p>
           </td>
 
-          <td class="p-4 border-b border-blue-gray-50">
+          <td class="p-4 border-b border-blue-gray-50 break-words">
             <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
               {{log.data_received}}
             </p>
@@ -81,7 +102,8 @@
       </tr>
     </tbody>
   </table>
-  
+</div>
+
   <div *ngIf="mostrarcomp" class="app-usershow-overlay">
     <app-usershow
       [objectProd]="objectProd"

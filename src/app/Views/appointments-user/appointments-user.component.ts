@@ -38,4 +38,20 @@ export class AppointmentsUserComponent {
       });
   }
 
+  findByDate(date: string){
+    console.log(date)
+    if (date === ''){
+      this.ngOnInit();
+    }else {
+    this.appointmentService.findUserAppointmentsByDate(date,this.authService.getUserId()).subscribe(appointments => {
+      this.appointmentsR = appointments;
+    },
+      err => {
+        if (!err.error.success){
+          this.appointmentsR = {vet_appointments: []};
+        }
+      });
+    }
+  }
+
 }

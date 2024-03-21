@@ -65,6 +65,8 @@ export const environment ={
   updateSpecie: 'http://127.0.0.1:8000/api/specie/update/',
   showSpecie: 'http://127.0.0.1:8000/api/specie/show/',
 
+  changerol: 'http://127.0.0.1:8000/api/users/changerole/',
+
   totalAppointments: 'http://127.0.0.1:8000/api/vetappointment/totalApointments',
   totalUsuarios: 'http://127.0.0.1:8000/api/users/totalUsers',
   totalProductos: 'http://127.0.0.1:8000/api/product/totalProducts',
@@ -73,14 +75,16 @@ export const environment ={
   loguser: 'http://127.0.0.1:8000/api/users/xid/',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
-  salesIndex: 'http://127.0.0.1:8000/api/product/vetas/index',
   findAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
-  findCancelledAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/cancelled/find/name/',
-  findCompletedAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
-  findPrescriptionByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
-
+  findCancelledAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/cancelled/name/',
+  findCompletedAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/completed/name/',
+  findPrescriptionByName: 'http://127.0.0.1:8000/api/vetprescription/find/name/',
+  salesIndex: 'http://127.0.0.1:8000/api/product/ventas/index',
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
   enableProd: 'http://127.0.0.1:8000/api/products/activate/',
+  findUserPetByName: 'http://127.0.0.1:8000/api/pet/find/name/',
+  findUserAppointmentsByDate: 'http://127.0.0.1:8000/api/vetappointment/find/date/',
+  findUSerPrescriptionsByDate: 'http://127.0.0.1:8000/api/vetprescription/find/date/',
 
   serviceindex: 'http://127.0.0.1:8000/api/services/index',
   servicestore: 'http://127.0.0.1:8000/api/services/store',

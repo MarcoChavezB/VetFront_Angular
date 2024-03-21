@@ -32,4 +32,15 @@ export class UserPetsComponent {
         }
       });
   }
+
+  findByName(name: string){
+    this.petService.findUserPetByName(name,this.authService.getUserId()).subscribe(pets => {
+      this.petsR = pets;
+    },
+      err =>{
+        if (!err.error.success){
+          this.petsR = {pets: []}
+        }
+      });
+  }
 }

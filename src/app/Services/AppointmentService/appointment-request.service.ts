@@ -23,6 +23,7 @@ export class AppointmentRequestService {
   private urlFindAppointmentByName = environment.findAppointmentByName
   private urlFindCancelledAppointmentByName = environment.findCancelledAppointmentByName
   private urlFindCompletedAppointmentByName = environment.findCompletedAppointmentByName
+  private urlFindUserAppointmentsByDate = environment.findUserAppointmentsByDate
 
   constructor(
     private readonly http: HttpClient,
@@ -77,5 +78,9 @@ export class AppointmentRequestService {
 
   findCompletedAppointmentByName(name: string): Observable<AppointmentResults> {
     return this.http.get<AppointmentResults>(this.urlFindCompletedAppointmentByName + name)
+  }
+
+  findUserAppointmentsByDate(date: string, id: number): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlFindUserAppointmentsByDate + date + '/' + id)
   }
 }

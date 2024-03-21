@@ -28,12 +28,20 @@ export class AppointmentCompletedIndexComponent {
     this.appointmentService.getCompletedAppointments().subscribe(
       appointments => {
         this.appointmentsR = appointments;
-        console.log(appointments)
-        console.log(this.appointmentsR)
       },err =>{
         if (!err.error.success){
-          console.log('No appointments found')
           this.appointmentsR = {vet_appointments: []}
+        }
+      });
+  }
+
+  findByName(name: string){
+    this.appointmentService.findCompletedAppointmentByName(name).subscribe(appointments => {
+      this.appointmentsR = appointments;
+    },
+      err => {
+        if (!err.error.success){
+          this.appointmentsR = {vet_appointments: []};
         }
       });
   }
