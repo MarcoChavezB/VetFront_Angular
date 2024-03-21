@@ -14,7 +14,7 @@ export const environment ={
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
   adminAuth: 'http://127.0.0.1:8000/api/adminauth',
   userAuth: 'http://127.0.0.1:8000/api/userauth',
-  
+
   guestAuth: 'http://127.0.0.1:8000/api/guestauth',
 
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
@@ -74,7 +74,11 @@ export const environment ={
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
   salesIndex: 'http://127.0.0.1:8000/api/product/vetas/index',
-  
+  findAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
+  findCancelledAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/cancelled/find/name/',
+  findCompletedAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
+  findPrescriptionByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
+
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
   enableProd: 'http://127.0.0.1:8000/api/products/activate/',
 
@@ -88,5 +92,5 @@ export const environment ={
   makeSale: 'http://127.0.0.1:8000/api/product/venta',
 
   getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/'
-  
+
 }
