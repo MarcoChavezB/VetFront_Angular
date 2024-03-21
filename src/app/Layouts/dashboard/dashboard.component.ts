@@ -37,6 +37,11 @@ export class DashboardComponent {
 
   ngOnInit(){
     this.polling()
+    this.getTotalAppointments();
+    this.getTotalProducts();
+    this.getTotalUser();
+    this.getProductsStockBajo();
+    this.getAppointments()
   }
 
 
@@ -103,6 +108,6 @@ export class DashboardComponent {
       this.getProductsStockBajo();
       this.getAppointments()
     }
-    , 1000000000);
+    , 50000);
   }
 }
