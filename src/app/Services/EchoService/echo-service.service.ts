@@ -1,25 +1,42 @@
 import { Injectable } from '@angular/core';
 import Echo from 'laravel-echo';
+import { environment } from '../../../environments/environment';
+
 declare global {
-  interface Window { Echo: any; }
+  interface Window { Echo: Echo | undefined; }
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class EchoServiceService {
-  private echo: Echo;
+  pusherKey = environment.pusher.key;
+  pusherCluster = environment.pusher.cluster;
 
   constructor() {
-    this.echo = new Echo({
-      broadcaster: 'pusher',
-      key: 'tu-key-de-pusher',
-      cluster: 'tu-cluster-de-pusher',
-      encrypted: true,
-    });
+    if (!window.Echo) { 
+      window.Echo = new Echo({
+        broadcaster: 'pusher',
+        key: this.pusherKey,
+        cluster: this.pusherCluster,
+        encrypted: false,
+        wsHost: window.location.hostname,
+        wssPort: 6001,
+        wsPort: 6001,
+        disableStats: true,
+      });
+    }
   }
 
   listen(channel: string, event: string, callback: Function) {
-    this.echo.channel(channel).listen(event, callback);
+    window.Echo?.channel(channel).listen(event, callback);
   }
+
+  listenToTestEvent() {
+    window.Echo?.channel('test-channel')
+      .listen('.test.event', (e: any) => { 
+        console.log('Event data:', e);
+      });
+  }
+  
 }
