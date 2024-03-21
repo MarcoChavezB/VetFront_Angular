@@ -11,6 +11,8 @@ export class PrescriptionServiceService {
   private urlStorePrescription = environment.prescriptionStore
   private urlIndexPrescription = environment.prescriptionsIndex
   private urlUserPrescriptions = environment.userPrescriptionsIndex
+  private urlFindPrescriptionByName = environment.findPrescriptionByName
+  private urlFindUserPrescriptionsByDate = environment.findUSerPrescriptionsByDate
   constructor(
     private readonly http: HttpClient,
   ) { }
@@ -26,5 +28,14 @@ export class PrescriptionServiceService {
   getUserPrescriptions(id: number) {
     return this.http.get<PrescriptionResults>(this.urlUserPrescriptions + id)
   }
+
+  findPrescriptionByName(name: string) {
+    return this.http.get<PrescriptionResults>(this.urlFindPrescriptionByName + name)
+  }
+
+  findUserPrescriptionsByDate(date: string, id: number) {
+    return this.http.get<PrescriptionResults>(this.urlFindUserPrescriptionsByDate + date + '/' + id)
+  }
+
 
 }

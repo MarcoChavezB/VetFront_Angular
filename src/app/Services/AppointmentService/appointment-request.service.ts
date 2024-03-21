@@ -20,6 +20,10 @@ export class AppointmentRequestService {
   private urlMarkAppointmentAsCancelled = environment.markAppointmentAsCancelled
   private getVetAppointmentsByUser = environment.getVetAppointmentsByUser
   private urlGetCompletedAppointments = environment.completedAppointments
+  private urlFindAppointmentByName = environment.findAppointmentByName
+  private urlFindCancelledAppointmentByName = environment.findCancelledAppointmentByName
+  private urlFindCompletedAppointmentByName = environment.findCompletedAppointmentByName
+  private urlFindUserAppointmentsByDate = environment.findUserAppointmentsByDate
 
   constructor(
     private readonly http: HttpClient,
@@ -62,5 +66,21 @@ export class AppointmentRequestService {
   }
   getAppointmentsWithUser(): Observable<AppointmentUserResults>{
     return this.http.get<AppointmentUserResults>(environment.AppointmentUser)
+  }
+
+  findAppointmentByName(name: string): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlFindAppointmentByName + name)
+  }
+
+  findCancelledAppointmentByName(name: string): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlFindCancelledAppointmentByName + name)
+  }
+
+  findCompletedAppointmentByName(name: string): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlFindCompletedAppointmentByName + name)
+  }
+
+  findUserAppointmentsByDate(date: string, id: number): Observable<AppointmentResults> {
+    return this.http.get<AppointmentResults>(this.urlFindUserAppointmentsByDate + date + '/' + id)
   }
 }

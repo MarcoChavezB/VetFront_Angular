@@ -14,7 +14,7 @@ see : 'http://127.0.0.1:8000/api/sse-updates',
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
   adminAuth: 'http://127.0.0.1:8000/api/adminauth',
   userAuth: 'http://127.0.0.1:8000/api/userauth',
-  
+
   guestAuth: 'http://127.0.0.1:8000/api/guestauth',
 
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
@@ -75,10 +75,16 @@ see : 'http://127.0.0.1:8000/api/sse-updates',
   loguser: 'http://127.0.0.1:8000/api/users/xid/',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
+  findAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
+  findCancelledAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/cancelled/name/',
+  findCompletedAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/completed/name/',
+  findPrescriptionByName: 'http://127.0.0.1:8000/api/vetprescription/find/name/',
   salesIndex: 'http://127.0.0.1:8000/api/product/ventas/index',
-  
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
   enableProd: 'http://127.0.0.1:8000/api/products/activate/',
+  findUserPetByName: 'http://127.0.0.1:8000/api/pet/find/name/',
+  findUserAppointmentsByDate: 'http://127.0.0.1:8000/api/vetappointment/find/date/',
+  findUSerPrescriptionsByDate: 'http://127.0.0.1:8000/api/vetprescription/find/date/',
 
   serviceindex: 'http://127.0.0.1:8000/api/services/index',
   servicestore: 'http://127.0.0.1:8000/api/services/store',
@@ -89,6 +95,10 @@ see : 'http://127.0.0.1:8000/api/sse-updates',
   getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
   makeSale: 'http://127.0.0.1:8000/api/product/venta',
 
-  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/'
-  
+  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/',
+
+  pusher: {
+    key: '2489eced27769e3a01d1',
+    cluster: 'us3'
+  }
 }

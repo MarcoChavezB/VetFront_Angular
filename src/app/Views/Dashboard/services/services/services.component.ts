@@ -6,6 +6,7 @@ import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { ServiceupdateComponent } from '../serviceupdate/serviceupdate/serviceupdate.component';
 import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
+import { EchoServiceService } from '../../../../Services/EchoService/echo-service.service';
 @Component({
   selector: 'app-services',
   standalone: true,
@@ -25,6 +26,7 @@ export class ServicesComponent {
   constructor(
     private readonly ProdService: ServiciosService,
     private readonly authservice: AuthServiceService,
+    private readonly echoservice: EchoServiceService
     ) {
     
   }
@@ -37,6 +39,7 @@ export class ServicesComponent {
   ngOnInit(): void {
     this.getServices();
     this.getrole();
+    this.echoservice.listenToTestEvent()
   }
   
   nombresPropiedades: string[] = [];

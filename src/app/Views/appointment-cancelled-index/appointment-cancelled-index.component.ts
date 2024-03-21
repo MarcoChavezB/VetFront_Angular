@@ -21,7 +21,7 @@ import { AuthServiceService } from '../../Services/AuthService/auth-service.serv
 export class AppointmentCancelledIndexComponent {
 
   role:number | null = 0
-   
+
    getrole(){
      this.role = this.authservice.getRole()
    }
@@ -67,6 +67,18 @@ export class AppointmentCancelledIndexComponent {
 
   onCancel() {
     this.showConfirmationDialog = false;
+  }
+
+  findByName(name: string){
+    this.appointmentService.findCancelledAppointmentByName(name).subscribe(appointments => {
+        this.appointmentsR = appointments;
+        console.log(this.appointmentsR)
+      },
+      err =>{
+        if (!err.error.success){
+          this.appointmentsR = {vet_appointments: []}
+        }
+      });
   }
 
 

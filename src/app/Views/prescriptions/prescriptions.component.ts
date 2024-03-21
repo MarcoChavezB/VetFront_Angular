@@ -56,7 +56,6 @@ export class PrescriptionsComponent {
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.appointmentId = params['id'];
-      console.log(this.appointmentId)
     });
   }
 
@@ -91,5 +90,6 @@ export class PrescriptionsComponent {
       }
     )
   }
+
 
 }
