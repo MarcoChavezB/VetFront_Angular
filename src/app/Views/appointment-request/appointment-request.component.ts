@@ -48,6 +48,7 @@ export class AppointmentRequestComponent {
 
   petsR: PetResults | undefined;
   loading = false;
+  role:number | null = 0
 
 
   appointmentRequestForm = new FormGroup({
@@ -67,7 +68,12 @@ export class AppointmentRequestComponent {
   ) {
   }
 
+  getrole(){
+    this.role = this.authService.getRole()
+  }
+
   ngOnInit() {
+    this.getrole()
     this.userService.getPetsByUser(Number(this.authService.getUserId())).subscribe(pets => {
       this.petsR = pets;
       console.log(this.petsR)
@@ -90,12 +96,11 @@ export class AppointmentRequestComponent {
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
         this.echoService.listenToNewAppointment((e: any) => {
-          if(this.authService.getRole() == 2){
-            console.log('role', this.authService.getRole());
+          if(this.role == 2){
             this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
           }
         });
-        this.alertService.showAlert('Cita solicitada con éxito');
+        //this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
         this.loading = false;
         this.router.navigate(['/dashboard/user/appointments']);
