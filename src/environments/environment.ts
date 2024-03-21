@@ -89,6 +89,10 @@ export const environment ={
   getTotal: 'http://127.0.0.1:8000/api/product/getTotal',
   makeSale: 'http://127.0.0.1:8000/api/product/venta',
 
-  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/'
+  getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/',
   
+  pusher: {
+    key: '2489eced27769e3a01d1',
+    cluster: 'us3'
+  }
 }
