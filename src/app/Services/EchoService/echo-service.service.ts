@@ -34,8 +34,9 @@ export class EchoServiceService {
 
   listenToTestEvent() {
     window.Echo?.channel('test-channel')
-      .listen('.testevent', (e: any) => { 
+      .listen('.test.event', (e: any) => { 
         console.log('Event data:', e);
       });
   }
+  
 }
