@@ -14,7 +14,7 @@ export class EchoServiceService {
   pusherCluster = environment.pusher.cluster;
 
   constructor() {
-    if (!window.Echo) { 
+    if (!window.Echo) {
       window.Echo = new Echo({
         broadcaster: 'pusher',
         key: this.pusherKey,
@@ -40,16 +40,24 @@ export class EchoServiceService {
 
   listenToTestEvent() {
     window.Echo?.channel('test-channel')
-      .listen('.test.event', (e: any) => { 
+      .listen('.test.event', (e: any) => {
         console.log('Event data:', e);
       });
   }
 
   listenToNewService(callback: (e: any) => void) {
     window.Echo?.channel('service-channel')
-      .listen('.service.event', (e: any) => { 
-        callback(e); 
+      .listen('.service.event', (e: any) => {
+        callback(e);
       });
   }
-  
+
+  listenToNewAppointment(callback: (e: any) => void) {
+    window.Echo?.channel('appointment-channel')
+      .listen('.appointment.stored', (e: any) => {
+        callback(e);
+        console.log('Appointment data:', e);
+      });
+  }
+
 }
