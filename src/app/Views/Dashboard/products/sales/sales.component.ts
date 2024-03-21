@@ -51,21 +51,6 @@ export class SalesComponent implements OnDestroy {
     
   }
 
-  webSocket(){
-    const echo = new Echo({
-      broadcaster: 'pusher',
-      cluester: 'us2',
-      key: 'mykey',
-      wsHost: window.location.hostname,
-      wsPort: 6001,
-      disableStats: true,
-      enabledTransports: ['ws', 'wss']
-    })
-    echo.channel('sales')
-      .listen('SaleMade', (e: any) => {
-        console.log(e);
-      })
-  }
 
   getProduc(id: number){
     this.porductService.getProductId(id).subscribe(

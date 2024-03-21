@@ -4,6 +4,8 @@ import { AuthServiceService } from '../../../Services/AuthService/auth-service.s
 import { Router } from '@angular/router';
 import { ProductService } from '../../../Services/ProductService/product.service';
 import { CommonModule } from '@angular/common';
+import { NotificationService } from '../../../Services/WS/notification.service';
+
 @Component({
   selector: 'app-aside-nav',
   standalone: true,
@@ -21,20 +23,29 @@ export class AsideNavComponent {
   constructor( 
     private authService: AuthServiceService,
     private readonly productService: ProductService,
-    private router: Router     
+    private router: Router,
+    private readonly notificationService: NotificationService
     ) {}
 
     guest: boolean = false;
     admin: boolean = false;
     user: boolean = false;
-
     showNotificationsModal: boolean = false;
-
-
     totalProducts: number = 0;
+    notifications: any[] = []
+    showPunterNotify: boolean = false;
+
   ngOnInit(){
     this.getNumberPord()
     this.getrole()
+
+    if(this.role === 2){
+      this.notificationService.lsitenToEvent((eventData) => {
+        this.notifications = []
+        this.notifications.push(eventData.message)
+        this.showPunterNotify = true
+      });
+    }   
   }
 
   getrole(){
@@ -58,6 +69,11 @@ export class AsideNavComponent {
   }
 
   showNotifications(){
+    this.showPunterNotify = false
     this.showNotificationsModal = !this.showNotificationsModal
+  }
+
+  showNotificationAlert(){
+    this.showPunterNotify = !this.showPunterNotify
   }
 }

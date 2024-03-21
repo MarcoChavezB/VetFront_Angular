@@ -68,6 +68,7 @@ export class ModifyProdComponent {
     this.productService.modifyProduct(this.idModify, this.name, this.price, this.stock, this.description, this.category_id).subscribe(
       (res) => {
         this.showAlertSuccess(res.message)
+        console.log(res)
         this.refresh.emit(true)
       },
       (err) => {
