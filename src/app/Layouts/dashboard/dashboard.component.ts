@@ -8,6 +8,7 @@ import { product } from '../../Models/Product';
 import { CommonModule } from '@angular/common';
 import { AppointmentUser } from '../../Models/AppontmentUser';
 
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -102,6 +103,6 @@ export class DashboardComponent {
       this.getProductsStockBajo();
       this.getAppointments()
     }
-    , 100000);
+    , 1000000000);
   }
 }
