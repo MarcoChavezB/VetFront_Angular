@@ -27,6 +27,7 @@ export class PetServiceService {
   private urlDeactivatedPets = environment.deactivatedPets
   private urlActivatePet = environment.activatePet
   private urlDeactivatePet = environment.deactivatePet
+  private urlFindUserPetByName = environment.findUserPetByName
 
   constructor(
     private readonly http: HttpClient,
@@ -74,5 +75,9 @@ export class PetServiceService {
 
   deactivatePet(id: number | null): Observable<any> {
     return this.http.delete<any>(this.urlDeactivatePet + id)
+  }
+
+  findUserPetByName(name: string, id: number): Observable<PetResults> {
+    return this.http.get<PetResults>(this.urlFindUserPetByName + name + '/' + id)
   }
 }

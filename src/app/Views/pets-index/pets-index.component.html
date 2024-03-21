@@ -26,6 +26,7 @@
       <td class="px-3 py-2 text-sm">{{pet.owner}}</td>
       <td class="px-3 py-2 text-sm">
         <button *ngIf="role === 2" class="bg-red-400 text-white px-2 py-1 rounded" (click)="deactivatePet(pet.id)">Desactivar</button>
+        <button class="bg-blue-400 text-white px-2 py-1 rounded" [routerLink]="['/dashboard/appointment/pet/update/', pet.id]">Modificar</button>
       </td>
     </tr>
     </tbody>

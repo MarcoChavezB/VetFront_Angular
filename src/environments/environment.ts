@@ -7,14 +7,14 @@ export const environment ={
   update: 'http://127.0.0.1:8000/api/update',
   delete: 'http://127.0.0.1:8000/api/delete/',
   show: 'http://127.0.0.1:8000/api/show/',
-
+see : 'http://127.0.0.1:8000/api/sse-updates',
   authenticate: 'http://127.0.0.1:8000/api/authenticatetoken', // token
   codeVerifiedAuth: 'http://127.0.0.1:8000/api/codeverified',
   emailVerifiedAuth: 'http://127.0.0.1:8000/api/emailverified',
   activeAccountAuth: 'http://127.0.0.1:8000/api/activeaccount',
   adminAuth: 'http://127.0.0.1:8000/api/adminauth',
   userAuth: 'http://127.0.0.1:8000/api/userauth',
-  
+
   guestAuth: 'http://127.0.0.1:8000/api/guestauth',
 
   codeVerify: 'http://127.0.0.1:8000/api/verifyCode',
@@ -75,10 +75,16 @@ export const environment ={
   loguser: 'http://127.0.0.1:8000/api/users/xid/',
   productsStockBajo: 'http://127.0.0.1:8000/api/product/stockBajo',
   AppointmentUser: 'http://127.0.0.1:8000/api/vetappointment/info/Appointments',
+  findAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/name/',
+  findCancelledAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/cancelled/name/',
+  findCompletedAppointmentByName: 'http://127.0.0.1:8000/api/vetappointment/find/completed/name/',
+  findPrescriptionByName: 'http://127.0.0.1:8000/api/vetprescription/find/name/',
   salesIndex: 'http://127.0.0.1:8000/api/product/ventas/index',
-  
   productsDisabled: 'http://127.0.0.1:8000/api/products/index/disabled',
   enableProd: 'http://127.0.0.1:8000/api/products/activate/',
+  findUserPetByName: 'http://127.0.0.1:8000/api/pet/find/name/',
+  findUserAppointmentsByDate: 'http://127.0.0.1:8000/api/vetappointment/find/date/',
+  findUSerPrescriptionsByDate: 'http://127.0.0.1:8000/api/vetprescription/find/date/',
 
   serviceindex: 'http://127.0.0.1:8000/api/services/index',
   servicestore: 'http://127.0.0.1:8000/api/services/store',
@@ -90,7 +96,7 @@ export const environment ={
   makeSale: 'http://127.0.0.1:8000/api/product/venta',
 
   getProductSearch: 'http://127.0.0.1:8000/api/product/getProduct/',
-  
+
   pusher: {
     key: '2489eced27769e3a01d1',
     cluster: 'us3'

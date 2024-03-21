@@ -28,6 +28,8 @@ export class AsideNavComponent {
     admin: boolean = false;
     user: boolean = false;
 
+    showNotificationsModal: boolean = false;
+
 
     totalProducts: number = 0;
   ngOnInit(){
@@ -53,5 +55,9 @@ export class AsideNavComponent {
         console.log(error);
       }
     );
+  }
+
+  showNotifications(){
+    this.showNotificationsModal = !this.showNotificationsModal
   }
 }
