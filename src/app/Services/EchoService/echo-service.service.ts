@@ -28,6 +28,12 @@ export class EchoServiceService {
     }
   }
 
+  leaveChannel(channel: string) {
+    if (window.Echo) {
+      window.Echo.leave(channel);
+    }
+  }
+
   listen(channel: string, event: string, callback: Function) {
     window.Echo?.channel(channel).listen(event, callback);
   }
@@ -36,6 +42,13 @@ export class EchoServiceService {
     window.Echo?.channel('test-channel')
       .listen('.test.event', (e: any) => { 
         console.log('Event data:', e);
+      });
+  }
+
+  listenToNewService(callback: (e: any) => void) {
+    window.Echo?.channel('service-channel')
+      .listen('.service.event', (e: any) => { 
+        callback(e); 
       });
   }
   

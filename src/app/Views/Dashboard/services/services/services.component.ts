@@ -7,6 +7,10 @@ import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-succe
 import { ServiceupdateComponent } from '../serviceupdate/serviceupdate/serviceupdate.component';
 import { AuthServiceService } from '../../../../Services/AuthService/auth-service.service';
 import { EchoServiceService } from '../../../../Services/EchoService/echo-service.service';
+
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 @Component({
   selector: 'app-services',
   standalone: true,
@@ -32,14 +36,18 @@ export class ServicesComponent {
   }
   role:number | null = 0
 
+
   getrole(){
     this.role = this.authservice.getRole()
   }
 
+  
   ngOnInit(): void {
     this.getServices();
     this.getrole();
-    this.echoservice.listenToTestEvent()
+    this.echoservice.listenToNewService((eventData) => {
+      this.getServices();
+    });
   }
   
   nombresPropiedades: string[] = [];
@@ -57,6 +65,7 @@ export class ServicesComponent {
     this.ProdService.getServices().subscribe(
       (data) => {
         this.services = data.services;
+        console.log(this.services)
         if(this.services.length == 0){
           this.existService = false;
         }
