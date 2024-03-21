@@ -56,7 +56,6 @@ export class EchoServiceService {
     window.Echo?.channel('appointment-channel')
       .listen('.appointment.stored', (e: any) => {
         callback(e);
-        console.log('Appointment data:', e);
       });
   }
 
