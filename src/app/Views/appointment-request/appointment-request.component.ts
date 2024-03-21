@@ -95,8 +95,6 @@ export class AppointmentRequestComponent {
     };
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
-        this.echoService.listenToNewAppointment((e: any) => {
-        });
         this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
         this.loading = false;

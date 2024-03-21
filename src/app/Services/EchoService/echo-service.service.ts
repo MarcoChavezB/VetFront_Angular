@@ -61,9 +61,6 @@ export class EchoServiceService {
     window.Echo?.channel('appointment-channel')
       .listen('.appointment.stored', (e: any) => {
         callback(e);
-        if(this.authService.getRole() === 2){
-          this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
-        }
       });
   }
 
