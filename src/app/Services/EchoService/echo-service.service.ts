@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import Echo from 'laravel-echo';
 import { environment } from '../../../environments/environment';
+import {GlobalAlertService} from "../GlobalAlert/global-alert.service";
+import {AuthServiceService} from "../AuthService/auth-service.service";
 
 declare global {
   interface Window { Echo: Echo | undefined; }
@@ -13,7 +15,10 @@ export class EchoServiceService {
   pusherKey = environment.pusher.key;
   pusherCluster = environment.pusher.cluster;
 
-  constructor() {
+  constructor(
+    private alertService: GlobalAlertService,
+    private authService: AuthServiceService
+  ) {
     if (!window.Echo) {
       window.Echo = new Echo({
         broadcaster: 'pusher',
@@ -56,6 +61,9 @@ export class EchoServiceService {
     window.Echo?.channel('appointment-channel')
       .listen('.appointment.stored', (e: any) => {
         callback(e);
+        if(this.authService.getRole() === 2){
+          this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
+        }
       });
   }
 

@@ -96,11 +96,8 @@ export class AppointmentRequestComponent {
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
         this.echoService.listenToNewAppointment((e: any) => {
-          if(this.role == 2){
-            this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
-          }
         });
-        //this.alertService.showAlert('Cita solicitada con éxito');
+        this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
         this.loading = false;
         this.router.navigate(['/dashboard/user/appointments']);
