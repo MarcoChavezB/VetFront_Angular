@@ -12,6 +12,7 @@ import {animate, keyframes, style, transition, trigger} from "@angular/animation
 import {Router} from "@angular/router";
 import {GlobalAlertService} from "../../Services/GlobalAlert/global-alert.service";
 import {GlobalLoadingComponent} from "../../Components/global-loading/global-loading.component";
+import {EchoServiceService} from "../../Services/EchoService/echo-service.service";
 
 @Component({
   selector: 'app-appointment-request',
@@ -61,7 +62,8 @@ export class AppointmentRequestComponent {
     private userService: UserServiceService,
     private appointmentService: AppointmentRequestService,
     private router: Router,
-    private alertService: GlobalAlertService
+    private alertService: GlobalAlertService,
+    private echoService: EchoServiceService
   ) {
   }
 
@@ -87,7 +89,12 @@ export class AppointmentRequestComponent {
     };
     this.appointmentService.storeAppointment(appointmentRequest).subscribe(
       res => {
-        this.alertService.showAlert('Cita solicitada con éxito');
+        this.echoService.listenToNewAppointment((e: any) => {
+          //if(this.authService.getRole() == 2){
+            this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
+          //}
+        });
+        //this.alertService.showAlert('Cita solicitada con éxito');
         this.isSubmitting = false;
         this.loading = false;
         this.router.navigate(['/dashboard/user/appointments']);

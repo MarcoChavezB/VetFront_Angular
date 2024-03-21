@@ -7,7 +7,6 @@ import { UserServiceService } from '../../Services/UserService/user-service.serv
 import { product } from '../../Models/Product';
 import { CommonModule } from '@angular/common';
 import { AppointmentUser } from '../../Models/AppontmentUser';
-import { SseService } from '../../Services/SSE/sse.service';
 
 @Component({
   selector: 'app-dashboard',

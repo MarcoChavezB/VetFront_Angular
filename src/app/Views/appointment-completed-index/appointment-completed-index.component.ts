@@ -19,12 +19,18 @@ import {NgForOf, NgIf} from "@angular/common";
 export class AppointmentCompletedIndexComponent {
 
   appointmentsR: AppointmentResults | undefined;
+  role:number | null = 0
   constructor(
     private appointmentService: AppointmentRequestService,
     private authService: AuthServiceService
   ) {}
 
+  getrole(){
+    this.role = this.authService.getRole()
+  }
+
   ngOnInit() {
+    this.getrole();
     this.appointmentService.getCompletedAppointments().subscribe(
       appointments => {
         this.appointmentsR = appointments;
