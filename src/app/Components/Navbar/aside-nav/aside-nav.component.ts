@@ -30,10 +30,12 @@ export class AsideNavComponent {
     guest: boolean = false;
     admin: boolean = false;
     user: boolean = false;
+    hasNotification: boolean = false;
     showNotificationsModal: boolean = false;
     totalProducts: number = 0;
     notifications: any[] = []
     showPunterNotify: boolean = false;
+    Nnotify: number = 0;
 
   ngOnInit(){
     this.getNumberPord()
@@ -43,6 +45,8 @@ export class AsideNavComponent {
       this.notificationService.lsitenToEvent((eventData) => {
         this.notifications = []
         this.notifications.push(eventData.message)
+        this.Nnotify = this.notifications.length
+        this.hasNotification = true
         this.showPunterNotify = true
       });
     }   
@@ -70,6 +74,7 @@ export class AsideNavComponent {
 
   showNotifications(){
     this.showPunterNotify = false
+    this.hasNotification = false
     this.showNotificationsModal = !this.showNotificationsModal
   }
 

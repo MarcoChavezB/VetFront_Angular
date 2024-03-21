@@ -144,6 +144,10 @@ export class SalesComponent implements OnDestroy {
   }
 
   getTotal(){
+    // if(!this.customerLastName || !this.customerName || !this.customerPhone){
+    //   this.showAlertError("Informacion del cliente obligatoria")
+    //   return
+    // }
     this.porductService.getTotal(this.formatBeforeSend()).subscribe(
       (data) => {
         this.totalCost = data;
