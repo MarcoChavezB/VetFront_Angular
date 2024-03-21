@@ -7,6 +7,7 @@ import { UserServiceService } from '../../Services/UserService/user-service.serv
 import { product } from '../../Models/Product';
 import { CommonModule } from '@angular/common';
 import { AppointmentUser } from '../../Models/AppontmentUser';
+import { SseService } from '../../Services/SSE/sse.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,20 +29,17 @@ export class DashboardComponent {
   appointments: AppointmentUser[] = [];
 
 
-
   constructor(
     private readonly appointmentService: AppointmentRequestService,
     private readonly productService: ProductService,
-    private readonly userService: UserServiceService
+    private readonly userService: UserServiceService,
   ){}
 
   ngOnInit(){
-    this.getTotalAppointments();
-    this.getTotalProducts();
-    this.getTotalUser();
-    this.getProductsStockBajo();
-    this.getAppointments()
+    this.polling()
   }
+
+
 
   getTotalAppointments(){
     this.appointmentService.getTotalAppointments().subscribe(
@@ -96,5 +94,15 @@ export class DashboardComponent {
         console.log(err);
       }
     )
+  }
+  polling(){
+    setInterval(() => {
+      this.getTotalAppointments();
+      this.getTotalProducts();
+      this.getTotalUser();
+      this.getProductsStockBajo();
+      this.getAppointments()
+    }
+    , 100000);
   }
 }

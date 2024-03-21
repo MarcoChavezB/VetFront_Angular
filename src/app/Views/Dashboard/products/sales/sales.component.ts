@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CardProdComponent } from '../../../../Components/shoping/card-prod/card-prod.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../../../../Services/ProductService/product.service';
@@ -10,6 +10,7 @@ import { AlertConfirmationComponent } from '../../../../Components/Alerts/alert-
 import { AlertSuccessComponent } from '../../../../Components/Alerts/alert-success/alert-success.component';
 import { AlertErrorComponent } from '../../../../Components/Alerts/alert-error/alert-error.component';
 import { SearchBarComponent } from '../../../../Components/shoping/search-bar/search-bar.component';
+import Echo from 'laravel-echo';
 
 @Component({
   selector: 'app-sales',
@@ -26,7 +27,7 @@ import { SearchBarComponent } from '../../../../Components/shoping/search-bar/se
   templateUrl: './sales.component.html',
   styleUrl: './sales.component.css'
 })
-export class SalesComponent {
+export class SalesComponent implements OnDestroy {
   totalCost: number = 0;
   items: product[] = [];
   quantity: number = 0;
@@ -45,6 +46,26 @@ export class SalesComponent {
     ){
       this.items = JSON.parse(localStorage.getItem('cart') || '[]');
     }
+
+  ngOnDestroy(): void {
+    
+  }
+
+  webSocket(){
+    const echo = new Echo({
+      broadcaster: 'pusher',
+      cluester: 'us2',
+      key: 'mykey',
+      wsHost: window.location.hostname,
+      wsPort: 6001,
+      disableStats: true,
+      enabledTransports: ['ws', 'wss']
+    })
+    echo.channel('sales')
+      .listen('SaleMade', (e: any) => {
+        console.log(e);
+      })
+  }
 
   getProduc(id: number){
     this.porductService.getProductId(id).subscribe(
