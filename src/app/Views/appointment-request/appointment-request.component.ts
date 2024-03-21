@@ -91,6 +91,7 @@ export class AppointmentRequestComponent {
       res => {
         this.echoService.listenToNewAppointment((e: any) => {
           if(this.authService.getRole() == 2){
+            console.log('role', this.authService.getRole());
             this.alertService.showAlert('Un nuevo usuario ha solicitado una cita');
           }
         });
